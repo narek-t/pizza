@@ -1,16 +1,67 @@
 extends _layout
 block content
 	main.main-content
-		.sprite-example
-			h2.heading Sprite example
-			i.facebook-logo__icon
-			i.google-plus-logo__icon
-			i.instagram-logo__icon
-			i.twitter-logo__icon
-			i.youtube-logo__icon
-		.author-git
-			h2 Github link
-			a(href="https://github.com/narek-t/gulp-jade-sass" target="_blank") https://github.com/narek-t/gulp-jade-sass
+		section.home-top(style="background-image: url(img/home-bg.jpg)")
+			.home-top__content
+				h1.home-top__content-title Быстрая доставка ваших любимых блюд!
+				p.home-top__content-description Ничто так не разделяет людей, как вкус, и не объединяет, как аппетит! На нашем сайте вы можете заказать легендарную пиццу, бургеры,  любимые блюда японской и китайской кухни, а также ароматную свежую выпечку.
+				form
+					.home-top__form
+						input.home-top__form-search(type="text" placeholder="Поиск...")
+						input.home-top__form-submit(type="submit" value="Поиск")
+		section.big-banner
+			a.block-link(href="#")
+				img.img-responsive(src="img/bn-img.jpg", alt="")
+		section.big-menu
+
+			a.big-menu__item(href="#")
+				img.big-menu__img(src="img/big-menu1.jpg", alt="")
+				.big-menu__content
+					img.big-menu__content-logo.img-responsive(src="img/big-menu-logo1.png", alt="")
+					p.big-menu__content-description Доставка 
+						span Пиццы
+
+			a.big-menu__item(href="#")
+				img.big-menu__img(src="img/big-menu2.jpg", alt="")
+				.big-menu__content
+					img.big-menu__content-logo.img-responsive(src="img/big-menu-logo2.png", alt="")
+					p.big-menu__content-description Доставка 
+						span БУРГЕРОВ
+
+			a.big-menu__item(href="#")
+				img.big-menu__img(src="img/big-menu3.jpg", alt="")
+				.big-menu__content
+					img.big-menu__content-logo.img-responsive(src="img/big-menu-logo3.png", alt="")
+					p.big-menu__content-description Доставка 
+						span японской кухни
+
+			a.big-menu__item(href="#")
+				img.big-menu__img(src="img/big-menu4.jpg", alt="")
+				.big-menu__content
+					img.big-menu__content-logo.img-responsive(src="img/big-menu-logo4.png", alt="")
+					p.big-menu__content-description Доставка 
+						span Китайской кухни
+
+			a.big-menu__item(href="#")
+				img.big-menu__img(src="img/big-menu5.jpg", alt="")
+				.big-menu__content
+					img.big-menu__content-logo.img-responsive(src="img/big-menu-logo5.png", alt="")
+					p.big-menu__content-description Доставка 
+						span выпечки
+
+			.big-menu__item
+				img.big-menu__img(src="img/big-menu6.jpg", alt="")
+				.big-menu__form
+					p.big-menu__form-title Обратная Связь
+					form
+						.big-menu__form-row
+							input.big-menu__form-input(type="text" placeholder="Имя")
+							input.big-menu__form-input(type="tel" placeholder="Телефон")
+							input.big-menu__form-input(type="email" placeholder="Email")
+						textarea.big-menu__form-input.big-menu__form-textarea(placeholder="Сообщение")
+						.big-menu__form-submit
+							input.btn.btn--submit(type="submit" value="Отправить")
+
 
 
 

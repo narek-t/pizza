@@ -1,4 +1,68 @@
 block header
 
 	header.site-header
-		h1 Blank template for frontend developers
+		.container.cf
+			.site-header__lside
+				a.site-header__tel.default-link(href="tel:+7 (831) 2-550-550") +7 (831) 2-550-550
+				p.site-header__loc Ваш город: 
+					a.custom-select.site-header__loc-anchor(href="#")
+						span.custom-select__title Нижний Новгород
+			.site-header__rside
+				a.site-header__cart.default-link(href="#")
+					span.site-header__cart-price 4585 руб.
+					span.site-header__cart-amount (3)
+				.site-header__acc
+					a.site-header__acc-link.default-link(href="#") Вход
+					span.site-header__acc-sep |
+					a.site-header__acc-link.default-link(href="#") Регистрация
+				button.open-menu
+					span
+					span
+					span
+			.site-header__nav
+				.site-header__nav-list
+					li.site-header__nav-list-item
+						a.default-link(href="#" style="background-image: url(img/menu1-ico.png)") Пицца
+					li.site-header__nav-list-item
+						a.default-link(href="#" style="background-image: url(img/menu2-ico.png)") Бургеры
+					li.site-header__nav-list-item
+						a.default-link(href="#" style="background-image: url(img/menu3-ico.png)") Китайская кухня
+					li.site-header__nav-list-item.site-header__nav-list-item--large
+						a.default-link(href="#" style="background-image: url(img/menu4-ico.png)") Японская кухня
+					li.site-header__nav-list-item
+						a.default-link(href="#" style="background-image: url(img/menu5-ico.png)") Выпечка
+			aside.main-sidebar
+				button.main-sidebar__close
+				.main-sidebar__inner
+					.main-sidebar__block
+						ul.main-sidebar__list
+							li 
+								a.default-link(href="#") Главная
+							li 
+								a.default-link(href="#") Доставка
+							li 
+								a.default-link(href="#") Рестораны
+							li 
+								a.default-link(href="#") Клубные КАРТЫ
+							li 
+								a.default-link(href="#") Акции
+							li 
+								a.default-link(href="#") События
+							li 
+								a.default-link(href="#") Детям
+					.main-sidebar__block
+						ul.main-sidebar__list.main-sidebar__list--gray
+							li
+								a.default-link(href="#") О компании
+							li
+								a.default-link(href="#") Работа у нас
+							li
+								a.default-link(href="#") Франчайзинг
+							li
+								a.default-link(href="#") Обратная связь
+							li
+								a.custom-select.main-sidebar__block--lang(href="#")
+									span.custom-select__title Русский
+
+
+

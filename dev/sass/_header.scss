@@ -1,0 +1,114 @@
+.site-header {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	padding: 30px 0;
+	background: rgba(0, 0, 0, .7);
+	color: #fff;
+	z-index: 999;
+	.container {
+		position: relative;
+	}
+	&__lside {
+		float: left;
+		width: 250px;
+	}
+	&__tel {
+		font: 500 21px $gt;
+		color: #fff;
+		text-decoration: none;
+	}
+	&__loc {
+		font: 400 13px $os;
+		margin: 8px 0 0;
+		&-anchor {
+			margin-left: 5px;
+		}
+	}
+	&__rside {
+		width: 250px;
+		float: right;
+		padding-right: 45px;
+		text-align: right;
+	}
+	&__cart {
+		padding-left: 25px;
+		background: url(../img/header-cart-ico.png) left center no-repeat;
+		text-decoration: none;
+		color: #fff;
+		font: 500 21px $gt;
+		&-amount {
+			margin-left: 8px;
+		}
+	}
+	&__acc {
+		font: 400 13px $os;
+		margin-top: 8px;
+		&-link {
+			color: #fff;
+		}
+		&-sep {
+			margin: 0 5px;
+		}
+	}
+	&__nav {
+		margin: 0 270px;
+		&-list {
+			margin: 16px 0 0;
+			padding: 0;
+			list-style-type: none;
+			text-align: center;
+			&-item {
+				display: inline-block;
+				vertical-align: middle;
+				padding: 0 25px;
+				border-right: 1px solid rgba(255, 255, 255, .3);
+				a {
+					padding-left: 20px;
+					color: #fff;
+					text-transform: uppercase;
+					font: 400 15px $os;
+					text-decoration: none;
+					background-repeat: no-repeat;
+					background-position: left center;
+				}
+				&--large {
+					a {
+						padding-left: 30px;
+					}
+				}
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+	}
+}
+
+.open-menu {
+	border: none;
+	background: transparent;
+	outline: 0;
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	top: 2px;
+	right: 15px;
+	span {
+		display: block;
+		height: 2px;
+		background: #fff;
+		margin-bottom: 4px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+	&:hover {
+		span {
+			background: $link-hover-color;
+		}
+	}
+}
