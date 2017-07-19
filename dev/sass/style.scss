@@ -3,13 +3,10 @@
 @import "_variables.scss";
 @import "_defaults.scss";
 @import "_sprite.scss";
+@import "_simplebar.scss";
 @import "_mixins.scss";
 @import "_header.scss";
 @import "_home.scss";
 @import "_sidebar.scss";
+@import "_contacts.scss";
 @import "_footer.scss";
-
-body {
-	background: $body-bg;
-}
-

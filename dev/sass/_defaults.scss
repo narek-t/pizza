@@ -1,3 +1,13 @@
+body {
+	background: $body-bg;
+}
+
+.main-content {
+	&__top-padding {
+		padding-top: 114px;
+	}
+}
+
 .container {
 	max-width: 1760px;
 	margin: auto;
@@ -31,6 +41,27 @@
 			color: #eaa321;
 		}
 	}
+}
+
+select.custom-select {
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
+	color: #fec458;
+	margin-left: 5px;
+	cursor: pointer;
+	&::-ms-expand { 
+		display: none;
+	}
+	&--compute {
+		display: none;
+	}
+}
+
+.custom-select--compute {
+	-webkit-appearance: none; 
+	-moz-appearance: none;
+	appearance: none;
 }
 
 .btn {
@@ -67,6 +98,14 @@
 
 body {
 	font-family: $os;
+}
+
+.simplebar-track {
+	background: #000;
+}
+
+.simplebar-scrollbar {
+	background: #404040 !important;
 }
 
 /* =Sticky Footer

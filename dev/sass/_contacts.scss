@@ -1,0 +1,62 @@
+.contacts {
+	display: flex;
+	justify-content: space-between;
+	&__sidebar {
+		flex: 0 0 580px;
+		background: #262626;
+		max-height: calc(100vh - 114px);
+		&-item {
+			padding: 25px 60px 25px 87px;
+			&--title {
+				font: 300 18px $gt;
+				margin: 0;
+			}
+			&--hours {
+				margin: 0;
+			}
+		}
+		&-district--title {
+			color: #fff;
+			font: 300 16px $os;
+			margin: 0;
+			a {
+				margin-left: 5px;
+			}
+			.custom-select__title {
+				font-size: 16px;
+			}
+		}
+		&-list {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			color: #fff;
+			&-item {
+				background: #1a1a1a;
+				cursor: pointer;
+				transition: background .3s ease-in-out;
+				font: 300 14px $os;
+				margin-top: 1px;
+				border-bottom: 1px solid #0d0d0d;
+				&:last-child {
+					border-bottom: none;
+				}
+				&:hover, &.active {
+					background: #0d0d0d;
+				}
+				&.unvisible {
+					display: none;
+				}
+			}
+		}
+	}
+	&__map {
+		flex: 1;
+		min-height: calc(100vh - 114px);
+		&-inner {
+			//safari hack
+			height: calc(100vh - 114px);
+		}
+	}
+
+}

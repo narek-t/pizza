@@ -1,0 +1,101 @@
+extends _layout
+block content
+	main.main-content.main-content__top-padding
+		.contacts
+			.contacts__sidebar(data-simplebar)
+				.contacts__sidebar-district.contacts__sidebar-item
+					p.contacts__sidebar-district--title.custom-select__wrapper Район: 
+						select.custom-select.district-change__select
+							option.custom-select__title(value="all") Все
+							option.custom-select__title(value="Нижегородский") Нижегородский
+							option.custom-select__title(value="Советский") Советский
+						select.custom-select--compute
+							option.custom-select--compute-value(value="")
+				ul.contacts__sidebar-list
+					li.contacts__sidebar-item.contacts__sidebar-list-item(data-district="Нижегородский")
+						p.contacts__sidebar-item--title Миры Пиццы в ТРЦ «ЭТАЖИ»
+						p.contacts__sidebar-item--info ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550
+						p.contacts__sidebar-item--hours Режим работы: 10:00 - 22:00
+					li.contacts__sidebar-item.contacts__sidebar-list-item(data-district="Нижегородский")
+						p.contacts__sidebar-item--title Миры Пиццы в ТРЦ «Фантастика»
+						p.contacts__sidebar-item--info ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550
+						p.contacts__sidebar-item--hours Режим работы: 10:00 - 22:00
+					li.contacts__sidebar-item.contacts__sidebar-list-item(data-district="Советский")
+						p.contacts__sidebar-item--title Миры Пиццы в ТРЦ «Бекетов»
+						p.contacts__sidebar-item--info ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550
+						p.contacts__sidebar-item--hours Режим работы: 10:00 - 22:00
+					li.contacts__sidebar-item.contacts__sidebar-list-item(data-district="Советский")
+						p.contacts__sidebar-item--title Миры Пиццы в ТРЦ «ЖАР ПТИЦА»
+						p.contacts__sidebar-item--info ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550
+						p.contacts__sidebar-item--hours Режим работы: 10:00 - 22:00
+
+			.contacts__map
+				#map.contacts__map-inner
+		
+
+
+
+block inlineScripts
+	script.
+		ymaps.ready(function () {
+			var pizzaMap = new ymaps.Map('map', {
+					center: [56.316895, 44.007124],
+					zoom: 13
+				}, {
+					searchControlProvider: 'yandex#search'
+				}),
+				defaults = {
+					iconLayout: 'default#image',
+					iconImageHref: 'img/custom-loc.png',
+					iconImageSize: [15, 20],
+					iconImageOffset: [-5, -20]
+				},
+				placemarks = [
+					{
+						coords: [56.316540, 44.019612],
+						bTitle: 'Миры Пиццы в ТРЦ «ЭТАЖИ»',
+						bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+						bHours: 'Режим работы: 10:00 - 22:00',
+					},
+					{
+						coords: [56.307677, 44.074207],
+						bTitle: 'Миры Пиццы в ТРЦ «Фантастика»',
+						bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+						bHours: 'Режим работы: 10:00 - 22:00',
+					},
+					{
+						coords: [56.292918, 44.012810],
+						bTitle: 'Миры Пиццы в ТРЦ «ББЕКЕТОВ»',
+						bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+						bHours: 'Режим работы: 10:00 - 22:00',
+					},
+					{
+						coords: [56.296617, 44.041434],
+						bTitle: 'Миры Пиццы в ТРЦ «ЖАР ПТИЦА»',
+						bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+						bHours: 'Режим работы: 10:00 - 22:00',
+					},
+				],
+				placemarkIndex;
+				singlePlacemark = [];
+				for (placemarkIndex = 0; placemarkIndex < placemarks.length; ++placemarkIndex) {
+					console.log();
+					singlePlacemark[placemarkIndex] = new ymaps.Placemark(placemarks[placemarkIndex].coords, {
+						balloonContent: '<p class="contacts__sidebar-item--title">'+placemarks[placemarkIndex].bTitle+'</p><p class="contacts__sidebar-item--info">'+placemarks[placemarkIndex].bInfo+'</p><p class="contacts__sidebar-item--hours">'+placemarks[placemarkIndex].bHours+'</p>'
+					}, defaults);
+					pizzaMap.geoObjects.add(singlePlacemark[placemarkIndex]);
+				}
+			$('.contacts__sidebar-list-item').click(function(event) {
+				event.preventDefault();
+				$('.contacts__sidebar-list-item').removeClass('active');
+				$(this).addClass('active');
+				var index = $(this).index();
+				var clickedPlacemark = eval("singlePlacemark[" + index + "]");
+				pizzaMap.panTo(clickedPlacemark.geometry.getCoordinates()).then(function () {
+					clickedPlacemark.balloon.open();
+				}, function (err) {
+					alert('Произошла ошибка ' + err);
+				}, this);
+			});
+		});
+		
