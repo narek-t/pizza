@@ -1,0 +1,61 @@
+extends _layout
+block content
+	main.main-content.landings
+		.landings-top(style="background-image: url(img/delivery-top.jpg)")
+			.landings-top__inner
+				h1.landings__title.bordered-title Время доставки
+				p.delivery-time ВC–ЧТ: с 9:45 до 22:45 <br>ПТ–СБ, праздники: с 9:45 до 01:45
+				p.landings__description Время доставки регламентируется до 1 часа с момента обработки заявки оператором call-центра.
+		section.landings__advantages
+			.container
+				.landings__advantages__inner
+					h2.landings__advantages-title ДОСТАВКА
+					ul.landings__advantages-simple-list
+						li Операторы call-центра подробно расскажут о продукции компании и проходящих акциях
+						li Вы можете сами приготовить себе пиццу, выбрав количество и ассортимент ингредиентов для пиццы, с помощью операторов
+						li Заказы принимаются от людей старше 18 лет, чтобы избежать возможных недоразумений
+		section.chess-layout
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title(style="background-image: url(img/del-title1.png)") ДОСТАВКА И ОПЛАТА
+						ul
+							li Бесплатная доставка: 
+							li при заказе от 600 руб. из всего ассортимента (без пиццы), 
+							li если в заказе есть любая пицца
+							li Курьер принимает к оплате только наличные
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/del1.jpg)")
+
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title(style="background-image: url(img/del-title2.png)") ЗОНА ДОСТАВКИ
+						ul
+							li Нижний Новгород – 8 (831) 2-550-550
+							li Москва* – 8 (495) 15-000-15
+							li Бор – 8 (83159) 76-000
+							li Дзержинск – 8 (8313) 345-678
+							li Саров – 8 (83130) 911-00
+							li Павлово – 8 (83171) 7-07-07
+							li Арзамас – 8 (83147) 77-0-77
+						p.note-text * Зона доставки по г. Москва: дер. «Ангелово», дер. «Марьино», МЖК «Росинка», пос. «Отрадное», КСК «Отрадное», СНГ «Светлогорочка», дер. «Коростово», дер. «Светлые горы», дер. «Аристово», дер. «Новое Аристово», СНТ «Гея», дер. «Юрлово», КП «Горки-5», КП «Горки-7», дер. «Сабурово», микрогород в лесу.
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/del2.jpg)")
+		section.contact__section
+			.container
+				h2.contact__section-title Обратная Связь
+				.contact__section-inner.center-align
+					form
+						.contact__section-form--row
+							span
+								input.contact__section-form--input(type="text" placeholder="Имя")
+							span
+								input.contact__section-form--input(type="tel" placeholder="Телефон")
+							span
+								input.contact__section-form--input(type="email" placeholder="Email")
+						textarea.contact__section-form--input(placeholder="Сообщение")
+						input.btn(type="submit" value="Отправить")
+
+
+
+
+block inlineScripts

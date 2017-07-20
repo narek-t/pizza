@@ -1,0 +1,15 @@
+.chess-layout__row {
+	display: flex;
+}
+
+.chess-layout__item {
+	width: 50%;
+	padding: 10px 120px 45px;
+	text-align: center;
+}
+
+.chess-layout__row:nth-child(even) {
+	.chess-layout__item:first-child {
+		order: 1;
+	}
+}

@@ -90,9 +90,8 @@ block inlineScripts
 				$('.contacts__sidebar-list-item').removeClass('active');
 				$(this).addClass('active');
 				var index = $(this).index();
-				var clickedPlacemark = eval("singlePlacemark[" + index + "]");
-				pizzaMap.panTo(clickedPlacemark.geometry.getCoordinates()).then(function () {
-					clickedPlacemark.balloon.open();
+				pizzaMap.panTo(singlePlacemark[index].geometry.getCoordinates()).then(function () {
+					singlePlacemark[index].balloon.open();
 				}, function (err) {
 					alert('Произошла ошибка ' + err);
 				}, this);

@@ -1,0 +1,74 @@
+extends _layout
+block content
+	main.main-content.landings.sale__page
+		.landings-top(style="background-image: url(img/sale-top.jpg)")
+			.container
+				.landings-top__inner
+					h1.landings__title Приложение для заказа пиццы
+					p.landings__description Крупная сеть ресторанов быстрого питания в Нижнем Новгороде и области. Уютные рестораны расположены в самых проходимых местах, а это значит, что попробовать легендарную пиццу может каждый.
+					.download-links__wrap
+						a.download__appstore.download-link(href="#" style="background-image: url(img/appstore.png)")
+						a.download__google-play.download-link(href="#" style="background-image: url(img/google-play.png)")
+		section.landings__advantages
+			.container
+				.landings__advantages__inner
+					h2.sale__page__advantages-title Лучшие акционные<br>предложения
+		section.chess-layout
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title - 30% НА ДОСТАВКУ*
+						p.sale-duration действует: 12.09.2016–30.06.2017
+						ul
+							li Сделайте заказ на доставку с сайта или через мобильное приложение и получите скидку 30% на следующий заказ, автоматически став участником акции «-30% на доставку».
+							li При заказе каждые 10 дней, ваша скидка останется с вами на все время действия акции. 
+							li Акция действует при заказе на доставку в сети ресторанов «Мир Пиццы» (в цикле 10 дней).
+							li Скидка автоматически закрепляется в программе за вашим телефоном, который вы указали как контактный.
+							li Минимальная сумма заказа должна соответствовать условиям доставки: чек не менее 600 рублей либо наличие в заказе пиццы.
+							li Действие акции распространяется на услугу «Пицца с собой» .
+						p.note-text * Скидки, Акции, подарки по Акциям не суммируются. Действия других акций, проходящих в тот же период, не распространяются на заказы, участвующие в Акции «-30% на Доставку». Внимание! Никакие напитки в акции не участвуют. 
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/sl1.jpg)")
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title Выгодные ПИЦЦА-СЕТЫ*
+						p.sale-duration действует: 09.03.2016–31.12.2025
+						h6 Популярный – 1490 З
+						ul
+							li 3 любые большие открытые пиццы на выбор из классического меню кроме пицц: Барская, Кальцоне, Дольче и Морская
+						h6 Ассорти – 1620 З
+						ul
+							li 2 любые большие пиццы из сета «Популярный»
+							li 1 любую большую пиццу из сета «Особый».
+						h6 Особый – 1800 З
+						ul
+							li 3 большие пиццы на выбор: Барская, Кальцоне, Дольче и Морская.
+						p.note-text * В пицца-сетах участвуют только большие пиццы из классического меню. Скидки, Акции, Специальные предложения, Подарки по Акциям не суммируются. 
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/sl2.jpg)")
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title ВКУСНЫЙ ДЕНЬ РОЖДЕНИЯ
+						p.sale-duration действует: 01.02.2006–31.12.2025
+						p Станьте обладателем карты Мир Пиццы и получите бесплатную пиццу «Маргарита классическая» в день вашего рождения или сделайте один заказ в день рождения со скидкой 50% на блюда «Мир пиццы» (кроме напитков). Подробности о получении карты Мир Пиццы 
+							a(href="#") здесь.
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/sl3.jpg)")
+		section.contact__section
+			.container
+				h2.contact__section-title Обратная Связь
+				.contact__section-inner.center-align
+					form
+						.contact__section-form--row
+							span
+								input.contact__section-form--input(type="text" placeholder="Имя")
+							span
+								input.contact__section-form--input(type="tel" placeholder="Телефон")
+							span
+								input.contact__section-form--input(type="email" placeholder="Email")
+						textarea.contact__section-form--input(placeholder="Сообщение")
+						input.btn(type="submit" value="Отправить")
+
+
+
+
+block inlineScripts

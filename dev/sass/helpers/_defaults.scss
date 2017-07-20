@@ -12,6 +12,7 @@ body {
 	max-width: 1760px;
 	margin: auto;
 	padding: 0 15px;
+	width: 100%;
 }
 
 .img-responsive {
@@ -66,7 +67,7 @@ select.custom-select {
 
 .btn {
 	height: 35px;
-	border: 1px solid #fec24a;
+	border: 1px solid #d9a036;
 	border-radius: 18px;
 	padding: 0 22px;
 	font: 400 13px/35px $os;
@@ -75,13 +76,17 @@ select.custom-select {
 	cursor: pointer;
 	transition: all .3s ease-in-out;
 	background: transparent;
-	margin: 30px;
+	margin: 30px 20px;
 	display: inline-block;
 	text-decoration: none;
 	outline: 0;
 	&:hover {
-		background: #fec24a;
+		background: #d9a036;
 		color: #000;
+	}
+	&--inverted {
+		background: #d9a036;
+		color: #fff;
 	}
 }
 
@@ -106,6 +111,18 @@ body {
 
 .simplebar-scrollbar {
 	background: #404040 !important;
+}
+
+.bordered-title  {
+	margin: 0 0 25px;
+	padding-bottom: 25px;
+	background: url(../img/header-border.png) bottom center no-repeat;
+}
+
+.rouble {
+	font-family: 'PT Rouble Sans';
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* =Sticky Footer

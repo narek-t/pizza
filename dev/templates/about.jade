@@ -1,0 +1,54 @@
+extends _layout
+block content
+	main.main-content.landings
+		.landings-top(style="background-image: url(img/delivery-top.jpg)")
+			.landings-top__inner
+				h1.landings__title.bordered-title Большая сеть ресторанов
+				p.landings__description Крупная сеть ресторанов быстрого питания в Нижнем Новгороде и области. Уютные рестораны расположены в самых проходимых местах, а это значит, что попробовать легендарную пиццу может каждый.
+		section.landings__advantages
+			.container
+				.landings__advantages__inner
+					h2.landings__advantages-title О компании
+					p Компания «Мир пиццы» была основана 26 октября 2002 года. Начало было положено с открытия ресторана на ул. Горького, 158. Пицца полюбилась нижегородцам и в ближайшие годы успех «Мир пиццы» был очевиден. Это позволило развивать ресторанную сеть в Нижнем Новгороде, а затем и в Нижегородской области.
+		section.chess-layout
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title(style="background-image: url(img/ab-title1.png)") РАЗВИВАЮЩАЯСЯ СЕТЬ
+						p «Мир пиццы» – это лидирующая сеть ресторанов  быстрого питания в Нижнем Новгороде и области. Число ресторанов постоянно растет, и в ближайшее время, планируется развитие сети как в Нижнем Новгороде и области, так и в других регионах России.
+						p
+							strong Сеть «Мир пиццы» включает в себя:
+						ul
+							li 17 ресторанов в проходимых местах Нижнего Новгорода
+							li 5 ресторанов в городах Нижегородской области и 1 ресторан в г. Москва (р-он Митино)
+							li Разветвленную сеть доставки пиццы на дом и офис.
+							li Собственную базу по изготовлению соусов и подготовки полуфабрикатов для ресторанов
+							li Более 600 штатных сотрудников
+							li Собственный учебный центр по подготовке сотрудников и повышению квалификации.
+							li Молодую и целеустремленную команду директоров
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/ab1.jpg)")
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title(style="background-image: url(img/ab-title2.png)") ГАРАНТИЯ КАЧЕСТВА
+						p На протяжении 14 лет «Мир пиццы» предлагает широкий ассортимент пиццы. Меню постоянно обновляется, и вместе с «Мир пиццы» вам не придется скучать как за обеденным так и за праздничным столом. Увеличение количества ресторанов диктует жестко контролировать качество продукции. Мы используем только свежие, натуральные, экологически чистые компоненты в приготовлении пиццы и других блюд. Это гарантирует истинный вкус и качество сети ресторанов «Мир пиццы».
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/ab2.jpg)")
+		section.contact__section
+			.container
+				h2.contact__section-title Обратная Связь
+				.contact__section-inner.center-align
+					form
+						.contact__section-form--row
+							span
+								input.contact__section-form--input(type="text" placeholder="Имя")
+							span
+								input.contact__section-form--input(type="tel" placeholder="Телефон")
+							span
+								input.contact__section-form--input(type="email" placeholder="Email")
+						textarea.contact__section-form--input(placeholder="Сообщение")
+						input.btn(type="submit" value="Отправить")
+
+
+
+
+block inlineScripts

@@ -1,0 +1,280 @@
+.landings {
+	&-top {
+		min-height: 550px;
+		background-size: cover;
+		background-position: top center;
+		background-repeat: no-repeat;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		text-align: center;
+		color: #fff;
+		&__inner {
+			max-width: 750px;
+			margin: auto;
+			padding-top: 114px;
+		}
+	}
+	&__title {
+		font: 300 55px $gt;
+		color: #fec458;
+		margin-top: 0;
+	}
+	&__description {
+		font: 300 14px/22px $os;
+		color: #fff;
+	}
+	.landings__advantages {
+		padding: 60px 0;
+		&-simple-list {
+			text-align: center;
+			list-style-type: none;
+			margin: 30px 0 0;
+			padding: 0;
+			li {
+				padding: 9px 0;
+				color: #fff;
+				font: 300 14px/22px $os;
+				position: relative;
+				a {
+					color: #fec458;
+					display: inline-block;
+					margin: 0 7px;
+				}
+				&::after {
+					content: '';
+					position: absolute;
+					width: 3px;
+					height: 3px;
+					background-color: #fec458;
+					bottom: -2px;
+					left: 50%;
+					margin-left: -2px;
+				}
+				&:last-child::after {
+					display: none;
+				}
+			}
+		}
+		&-title {
+			font: 300 36px $gt;
+			color: #fff;
+			text-align: center;
+			text-transform: uppercase;
+			margin: 0;
+		}
+		&__inner {
+			padding: 0 80px;
+			& > p {
+				max-width: 800px;
+				margin: 20px auto 0;
+				color: #fff;
+				font: 300 14px/22px $os;
+				text-align: center;
+			}
+		}
+		&-list {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			color: #fff;
+		}
+		&-item {
+			max-width: 300px;
+			margin-top: 45px;
+			padding: 0 10px;
+			&--title {
+				font: 300 16px/26px $gt;
+				letter-spacing: 0.025em;
+				text-transform: uppercase;
+				text-align: center;
+			}
+			&--icon {
+				background-position: bottom center;
+				background-repeat: no-repeat;
+				height: 90px;
+				margin-bottom: 20px;
+				position: relative;
+				p {
+					font: 300 36px $gt;
+					color: #fec24a;
+					position: absolute;
+					bottom: 0;
+					margin: 0;
+					left: 0;
+					width: 100%;
+					text-align: center;
+				}
+			}
+			&--description {
+				font: 300 14px/22px $os;
+				text-align: center;
+			}
+		}
+	}
+	strong {
+		font-weight: 600;
+	}
+	&-chess__item {
+		background: #262626;
+		min-height: 560px;
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			color: #fff;
+			font: 300 14px/22px $os;
+			a {
+				color: #fec458;
+				display: inline-block;
+				margin: 0 7px;
+			}
+		}
+		.note-text {
+			font: 300 12px $os;
+			color: #999999;
+		}
+		li {
+			padding: 9px 0;
+			color: #fff;
+			font: 300 14px/22px $os;
+			position: relative;
+			a {
+				color: #fec458;
+				display: inline-block;
+				margin: 0 7px;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				width: 3px;
+				height: 3px;
+				background-color: #fec458;
+				bottom: -2px;
+				left: 50%;
+				margin-left: -2px;
+			}
+			&:last-child::after {
+				display: none;
+			}
+		}
+		h6 {
+			font: 300 24px $gt;
+			color: #fec458;
+			margin: 20px 0 0;
+			letter-spacing: 0.025em;
+		}
+	}
+	&-chess {
+		&__title {
+			font: 300 36px $gt;
+			color: #fff;
+			margin: 0 0 15px;
+			padding-top: 45px;
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+		&__content {
+			table {
+				table-layout: fixed;
+				width: 100%;
+				max-width: 500px;
+				margin: 30px auto 20px;
+				text-align: left;
+				color: #fff;
+				font: 300 14px $os;
+				border-collapse: collapse;
+				th {
+					padding-bottom: 12px;
+				}
+				td {
+					padding: 12px 0;
+				}
+				tr {
+					border-bottom: 1px solid #373737;
+				}
+				td:nth-child(2n),
+				th:nth-child(2n) {
+					text-align: right;
+				}
+				tr:last-child {
+					border-bottom: none;
+				}
+				tr:first-child {
+					border-top: none;
+				}
+			}
+		}
+	}
+
+}
+
+.delivery-time {
+	font: 300 24px/36px $gt;
+}
+
+.sale__page {
+	.landings-top {
+		text-align: left;
+		&__inner {
+			margin: 0;
+			max-width: 550px;
+		}
+	}
+	.landings-chess__item {
+		text-align: left;
+		.sale-duration {
+			font: 300 14px $os;
+			color: #999999;
+		}
+		li {
+			padding: 6px 0 6px 12px;
+			&::after {
+				bottom: auto;
+				left: 0;
+				margin-left: 0px;
+				top: 17px;
+			}
+			&:last-child::after {
+				display: block;
+			}
+		}
+	}
+}
+
+.download-link {
+	margin-right: 15px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 136px;
+	height: 40px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: top left;
+	transition: opacity .3s ease-in-out;
+	&:hover {
+		opacity: .7;
+	}
+}
+
+.download-links__wrap {
+	margin-top: 40px;
+}
+
+.sale__page__advantages-title {
+	font: 300 36px $gt;
+	color: #fec458;
+	margin: 0;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+

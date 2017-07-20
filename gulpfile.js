@@ -194,7 +194,7 @@ gulp.task('sprites', function() {
 	var imgStream = spriteData.img
 		.pipe(gulp.dest('public/img/'));
 	var cssStream = spriteData.css
-		.pipe(gulp.dest('dev/sass/'));
+		.pipe(gulp.dest('dev/sass/helpers/'));
 	return merge(imgStream, cssStream)
 		.pipe(browserSync.reload({
 			stream: true

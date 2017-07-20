@@ -1,0 +1,39 @@
+.contact__section {
+	padding: 60px 0 30px;
+	&-title {
+		text-align: center;
+		font: 300 36px $gt;
+		color: #fff;
+		text-transform: uppercase;
+		margin: 0 0 40px;
+	}
+	&-inner {
+		max-width: 700px;
+		margin: auto;
+	}
+	&-form--row {
+		display: flex;
+		justify-content: space-between;
+		& > span {
+			width: 32%;
+			margin-bottom: 2%;
+			display: block;
+		}
+	}
+	&-form--input {
+		height: 40px;
+		display: block;
+		width: 100%;
+		background: rgba(255, 255, 255, .1);
+		outline: 0;
+		border: none;
+		padding: 0 12px;
+		color: #fff;
+		font: 300 14px $os;
+	}
+	textarea {
+		resize: none;
+		height: 110px;
+		padding: 12px;
+	}
+}

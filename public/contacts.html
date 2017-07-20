@@ -56,53 +56,48 @@
           </aside>
         </div>
       </header>
-      <main class="main-content">
-        <section style="background-image: url(img/home-bg.jpg)" class="home-top">
-          <div class="home-top__content">
-            <h1 class="home-top__content-title bordered-title">Быстрая доставка ваших любимых блюд!</h1>
-            <p class="home-top__content-description">Ничто так не разделяет людей, как вкус, и не объединяет, как аппетит! На нашем сайте вы можете заказать легендарную пиццу, бургеры,  любимые блюда японской и китайской кухни, а также ароматную свежую выпечку.</p>
-            <form>
-              <div class="home-top__form">
-                <input type="text" placeholder="Поиск..." class="home-top__form-search"/>
-                <input type="submit" value="Поиск" class="home-top__form-submit"/>
-              </div>
-            </form>
-          </div>
-        </section>
-        <section class="big-banner"><a href="#" class="block-link"><img src="img/bn-img.jpg" alt="" class="img-responsive"/></a></section>
-        <section class="big-menu"><a href="#" class="big-menu__item"><img src="img/big-menu1.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__content"><img src="img/big-menu-logo1.png" alt="" class="big-menu__content-logo img-responsive"/>
-              <p class="big-menu__content-description">Доставка <span>Пиццы</span></p>
-            </div></a><a href="#" class="big-menu__item"><img src="img/big-menu2.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__content"><img src="img/big-menu-logo2.png" alt="" class="big-menu__content-logo img-responsive"/>
-              <p class="big-menu__content-description">Доставка <span>БУРГЕРОВ</span></p>
-            </div></a><a href="#" class="big-menu__item"><img src="img/big-menu3.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__content"><img src="img/big-menu-logo3.png" alt="" class="big-menu__content-logo img-responsive"/>
-              <p class="big-menu__content-description">Доставка <span>японской кухни</span></p>
-            </div></a><a href="#" class="big-menu__item"><img src="img/big-menu4.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__content"><img src="img/big-menu-logo4.png" alt="" class="big-menu__content-logo img-responsive"/>
-              <p class="big-menu__content-description">Доставка <span>Китайской кухни</span></p>
-            </div></a><a href="#" class="big-menu__item"><img src="img/big-menu5.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__content"><img src="img/big-menu-logo5.png" alt="" class="big-menu__content-logo img-responsive"/>
-              <p class="big-menu__content-description">Доставка <span>выпечки</span></p>
-            </div></a>
-          <div class="big-menu__item"><img src="img/big-menu6.jpg" alt="" class="big-menu__img"/>
-            <div class="big-menu__form">
-              <p class="big-menu__form-title">Обратная Связь</p>
-              <form>
-                <div class="big-menu__form-row">
-                  <input type="text" placeholder="Имя" class="big-menu__form-input"/>
-                  <input type="tel" placeholder="Телефон" class="big-menu__form-input"/>
-                  <input type="email" placeholder="Email" class="big-menu__form-input"/>
-                </div>
-                <textarea placeholder="Сообщение" class="big-menu__form-input big-menu__form-textarea"></textarea>
-                <div class="big-menu__form-submit">
-                  <input type="submit" value="Отправить" class="btn btn--submit"/>
-                </div>
-              </form>
+      <main class="main-content main-content__top-padding">
+        <div class="contacts">
+          <div data-simplebar="data-simplebar" class="contacts__sidebar">
+            <div class="contacts__sidebar-district contacts__sidebar-item">
+              <p class="contacts__sidebar-district--title custom-select__wrapper">Район: 
+                <select class="custom-select district-change__select">
+                  <option value="all" class="custom-select__title">Все</option>
+                  <option value="Нижегородский" class="custom-select__title">Нижегородский</option>
+                  <option value="Советский" class="custom-select__title">Советский</option>
+                </select>
+                <select class="custom-select--compute">
+                  <option value="" class="custom-select--compute-value"></option>
+                </select>
+              </p>
             </div>
+            <ul class="contacts__sidebar-list">
+              <li data-district="Нижегородский" class="contacts__sidebar-item contacts__sidebar-list-item">
+                <p class="contacts__sidebar-item--title">Миры Пиццы в ТРЦ «ЭТАЖИ»</p>
+                <p class="contacts__sidebar-item--info">ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550</p>
+                <p class="contacts__sidebar-item--hours">Режим работы: 10:00 - 22:00</p>
+              </li>
+              <li data-district="Нижегородский" class="contacts__sidebar-item contacts__sidebar-list-item">
+                <p class="contacts__sidebar-item--title">Миры Пиццы в ТРЦ «Фантастика»</p>
+                <p class="contacts__sidebar-item--info">ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550</p>
+                <p class="contacts__sidebar-item--hours">Режим работы: 10:00 - 22:00</p>
+              </li>
+              <li data-district="Советский" class="contacts__sidebar-item contacts__sidebar-list-item">
+                <p class="contacts__sidebar-item--title">Миры Пиццы в ТРЦ «Бекетов»</p>
+                <p class="contacts__sidebar-item--info">ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550</p>
+                <p class="contacts__sidebar-item--hours">Режим работы: 10:00 - 22:00</p>
+              </li>
+              <li data-district="Советский" class="contacts__sidebar-item contacts__sidebar-list-item">
+                <p class="contacts__sidebar-item--title">Миры Пиццы в ТРЦ «ЖАР ПТИЦА»</p>
+                <p class="contacts__sidebar-item--info">ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550</p>
+                <p class="contacts__sidebar-item--hours">Режим работы: 10:00 - 22:00</p>
+              </li>
+            </ul>
           </div>
-        </section>
+          <div class="contacts__map">
+            <div id="map" class="contacts__map-inner"></div>
+          </div>
+        </div>
       </main>
     </div>
     <footer class="site-footer">
@@ -133,5 +128,67 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="js/lib/lib.min.js"></script>
     <script src="js/main.min.js"></script>
+    <script>
+      ymaps.ready(function () {
+      	var pizzaMap = new ymaps.Map('map', {
+      			center: [56.316895, 44.007124],
+      			zoom: 13
+      		}, {
+      			searchControlProvider: 'yandex#search'
+      		}),
+      		defaults = {
+      			iconLayout: 'default#image',
+      			iconImageHref: 'img/custom-loc.png',
+      			iconImageSize: [15, 20],
+      			iconImageOffset: [-5, -20]
+      		},
+      		placemarks = [
+      			{
+      				coords: [56.316540, 44.019612],
+      				bTitle: 'Миры Пиццы в ТРЦ «ЭТАЖИ»',
+      				bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+      				bHours: 'Режим работы: 10:00 - 22:00',
+      			},
+      			{
+      				coords: [56.307677, 44.074207],
+      				bTitle: 'Миры Пиццы в ТРЦ «Фантастика»',
+      				bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+      				bHours: 'Режим работы: 10:00 - 22:00',
+      			},
+      			{
+      				coords: [56.292918, 44.012810],
+      				bTitle: 'Миры Пиццы в ТРЦ «ББЕКЕТОВ»',
+      				bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+      				bHours: 'Режим работы: 10:00 - 22:00',
+      			},
+      			{
+      				coords: [56.296617, 44.041434],
+      				bTitle: 'Миры Пиццы в ТРЦ «ЖАР ПТИЦА»',
+      				bInfo: 'ул. Родионова, 187; 2 эт., левое крыло, тел: (831) 2-550-550',
+      				bHours: 'Режим работы: 10:00 - 22:00',
+      			},
+      		],
+      		placemarkIndex;
+      		singlePlacemark = [];
+      		for (placemarkIndex = 0; placemarkIndex < placemarks.length; ++placemarkIndex) {
+      			console.log();
+      			singlePlacemark[placemarkIndex] = new ymaps.Placemark(placemarks[placemarkIndex].coords, {
+      				balloonContent: '<p class="contacts__sidebar-item--title">'+placemarks[placemarkIndex].bTitle+'</p><p class="contacts__sidebar-item--info">'+placemarks[placemarkIndex].bInfo+'</p><p class="contacts__sidebar-item--hours">'+placemarks[placemarkIndex].bHours+'</p>'
+      			}, defaults);
+      			pizzaMap.geoObjects.add(singlePlacemark[placemarkIndex]);
+      		}
+      	$('.contacts__sidebar-list-item').click(function(event) {
+      		event.preventDefault();
+      		$('.contacts__sidebar-list-item').removeClass('active');
+      		$(this).addClass('active');
+      		var index = $(this).index();
+      		pizzaMap.panTo(singlePlacemark[index].geometry.getCoordinates()).then(function () {
+      			singlePlacemark[index].balloon.open();
+      		}, function (err) {
+      			alert('Произошла ошибка ' + err);
+      		}, this);
+      	});
+      });
+    </script>
   </body>
 </html>

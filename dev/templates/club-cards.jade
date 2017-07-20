@@ -1,0 +1,102 @@
+extends _layout
+block content
+	main.main-content.landings
+		.landings-top(style="background-image: url(img/club-cards-top.jpg)")
+			.landings-top__inner
+				h1.landings__title.bordered-title Клубные карты
+				p.landings__description Мы отказались от физического носителя пластиковых карт. Теперь в качестве «виртуальной» клубной карты будет выступать номер вашего мобильного телефона. Чтобы оформить карту – достаточно зарегистрироваться на нашем зайте или посетить один из наших ресторанов.
+				a.btn.btn--inverted(href="#") ОФормить карту
+				a.btn(href="#") Личный кабинет
+		section.landings__advantages
+			.container
+				.landings__advantages__inner
+					h2.landings__advantages-title КАК ЭТО РАБОТАЕТ
+					.club__advantages-list.landings__advantages-list
+						.club__advantages-item.landings__advantages-item
+							.landings__advantages-item--icon
+								p 2,5 
+									span.rouble З 
+									| = 1 pс
+							p.landings__advantages-item--title Копите пицценты
+							p.landings__advantages-item--description Для удобства использования введена денежная единица – пиццент (pс), которая начисляется на карту в зависимости от суммы покупки 
+						.club__advantages-item.landings__advantages-item
+							.landings__advantages-item--icon(style="background-image: url(img/cc1.png)")
+							p.landings__advantages-item--title Расплачивайтесь
+							p.landings__advantages-item--description Расплачивайтесь накопленными пиццентами за заказ в сети ресторанов «Мир пиццы» полностью или частично
+						.club__advantages-item.landings__advantages-item
+							.landings__advantages-item--icon(style="background-image: url(img/cc2.png)")
+							p.landings__advantages-item--title Бесплатная пицца
+							p.landings__advantages-item--description «Маргарита классическая» в день рождения или скидка 50% на блюда «Мир пиццы» (кроме напитков).
+						.club__advantages-item.landings__advantages-item
+							.landings__advantages-item--icon(style="background-image: url(img/cc3.png)")
+							p.landings__advantages-item--title личный кабинет
+							p.landings__advantages-item--description Вся история ваших покупок, баланс пиццентов и ваши персональные акционные предложения.
+						
+		section.chess-layout
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title КАК КОПИТЬ ПИЦЦЕНТЫ
+						p Начисление пиццентов происходит в ресторане и при заказе пиццы через службу доставки в зависимости от суммы чека. 
+						table
+							tr
+								th Сумма чека
+								th Кол-во
+							tr
+								td от 0 до 100 руб.
+								td 0 pc
+							tr
+								td от 101 до 260 руб.
+								td 10 pc
+							tr
+								td от 261 до 400 руб.
+								td 15 pc
+							tr
+								td от 401 до 600 руб.
+								td 20 pc
+							tr
+								td от 601 до 900 руб.
+								td 30 pc
+							tr
+								td от 901 до 1200 руб.
+								td 40 pc
+							tr
+								td свыше 1200 руб.
+								td 50 pc
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/cc-im1.jpg)")
+			.chess-layout__row
+				.chess-layout__item.landings-chess__item
+					.landings-chess__content
+						h2.landings-chess__title Временные ограничения
+						h6 1 марта, 1 июня, 1 сентября, 1 декабря
+						p это фиксированные даты до которых необходимо потратить пицценты и после которых накопление начинается заново.
+						p
+							span(style="font-size: 20px;") Для вашего удобства на чеке указазаны:
+						ul
+							li Номер вашего телефона и имя
+							li Наименование и сумма заказа (в рублях)
+							li Количество пиццентов (потраченных и оставшихся), а также дата, до которой их необходимо использовать
+							li Узнать число накопленных пиццентов можно в ресторанах «Мир Пиццы» у менеджера или в  
+								a(href="#") личном кабинете  
+								| на нашем сайте
+						p.note-text * Право на изменения бонусной системы по карточкам сети ресторанов быстрого питания «Мир Пиццы» оставляет за собой организация ООО «МиМ».
+				.chess-layout__item.landings-chess__item(style="background-image: url(img/cc-im2.jpg)")
+		section.contact__section
+			.container
+				h2.contact__section-title Обратная Связь
+				.contact__section-inner.center-align
+					form
+						.contact__section-form--row
+							span
+								input.contact__section-form--input(type="text" placeholder="Имя")
+							span
+								input.contact__section-form--input(type="tel" placeholder="Телефон")
+							span
+								input.contact__section-form--input(type="email" placeholder="Email")
+						textarea.contact__section-form--input(placeholder="Сообщение")
+						input.btn(type="submit" value="Отправить")
+
+
+
+
+block inlineScripts

@@ -1,12 +1,27 @@
-@import "_normalize.scss";
-@import "_fonts.scss";
-@import "_variables.scss";
-@import "_defaults.scss";
-@import "_sprite.scss";
-@import "_simplebar.scss";
-@import "_mixins.scss";
-@import "_header.scss";
-@import "_home.scss";
-@import "_sidebar.scss";
-@import "_contacts.scss";
-@import "_footer.scss";
+/* helpers - base */
+@import "helpers/_normalize.scss";
+
+/* vendors */
+@import "vendors/_simplebar.scss";
+
+/* helpers */
+@import "helpers/_fonts.scss";
+@import "helpers/_variables.scss";
+@import "helpers/_defaults.scss";
+@import "helpers/_sprite.scss";
+@import "helpers/_mixins.scss";
+
+/* layout */
+@import "layout/_header.scss";
+@import "layout/_footer.scss";
+@import "layout/_landings.scss";
+@import "layout/_chess-layout.scss";
+
+/* components */
+@import "components/_sidebar.scss";
+@import "components/_contacts-section.scss";
+
+/* pages */
+@import "pages/_home.scss";
+@import "pages/_contacts.scss";
+@import "pages/_franchising.scss";
