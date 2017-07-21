@@ -1,0 +1,67 @@
+.children {
+	.site-header {
+		background: #3d0f0c;
+	}
+	.site-footer {
+		background: #cc3129;
+		&__bottom {
+			border-top-color: #d04038;
+			p {
+				color: #dd7c77;
+			}
+		}
+		&__top {
+			border-bottom-color: #9d261f;
+		}
+	}
+	.landings-chess {
+		&__item {
+			background-color: #fddd7e;
+			color: #000;
+			li {
+				color: #000;
+				&::after {
+					background-color: #ff1e1c;
+				}
+			}
+			p {
+				color: #000;
+			}
+			.btn {
+				margin-bottom: 0;
+			}
+		}
+		&__title {
+			color: #ff1a1a;
+		}
+	}
+	.landings__advantages {
+		background: #cc3129;
+		text-align: center;
+		.btn {
+			margin-bottom: 0;
+		}
+	}
+}
+.comics__list {
+	margin: 30px 0 5px;
+	a {
+		background: url(../img/download-ico.png) left center no-repeat;
+		text-transform: uppercase;
+		text-decoration: none;
+		font: 300 13px $os;
+		color: #fff;
+		padding-left: 20px;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0 15px;
+		span {
+			text-decoration: underline;
+		}
+		&:hover {
+			span {
+				text-decoration: none;
+			}
+		}
+	}
+}

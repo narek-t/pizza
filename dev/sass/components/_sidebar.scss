@@ -9,6 +9,21 @@
 	padding: 50px 0;
 	transform: translateX(350px);
 	transition: all .3s ease-in-out;
+	.simplebar-content {
+		overflow-x: hidden;
+	}
+	&__inner {
+		max-height: 100%;
+		overflow-x: hidden;
+		select {
+			text-transform: uppercase;
+			font: 400 13px $os;
+			margin-left: 0;
+			&:hover {
+				color: #eaa321;
+			}
+		}
+	}
 	&.visible {
 		transform: none;
 	}

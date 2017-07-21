@@ -9,7 +9,8 @@ html(lang="en")
 		link(rel="stylesheet", href="css/style.min.css")
 		title Document
 	
-	body
+	block vars
+	body(class='#{bodyClass}')
 		.all-wrapper
 			include _header
 

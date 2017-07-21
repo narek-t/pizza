@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.min.css"/>
     <title>Document</title>
   </head>
-  <body>
+  <body class="undefined">
     <div class="all-wrapper">
       <header class="site-header">
         <div class="container cf">
@@ -29,7 +29,7 @@
               <li class="site-header__nav-list-item"><a href="#" style="background-image: url(img/menu5-ico.png)" class="default-link">Выпечка</a></li>
             </div>
           </div>
-          <aside class="main-sidebar">
+          <aside data-simplebar="data-simplebar" class="main-sidebar">
             <button class="main-sidebar__close"></button>
             <div class="main-sidebar__inner">
               <div class="main-sidebar__block">
@@ -49,7 +49,17 @@
                   <li><a href="#" class="default-link">Работа у нас</a></li>
                   <li><a href="#" class="default-link">Франчайзинг</a></li>
                   <li><a href="#" class="default-link">Обратная связь</a></li>
-                  <li><a href="#" class="custom-select main-sidebar__block--lang"><span class="custom-select__title">Русский</span></a></li>
+                  <li>
+                    <div class="custom-select__wrapper">
+                      <select class="custom-select">
+                        <option value="all" class="custom-select__title">Русский</option>
+                        <option value="Нижегородский" class="custom-select__title">Английский</option>
+                      </select>
+                      <select class="custom-select--compute">
+                        <option value="" class="custom-select--compute-value"></option>
+                      </select>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>

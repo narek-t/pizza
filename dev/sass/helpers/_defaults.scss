@@ -88,6 +88,22 @@ select.custom-select {
 		background: #d9a036;
 		color: #fff;
 	}
+	&--red {
+		color: #ff1a1a;
+		border-color: #ff1a1a;
+		&:hover {
+			background: #ff1a1a;
+			color: #fff;
+		}
+	}
+	&--white {
+		color: #fff;
+		border-color: #fff;
+		&:hover {
+			background: #fff;
+			color: #000;
+		}
+	}
 }
 
 .default-link {

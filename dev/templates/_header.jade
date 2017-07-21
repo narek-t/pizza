@@ -31,7 +31,7 @@ block header
 						a.default-link(href="#" style="background-image: url(img/menu4-ico.png)") Японская кухня
 					li.site-header__nav-list-item
 						a.default-link(href="#" style="background-image: url(img/menu5-ico.png)") Выпечка
-			aside.main-sidebar
+			aside.main-sidebar(data-simplebar)
 				button.main-sidebar__close
 				.main-sidebar__inner
 					.main-sidebar__block
@@ -61,8 +61,9 @@ block header
 							li
 								a.default-link(href="#") Обратная связь
 							li
-								a.custom-select.main-sidebar__block--lang(href="#")
-									span.custom-select__title Русский
-
-
-
+								.custom-select__wrapper
+									select.custom-select
+										option.custom-select__title(value="all") Русский
+										option.custom-select__title(value="Нижегородский") Английский
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")

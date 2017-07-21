@@ -53,6 +53,8 @@
 	&__map {
 		flex: 1;
 		min-height: calc(100vh - 114px);
+		max-width: 100%;
+		overflow: hidden;
 		&-inner {
 			//safari hack
 			height: calc(100vh - 114px);
