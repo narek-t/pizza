@@ -1,0 +1,40 @@
+.catalog {
+	&__top {
+		overflow: hidden;
+		.slick-dots {
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			left: 0;
+			text-align: center;
+			margin: 0;
+			padding: 0;
+			z-index: 1;
+			bottom: 15px;
+			li {
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0 5px;
+				&.slick-active,
+				&:hover {
+					button {
+						background: $link-hover-color;
+					}
+				}
+			}
+			button {
+				cursor: pointer;
+				border: none;
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				font-size: 0px;
+				text-indent: -9999px;
+				padding: 0;
+				background: #fff;
+				outline: 0;
+			}
+		}
+	}
+
+}

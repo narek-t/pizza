@@ -1,0 +1,24 @@
+extends _layout
+block vars
+	- var page = 'page'
+block content
+	main.main-content.events
+		.catalog__top
+			.catalog__slider
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+		.events__wrapper
+			.container
+				.events__header
+					h1.events__title Пицца
+					ul.events__filter
+						li.active ВСЕ
+						li ОТКРЫТЫЕ
+						li ЗАКРЫТЫЕ
+						li СЛАДКИЕ
+					a.sort-by(href="#")  По цене
+				
+
+
+block inlineScripts

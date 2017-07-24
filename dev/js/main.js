@@ -35,5 +35,18 @@ $(document).ready(function() {
 		}
 	});
 
+	var headingHeight = $('.site-header__top').height();
+	$(window).scroll(function(event) {
+		if ( $(document).scrollTop() > headingHeight ) {
+ 			$('.site-header').addClass('fixed');
+		} else {
+			$('.site-header').removeClass('fixed');
+		}
+	});
+	$('.catalog__slider').slick({
+		arrows: false,
+		dots: true,
+	});
+
 
 });

@@ -12,7 +12,10 @@ html(lang="en")
 	block vars
 	body(class='#{bodyClass}')
 		.all-wrapper
-			include _header
+			if page == "page"
+				include _headerPage
+			else
+				include _header
 
 			block content
 
