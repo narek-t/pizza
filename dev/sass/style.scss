@@ -4,6 +4,7 @@
 /* vendors */
 @import "vendors/_simplebar.scss";
 @import "vendors/_slick.scss";
+@import "vendors/_magnific-popup.scss";
 
 /* helpers */
 @import "helpers/_fonts.scss";
@@ -21,7 +22,7 @@
 /* components */
 @import "components/_sidebar.scss";
 @import "components/_contacts-section.scss";
-
+@import "components/_item.scss";
 /* pages */
 @import "pages/_home.scss";
 @import "pages/_contacts.scss";

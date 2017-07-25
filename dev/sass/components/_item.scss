@@ -1,0 +1,226 @@
+.items__container {
+	overflow: hidden;
+}
+.items-wrapper {
+	display: flex;
+	justify-content: flex-start;
+	margin: 0 -20px;
+	flex-wrap: wrap;
+}
+
+.item {
+	width: 400px;
+	margin: 0 20px 40px;
+	background: #333333;
+	color: #fff;
+	position: relative;
+	padding-bottom: 160px;
+	&__img-wrapper {
+		height: 260px;
+		position: relative;
+		overflow: hidden;
+		&:hover {
+			.item__img {
+				transform: scale(1.05);
+			}
+			.item__img-links {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+	}
+	&__img {
+		background-size: cover;
+		background-position: center center;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		transition: all .6s ease-in-out;
+		&-links {
+			opacity: 0;
+			visibility: hidden;
+			transition: all .6s ease-in-out;
+			text-align: center;
+		}
+		&-zoom {
+			background-color: rgba(0, 0, 0, .75);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-image: url(../img/lupa.png);
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: calc(100% + 2px); //safari fix
+			height: 100%;
+			-webkit-transform: translate3d(0,0,0);
+			&--helper {
+				width: 100%;
+				height:100%;
+				display:block;
+				opacity: 0;
+				visibility:hidden;
+			}
+		}
+		&-socials {
+			position: absolute;
+			z-index: 1;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+			&-ico {
+				display: inline-block;
+				vertical-align: middle;
+				width: 30px;
+				height: 30px;
+				background-repeat: no-repeat;
+				background-position: center center;
+				opacity: .8;
+				transition: opacity .3s ease-in-out;
+				margin: 0 5px;
+				-webkit-transform:translate3d(0,0,0);
+				&:hover {
+					opacity: 1;
+				}
+				&--vk {
+					background-image: url(../img/vk-ico.png);
+				}
+				&--fb {
+					background-image: url(../img/fb-ico.png);
+				}
+				&--ok {
+					background-image: url(../img/ok-ico.png);
+				}
+			}
+		}
+	}
+	&__content {
+		padding: 30px 35px 0;
+		&-title {
+			font: 300 24px $gt;
+			margin: 0 0 15px;
+		}
+		&-description {
+			font: 300 14px/22px $os;
+			margin: 0 0 5px;
+		}
+	}
+	&__options {
+		padding: 0 35px;
+	}
+	&__option {
+		float: left;
+		position: relative;
+		margin-top: 3px;
+		&::after {
+			content: '';
+			width: calc(100% - 10px);
+			left: 0;
+			bottom: -4px;
+			height: 1px;
+			border-top: 1px dashed #fec24a;
+			position: absolute;
+		}
+		.custom-select,
+		.custom-select--compute {
+			font: 300 15px $os;
+			margin-left: 0;
+			outline: 0;
+			&:focus {
+				outline: 0;
+			}
+			&:hover {
+				color: #eaa321;
+			}
+		}
+	}
+	&__count {
+		float: right;
+		font: 300 15px $os;
+		user-select: none;
+		&-title {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	&__count-wrapper {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 10px;
+		.qty {
+			width: 45px;
+			height: 30px;
+			border: none;
+			outline: 0;
+			background: #404040;
+			text-align: center;
+			color: #fff;
+			display: inline-block;
+			vertical-align: middle;
+			padding: 0 5px;
+			font: 300 15px $os;
+		}
+		.spin {
+			display: inline-block;
+			vertical-align: middle;
+			height: 20px;
+			width: 6px;
+			background-position: center center;
+			background-repeat: no-repeat;
+			cursor: pointer;
+			opacity: .7;
+			&:hover {
+				opacity: 1;
+			}
+			&.item__count_minus {
+				background-image: url(../img/spin-l.png);
+			}
+			&.item__count_plus {
+				background-image: url(../img/spin-r.png);
+			}
+		}
+	}
+	&__bottom {
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		height: 150px;
+	}
+	&__price {
+		padding: 23px 35px;
+		background: #3b3b3b;
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+		left: 0;
+		&-number {
+			float: left;
+			margin: 0;
+			font: 300 36px $gt;
+		}
+		.rouble {
+			font-size: 34px;
+		}
+	}
+	&__add-to-cart {
+		margin: 7px 0 0;
+		float: right;
+	}
+}
+
+.remove-spinners {
+	-webkit-appearance: none;
+	appearance: none;
+	-moz-appearance: textfield;
+}
+
+
+
+.remove-spinners::-webkit-inner-spin-button {
+	 -webkit-appearance: none;
+}
+.remove-spinners::-webkit-outer-spin-button {
+	 -webkit-appearance: none;
+}

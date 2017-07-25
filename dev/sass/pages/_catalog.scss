@@ -36,5 +36,47 @@
 			}
 		}
 	}
-
+	&__filter {
+		display: inline-block;
+		vertical-align: middle;
+		border-right: 1px solid #000;
+	}
+	&__header {
+		text-align: center;
+	}
+	&__sort-by {
+		border-left: 1px solid #313131;
+		display: inline-block;
+		vertical-align: middle;
+		padding-left: 15px;
+		font: 400 14px $os;
+		color: #fec24a;
+		text-transform: uppercase;
+		text-decoration: none;
+		padding-right: 12px;
+		position: relative;
+		&::after {
+			content: '';
+			position: absolute;
+			width: 5px;
+			height: 3px;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 0;
+			@include sprite($arr-up);
+		}
+		&.active::after {
+			@include sprite($arr-down);
+		}
+		&:hover {
+			color: #eaa321;
+		}
+	}
 }
+
+
+
+
+
+
+

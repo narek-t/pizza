@@ -8,12 +8,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('.main-sidebar').removeClass('visible');
 	});
-	function setSelectWidth() {
-		$('.custom-select__wrapper').each(function(index, el) {
-			$(this).find(".custom-select--compute-value").html($(this).find('.custom-select option:selected').text());
-			$(this).find("select.custom-select").width($(this).find(".custom-select--compute").width());
-		});
-	}
+
 	PizzaThemeGlobalVariables.changeSelectWidthOnChange =  function(el)  {
 		var container = $(el).parents('.custom-select__wrapper');
 		var text = $(container).find('.custom-select option:selected').text();
@@ -21,7 +16,7 @@ $(document).ready(function() {
 		var width = $(container).find(".custom-select--compute").width();
 		$(container).find("select.custom-select").width(width);
 	};
-	setSelectWidth()
+	
 	$('.custom-select').change(function(event) {
 		PizzaThemeGlobalVariables.changeSelectWidthOnChange($(this));
 	});
@@ -48,5 +43,56 @@ $(document).ready(function() {
 		dots: true,
 	});
 
+	$('.catalog__sort-by').click(function(event) {
+		event.preventDefault();
+		$(this).toggleClass('active');
+	});
 
+	$('.item__img-zoom').magnificPopup({
+		type: 'image',
+		closeOnContentClick: true,
+		closeBtnInside: false,
+		fixedContentPos: true,
+		mainClass: 'mfp-no-margins mfp-with-zoom',
+		image: {
+			verticalFit: true
+		},
+		zoom: {
+			enabled: true,
+			duration: 300
+		}
+	});
+	PizzaThemeGlobalVariables.updateSpinner = function (obj) {
+		var contentObj = $(obj).parents('.item__count-wrapper').find('.qty');
+		var value = parseInt(contentObj.val());
+		if($(obj).hasClass('item__count_plus')) {
+			value++;
+		} else {
+			if(!(value <= 1)) {
+				value--;
+			}
+		}
+		contentObj.val(value);
+	}
+	$('.need-validate').blur(function(event) {
+		var val = $(this).val();
+		if (val <= 0 || val == '' ) {
+			val = 1;
+		} else {
+			val = Math.ceil(val);
+		}
+		$(this).val(val);
+	});
+
+});
+
+
+$(window).load(function() {
+	function setSelectWidth() {
+		$('.custom-select__wrapper').each(function(index, el) {
+			$(this).find(".custom-select--compute-value").html($(this).find('.custom-select option:selected').text());
+			$(this).find("select.custom-select").width($(this).find(".custom-select--compute").width());
+		});
+	}
+	setSelectWidth()
 });
