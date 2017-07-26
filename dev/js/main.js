@@ -62,6 +62,7 @@ $(document).ready(function() {
 			duration: 300
 		}
 	});
+
 	PizzaThemeGlobalVariables.updateSpinner = function (obj) {
 		var contentObj = $(obj).parents('.item__count-wrapper').find('.qty');
 		var value = parseInt(contentObj.val());
@@ -74,6 +75,7 @@ $(document).ready(function() {
 		}
 		contentObj.val(value);
 	}
+
 	$('.need-validate').blur(function(event) {
 		var val = $(this).val();
 		if (val <= 0 || val == '' ) {
@@ -84,6 +86,24 @@ $(document).ready(function() {
 		$(this).val(val);
 	});
 
+	$('.item__add-to-cart').click(function(event) {
+		event.preventDefault();
+		showCartOk($(this));
+	});
+
+	function showCartOk(target) {
+		var container = target.parents('.item');
+		var text = $('<div class="cart-ok"><p>Товар добавлен в корзину</p></div>').hide();
+		$(container).append(text);
+		$(text).show('normal');
+		setTimeout(function() {
+			$(container).find('.cart-ok').hide('normal');
+			setTimeout(function() {
+				$(container).find('.cart-ok').remove();
+			}, 500);
+		}, 1500);
+	}
+	
 });
 
 

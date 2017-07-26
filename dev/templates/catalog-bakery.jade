@@ -1,0 +1,340 @@
+extends _layout
+block vars
+	- var page = 'page'
+	- var bodyClass = 'bakery'
+block content
+	main.main-content.events
+		.catalog__top
+			.catalog__slider
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+				img.catalog__slider-item(src="img/bn-img.jpg", alt="")
+		.catalog__filters
+			.container
+				.events__header.catalog__header
+					h1.events__title Пироги
+					ul.events__filter.catalog__filter
+						li.active.default-link ВСЕ
+						li.default-link  мясные
+						li.default-link рыбные
+						li.default-link сладкие
+					a.catalog__sort-by(href="#")  По цене
+		.catalog__list
+			.container.items__container
+				.items-wrapper
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie1.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie1.jpg")
+									img.item__img-zoom--helper(src="img/pie1.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Мексиканская
+							p.item__content-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 3200 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie2.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie2.jpg")
+									img.item__img-zoom--helper(src="img/pie2.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Охотничья
+							p.item__content-description Острая пицца с охотничьими колбасками, колбасой Пепперони, оливками, луком, сыром и перчиком Чили.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 180 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 635 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie3.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie3.jpg")
+									img.item__img-zoom--helper(src="img/pie3.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Миланская
+							p.item__content-description Объединяет вкус ветчины, ароматных ананасов, креветок и сыра Моцарелла.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 680 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie4.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie4.jpg")
+									img.item__img-zoom--helper(src="img/pie4.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Морская
+							p.item__content-description Изысканная пицца с креветками, мидиями, филе тунца, луком и оливками
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 400 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 750 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie1.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie1.jpg")
+									img.item__img-zoom--helper(src="img/pie1.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Мексиканская
+							p.item__content-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 3200 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie2.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie2.jpg")
+									img.item__img-zoom--helper(src="img/pie2.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Охотничья
+							p.item__content-description Острая пицца с охотничьими колбасками, колбасой Пепперони, оливками, луком, сыром и перчиком Чили.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 180 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 635 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie3.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie3.jpg")
+									img.item__img-zoom--helper(src="img/pie3.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Миланская
+							p.item__content-description Объединяет вкус ветчины, ароматных ананасов, креветок и сыра Моцарелла.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 680 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie4.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie4.jpg")
+									img.item__img-zoom--helper(src="img/pie4.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Морская
+							p.item__content-description Изысканная пицца с креветками, мидиями, филе тунца, луком и оливками
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 400 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 750 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie1.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie1.jpg")
+									img.item__img-zoom--helper(src="img/pie1.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Мексиканская
+							p.item__content-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 3200 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie2.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie2.jpg")
+									img.item__img-zoom--helper(src="img/pie2.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Охотничья
+							p.item__content-description Острая пицца с охотничьими колбасками, колбасой Пепперони, оливками, луком, сыром и перчиком Чили.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 180 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 635 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie3.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie3.jpg")
+									img.item__img-zoom--helper(src="img/pie3.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Миланская
+							p.item__content-description Объединяет вкус ветчины, ароматных ананасов, креветок и сыра Моцарелла.
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 300 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 680 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					.item
+						.item__img-wrapper
+							.item__img(style="background-image: url(img/pie4.jpg)")
+							.item__img-links
+								a.item__img-zoom(href="img/pie4.jpg")
+									img.item__img-zoom--helper(src="img/pie4.jpg", alt="")
+								.item__img-socials
+									a.item__img-socials-ico.item__img-socials-ico--vk(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--fb(href="#")
+									a.item__img-socials-ico.item__img-socials-ico--ok(href="#")
+						.item__content
+							p.item__content-title Морская
+							p.item__content-description Изысканная пицца с креветками, мидиями, филе тунца, луком и оливками
+						.item__bottom
+							.item__options.cf
+								span.item__fixed-value 400 гр.
+								.item__count
+									span.item__count-title Кол-во:
+									.item__count-wrapper
+										.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+										input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+										.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							.item__price.cf
+								p.item__price-number 750 
+									span.rouble З
+								a.btn.item__add-to-cart(href="#") В корзину
+					
+
+
+block inlineScripts

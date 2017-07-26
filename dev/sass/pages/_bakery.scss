@@ -1,0 +1,42 @@
+.bakery {
+	.custom-select__title {
+		color: #c2988d;
+		border-color: #c2988d;
+		&:hover {
+			color: #b78c80;
+		}
+	}
+	.default-link {
+		&:hover {
+			color: #b78c80;
+		}
+	}
+	.events__filter li.active,
+	.events__filter li:hover,
+	.catalog__sort-by,
+	.site-footer__bottom p a {
+		color: #b78c80;
+		border-color: #c2988d;
+	}
+	.site-header__cart {
+		background: url(../img/header-cart-ico--colored.png) left center no-repeat;
+	}
+	.btn {
+		color: #fff;
+		border-color: #fff;
+		&:hover {
+			color: #fff;
+			background: #281e1c;
+		}
+	}
+	.item {
+		background: #4d3d39;
+		&__price,
+		&__count-wrapper .qty {
+			background: #453733;
+		}
+	}
+	.item__fixed-value {
+		color: #fff;
+	}
+}

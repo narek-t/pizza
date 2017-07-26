@@ -208,6 +208,32 @@
 		margin: 7px 0 0;
 		float: right;
 	}
+	&__fixed-value {
+		font: 300 15px $os;
+		color: #999999;
+		display: inline-block;
+		margin-top: 4px;
+	}
+	.cart-ok {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, .8);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0 50px;
+		text-align: center;
+		p {
+			font: 300 24px $gt;
+			color: #fff;
+			letter-spacing: 0.025em;
+			padding-top: 25px;
+			background: url(../img/header-cart-ico.png) top center no-repeat;
+		}
+	}
 }
 
 .remove-spinners {
