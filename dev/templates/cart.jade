@@ -1,0 +1,219 @@
+extends _layout
+block vars
+block content
+	main.main-content.cart.main-content__top-padding
+		.small-container
+			h1.cart__title КОРЗИНА
+			ul.cart__list
+				li.cart__item
+					.cart__item-img
+						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+					.cart__item-content
+						p.cart__item-title Мексиканаская
+						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.cart__item-supplements
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Сыр 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ананасы 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+					.cart__item-options
+						.custom-select__wrapper.item__option
+							select.custom-select
+								option(value="средняя / 33 см") Средняя / 33 см
+								option(value="половина средней") Половина средней
+								option(value="большая / 40 см") Большая / 40 см
+								option(value="половина большой") Половина большой
+							select.custom-select--compute
+								option.custom-select--compute-value(value="")
+					.cart__item-count.item__count
+						span.item__count-title Кол-во:
+						.item__count-wrapper
+							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+					.cart__item-price
+						p.item__price-number 3750 
+							span.rouble З
+					.cart__item-delete
+						a.cart__item-delete--link(href="#")
+				li.cart__item
+					.cart__item-img
+						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+					.cart__item-content
+						p.cart__item-title Мексиканаская
+						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.cart__item-supplements
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Сыр 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ананасы 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+					.cart__item-options
+						span.item__fixed-value 8 штук
+					.cart__item-count.item__count
+						span.item__count-title Кол-во:
+						.item__count-wrapper
+							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+					.cart__item-price
+						p.item__price-number 750 
+							span.rouble З
+					.cart__item-delete
+						a.cart__item-delete--link(href="#")
+				li.cart__item
+					.cart__item-img
+						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+					.cart__item-content
+						p.cart__item-title Мексиканаская
+						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+						.cart__item-supplements
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Сыр 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ананасы 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+							label
+								input(type="checkbox")
+								span.cart__item-supplements--text Ветчина 70
+									span.rouble З
+					.cart__item-options
+						span.item__fixed-value 500 гр
+					.cart__item-count.item__count
+						span.item__count-title Кол-во:
+						.item__count-wrapper
+							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+					.cart__item-price
+						p.item__price-number 13750 
+							span.rouble З
+					.cart__item-delete
+						a.cart__item-delete--link(href="#")
+			.cart__delivery-and-pay
+				h2.cart__delivery-and-pay--title Доставка и оплата
+				.delivery__block
+					.delivery__block-header.cf
+						.delivery__variants
+							span.courier.custom-radio(@click="pickup = false" v-bind:class="{ 'active': !pickup }") курьером
+							span.pickup.custom-radio(@click="pickup = true" v-bind:class="{ 'active': pickup }") самовывоз
+					.delivery__cols
+						.delivery__col.delivery__info
+							p.delivery__col-heading Основная информация:
+							.delivery__row
+								span.delivery__label Ваше имя:
+								input.delivery__input(type="text" placeholder="Иван")
+							.delivery__row
+								span.delivery__label Телефон:
+								span.delivery__input-tel--wrapper
+									span.delivery__input-tel--code +7 
+									input(type="tel" placeholder="9876543210").delivery__input.delivery__input-tel
+						.delivery__col.delivery__address
+							.delivery__col-heading Адрес: 
+								.custom-select__wrapper.item__option
+									select.custom-select
+										optgroup(label="Сохраненные адреса")
+											option(value="4") Ванеева
+											option(value="5") Республиканская
+											option(value="6") Белинского
+										optgroup(label="Другой город")
+											option(value="1") Москва
+											option(value="2") Владивосток
+											option(value="3") Комсомольск на Амуре
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")
+							.delivery__row
+								input.delivery__input(type="text" placeholder="Ванеева")
+							.delivery__row
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="25")
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="88")
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="200")
+						.delivery__col.delivery__comment
+							p.delivery__col-heading Комментарий к заказу:
+							.delivery__row
+								textarea.delivery__input(placeholder="Комментарий")
+
+
+
+
+						.delivery__col
+							p.delivery__col-heading Оплата
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+block inlineScripts

@@ -11,7 +11,7 @@ html(lang="en")
 	
 	block vars
 	body(class='#{bodyClass}')
-		.all-wrapper
+		.all-wrapper#app
 			if page == "page"
 				include _headerPage
 			else
@@ -24,6 +24,7 @@ html(lang="en")
 		block externalScripts
 		script(src="//api-maps.yandex.ru/2.1/?lang=ru_RU")
 		script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+		script(src="https://unpkg.com/vue@2.4.2")
 		
 		block scripts
 		script(src="js/lib/lib.min.js")

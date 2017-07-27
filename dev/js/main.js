@@ -48,7 +48,7 @@ $(document).ready(function() {
 		$(this).toggleClass('active');
 	});
 
-	$('.item__img-zoom').magnificPopup({
+	$('.zoom-img').magnificPopup({
 		type: 'image',
 		closeOnContentClick: true,
 		closeBtnInside: false,
@@ -105,8 +105,6 @@ $(document).ready(function() {
 	}
 	
 });
-
-
 $(window).load(function() {
 	function setSelectWidth() {
 		$('.custom-select__wrapper').each(function(index, el) {
@@ -116,3 +114,12 @@ $(window).load(function() {
 	}
 	setSelectWidth()
 });
+
+//Vue.JS
+
+new Vue({
+	el: '#app',
+	data: {
+		pickup: false,
+	}
+})

@@ -1,16 +1,18 @@
 /* helpers - base */
 @import "helpers/_normalize.scss";
+@import "helpers/_sprite.scss";
 
 /* vendors */
 @import "vendors/_simplebar.scss";
 @import "vendors/_slick.scss";
 @import "vendors/_magnific-popup.scss";
+@import "vendors/_select2.min.scss";
 
 /* helpers */
 @import "helpers/_fonts.scss";
 @import "helpers/_variables.scss";
 @import "helpers/_defaults.scss";
-@import "helpers/_sprite.scss";
+
 @import "helpers/_mixins.scss";
 
 /* layout */
@@ -23,6 +25,7 @@
 @import "components/_sidebar.scss";
 @import "components/_contacts-section.scss";
 @import "components/_item.scss";
+@import "components/_cart-item.scss";
 
 /* pages */
 @import "pages/_home.scss";
@@ -33,3 +36,4 @@
 @import "pages/_events.scss";
 @import "pages/_catalog.scss";
 @import "pages/_bakery.scss";
+@import "pages/_cart.scss";

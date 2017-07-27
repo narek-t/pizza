@@ -1,0 +1,108 @@
+.cart__item {
+	padding: 30px;
+	background: #333333;
+	margin-bottom: 20px;
+	display: flex;
+	color: #fff;
+	&-img {
+		height: 110px;
+		flex: 0 0 110px;
+		position: relative;
+		overflow: hidden;
+		a {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			left: 0;
+			top: 0;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: top center;
+		}
+	}
+	&-content {
+		margin-left: 30px;
+		max-width: 530px;
+	}
+	&-title {
+		font: 300 24px $gt;
+		margin: 0 0 10px;
+	}
+	&-description {
+		font: 300 14px/22px $os;
+		margin: 0;
+	}
+	&-supplements {
+		label {
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 30px;
+			margin-top: 10px;
+		}
+		input {
+			display: none;
+		}
+		&--text {
+			display: block;
+			font: 300 14px $os;
+			cursor: pointer;
+			padding-left: 20px;
+			position: relative;
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 50%;
+				transform: translateY(-50%);
+				@include sprite($uncheck);
+			}
+		}
+		input:checked + span::after {
+			@include sprite($check);
+		}
+		.rouble {
+			margin-left: 3px;
+		}
+	}
+	&-options {
+		display: flex;
+		padding: 0 10px;
+		align-items: center;
+		text-align: center;
+		flex: 0 0 180px;
+		justify-content: center;
+	}
+	&-count {
+		float: none;
+		display: flex;
+		align-items: center;
+		padding: 7px 10px 0;
+		flex: 0 0 150px;
+	}
+	&-price {
+		text-align: right;
+		flex: 0 0 150px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		.item__price-number {
+			float: none;
+		}
+	}
+	&-delete {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		padding-top: 5px;
+		flex: 0 0 66px;
+		&--link {
+			width: 25px;
+			height: 25px;
+			display: block;
+			background: url(../img/delete-ico.png) center center no-repeat;
+			&:hover {
+				opacity: .8;
+			}
+		}
+	}
+}

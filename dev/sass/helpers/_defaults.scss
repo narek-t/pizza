@@ -15,6 +15,13 @@ body {
 	width: 100%;
 }
 
+.small-container {
+	max-width: 1310px;
+	margin: auto;
+	padding: 0 15px;
+	width: 100%;
+}
+
 .img-responsive {
 	display: block;
 	max-width: 100%;
@@ -139,6 +146,28 @@ body {
 	font-family: 'PT Rouble Sans';
 	font-weight: normal;
 	font-style: normal;
+}
+
+.custom-radio {
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	margin-right: 15px;
+	padding-left: 20px;
+	font: 300 14px $os;
+	position: relative;
+	&::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		margin-top: -5px;
+		background: url(../img/radio-uncheck.png) left center no-repeat;
+		@include sprite($radio-uncheck);
+	}
+	&.active::before {
+		@include sprite($radio-check);
+	}
 }
 
 /* =Sticky Footer
