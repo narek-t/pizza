@@ -132,88 +132,211 @@ block content
 				.delivery__block
 					.delivery__block-header.cf
 						.delivery__variants
-							span.courier.custom-radio(@click="pickup = false" v-bind:class="{ 'active': !pickup }") курьером
-							span.pickup.custom-radio(@click="pickup = true" v-bind:class="{ 'active': pickup }") самовывоз
+							span.courier.custom-radio(@click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }") курьером
+							span.pickup.custom-radio(@click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }") самовывоз
+						a.delivery__register.default-link(href="#" v-if="!cartPage.loggedIn") Регистрация
 					.delivery__cols
 						.delivery__col.delivery__info
 							p.delivery__col-heading Основная информация:
 							.delivery__row
 								span.delivery__label Ваше имя:
-								input.delivery__input(type="text" placeholder="Иван")
+								input.delivery__input(type="text" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userName")
 							.delivery__row
 								span.delivery__label Телефон:
 								span.delivery__input-tel--wrapper
 									span.delivery__input-tel--code +7 
-									input(type="tel" placeholder="9876543210").delivery__input.delivery__input-tel
-						.delivery__col.delivery__address
+									input(type="tel" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userPhoneNumber").delivery__input.delivery__input-tel
+
+
+
+
+
+
+
+						.delivery__col.delivery__address(v-if="!cartPage.pickup")
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option
 									select.custom-select
-										optgroup(label="Сохраненные адреса")
+										optgroup(label="Сохраненные адреса" v-if="cartPage.loggedIn")
 											option(value="4") Ванеева
 											option(value="5") Республиканская
 											option(value="6") Белинского
-										optgroup(label="Другой город")
+										optgroup(label="Выберите город")
 											option(value="1") Москва
 											option(value="2") Владивосток
 											option(value="3") Комсомольск на Амуре
 									select.custom-select--compute
 										option.custom-select--compute-value(value="")
-							.delivery__row
-								input.delivery__input(type="text" placeholder="Ванеева")
-							.delivery__row
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="25")
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="88")
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="200")
+							template(v-if="!cartPage.loggedIn")
+								.delivery__row
+									input.delivery__input(type="text" placeholder="Улица")
+								.delivery__row
+									.delivery__small-col
+										input.delivery__input(type="text" placeholder="Дом")
+									.delivery__small-col
+										input.delivery__input(type="text" placeholder="Корп.")
+									.delivery__small-col
+										input.delivery__input(type="text" placeholder="Кв.")
+
+
+
+
+
+
+
+
+						.delivery__col.delivery__address(v-else)
+							.delivery__col-heading Адрес: 
+								.custom-select__wrapper.item__option.delivery__address-city
+									select.custom-select(v-model="cartPage.city" @change="findDistricts")
+										option(v-for="city in cartPage.restaurants" v-bind:value="city.city") {{ city.city }}
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")
+							.delivery__row.delivery__row-flex-start Район
+								.custom-select__wrapper.item__option
+									select.custom-select(@change="findRestaurants" v-model="cartPage.district")
+										option(v-for="singleDistrict in cartPage.districts[0]" v-bind:value="singleDistrict.districtName") {{ singleDistrict.districtName }}
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")
+							.delivery__row.delivery__row-flex-start Ресторан:
+								.custom-select__wrapper.item__option
+									template(v-if="cartPage.currentDistrict[0]")
+										select.custom-select(v-model="cartPage.currentRestaurantName" @change="findCurrentRestaurants")
+											option(v-for="restaurant in cartPage.currentDistrict[0].restaurants" v-bind:value="restaurant.placeName") {{ restaurant.placeName }}
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+							.delivery__row.delivery__row-flex-start.delivery__row--last-row
+								template(v-if="cartPage.currentRestaurant[0]")
+									span.delivery__row-note {{ cartPage.currentRestaurant[0].address }}, {{ cartPage.currentRestaurant[0].hours }} ч.
+
+
+
+
+
+
+
+
+
+
+
+									
 						.delivery__col.delivery__comment
 							p.delivery__col-heading Комментарий к заказу:
 							.delivery__row
 								textarea.delivery__input(placeholder="Комментарий")
-
-
-
-
-						.delivery__col
+						.delivery__col.delivery__pay
 							p.delivery__col-heading Оплата
+							.delivery__pay-inputs
+								input(type="radio" id="cash-pay" name="pay-method" checked="checked")
+								label.custom-radio(for="cash-pay") наличными
+								input(type="radio" id="noncash-pay" name="pay-method")
+								label.custom-radio(for="noncash-pay") безналичный расчёт
+							.delivery__pizzents(v-bind:class="{ 'disabled': !cartPage.loggedIn }") Использовать пицценты:
+								.delivery__pizzents-input--wrapper
+									input.delivery__pizzents-input.remove-spinners(type="number"  min="1" pattern="[0-9]*" v-if="cartPage.loggedIn")
+								span pz
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				
 
 
 block inlineScripts
+	script.
+		vm.cartPage.loggedIn = true;
+		vm.cartPage.restaurants = [
+			{
+				city: "Нижний Новгород",
+				districts: [
+					{
+						districtName: "Нижегородский",
+						restaurants: [
+							{
+								placeName: "ТРЦ Фантастика",
+								name: 'Миры Пиццы в ТРЦ Фантастика',
+								address : 'ул. Нижегородский, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+							{
+								placeName: "ТРЦ Шоколад",
+								name: 'Миры Пиццы в ТРЦ Шоколад',
+								address : 'ул. Шоколад, 187; 2 эт., левое крыло',
+								hours: '10:00–20:00',
+								tel: '(831) 2-440-440',
+								coords: [56.307677, 44.074207],
+							}
+						]
+					},
+
+					{
+						districtName: "Советский",
+						restaurants: [
+							{
+								placeName: "ТРЦ на Советской",
+								name: 'Миры Пиццы в ТРЦ Жар птица',
+								address : 'пл. Советская, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.296617, 44.041434],
+							},
+							{
+								placeName: "ТРЦ на Бекетова",
+								name: 'Миры Пиццы в ТРЦ Бекетов',
+								address : 'ул. Бекетова, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.292918, 44.012810],
+							}
+						]
+					}
+				],
+			},
+
+			{
+				city: "Москва",
+				districts: [
+					{
+						districtName: "Арбат",
+						restaurants: [
+							{
+								placeName: "ТРЦ Арбат",
+								name: 'Миры Пиццы в ТРЦ Фантастика',
+								address : 'ул. Арбат, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+							{
+								placeName: "ТРЦ Арбат 222",
+								name: 'Миры Пиццы в ТРЦ Арбат 222',
+								address : 'ул.  Арбат 222, 187; 2 эт., левое крыло',
+								hours: '10:00–20:00',
+								tel: '(831) 2-440-440',
+								coords: [56.307677, 44.074207],
+							}
+						]
+					},
+
+					{
+						districtName: "Алтуфьевский",
+						restaurants: [
+							{
+								placeName: "ТРЦ на Алтуфьевский",
+								name: 'Миры Пиццы в ТРЦ Жар птица',
+								address : 'пл. Алтуфьевский, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.296617, 44.041434],
+							},
+							{
+								placeName: "ТРЦ на Алтуфьевский 222",
+								name: 'Миры Пиццы в ТРЦ Бекетов',
+								address : 'ул. Алтуфьевский 222, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.292918, 44.012810],
+							}
+						]
+					}
+				],
+			},
+		]

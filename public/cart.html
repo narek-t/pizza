@@ -191,27 +191,27 @@
             <h2 class="cart__delivery-and-pay--title">Доставка и оплата</h2>
             <div class="delivery__block">
               <div class="delivery__block-header cf">
-                <div class="delivery__variants"><span @click="pickup = false" v-bind:class="{ 'active': !pickup }" class="courier custom-radio">курьером</span><span @click="pickup = true" v-bind:class="{ 'active': pickup }" class="pickup custom-radio">самовывоз</span></div>
+                <div class="delivery__variants"><span @click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }" class="courier custom-radio">курьером</span><span @click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }" class="pickup custom-radio">самовывоз</span></div><a href="#" v-if="!cartPage.loggedIn" class="delivery__register default-link">Регистрация</a>
               </div>
               <div class="delivery__cols">
                 <div class="delivery__col delivery__info">
                   <p class="delivery__col-heading">Основная информация:</p>
                   <div class="delivery__row"><span class="delivery__label">Ваше имя:</span>
-                    <input type="text" placeholder="Иван" class="delivery__input"/>
+                    <input type="text" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userName" class="delivery__input"/>
                   </div>
                   <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
-                      <input type="tel" placeholder="9876543210" class="delivery__input delivery__input-tel"/></span></div>
+                      <input type="tel" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
                 </div>
-                <div class="delivery__col delivery__address">
+                <div v-if="!cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option">
                       <select class="custom-select">
-                        <optgroup label="Сохраненные адреса">
+                        <optgroup label="Сохраненные адреса" v-if="cartPage.loggedIn">
                           <option value="4">Ванеева</option>
                           <option value="5">Республиканская</option>
                           <option value="6">Белинского</option>
                         </optgroup>
-                        <optgroup label="Другой город">
+                        <optgroup label="Выберите город">
                           <option value="1">Москва</option>
                           <option value="2">Владивосток</option>
                           <option value="3">Комсомольск на Амуре</option>
@@ -222,19 +222,58 @@
                       </select>
                     </div>
                   </div>
-                  <div class="delivery__row">
-                    <input type="text" placeholder="Ванеева" class="delivery__input"/>
+                  <template v-if="!cartPage.loggedIn">
+                    <div class="delivery__row">
+                      <input type="text" placeholder="Улица" class="delivery__input"/>
+                    </div>
+                    <div class="delivery__row">
+                      <div class="delivery__small-col">
+                        <input type="text" placeholder="Дом" class="delivery__input"/>
+                      </div>
+                      <div class="delivery__small-col">
+                        <input type="text" placeholder="Корп." class="delivery__input"/>
+                      </div>
+                      <div class="delivery__small-col">
+                        <input type="text" placeholder="Кв." class="delivery__input"/>
+                      </div>
+                    </div>
+                  </template>
+                </div>
+                <div v-else="v-else" class="delivery__col delivery__address">
+                  <div class="delivery__col-heading">Адрес: 
+                    <div class="custom-select__wrapper item__option delivery__address-city">
+                      <select v-model="cartPage.city" @change="findDistricts" class="custom-select">
+                        <option v-for="city in cartPage.restaurants" v-bind:value="city.city">{{ city.city }}</option>
+                      </select>
+                      <select class="custom-select--compute">
+                        <option value="" class="custom-select--compute-value"></option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="delivery__row">
-                    <div class="delivery__small-col">
-                      <input type="text" placeholder="25" class="delivery__input"/>
+                  <div class="delivery__row delivery__row-flex-start">Район
+                    <div class="custom-select__wrapper item__option">
+                      <select @change="findRestaurants" v-model="cartPage.district" class="custom-select">
+                        <option v-for="singleDistrict in cartPage.districts[0]" v-bind:value="singleDistrict.districtName">{{ singleDistrict.districtName }}</option>
+                      </select>
+                      <select class="custom-select--compute">
+                        <option value="" class="custom-select--compute-value"></option>
+                      </select>
                     </div>
-                    <div class="delivery__small-col">
-                      <input type="text" placeholder="88" class="delivery__input"/>
+                  </div>
+                  <div class="delivery__row delivery__row-flex-start">Ресторан:
+                    <div class="custom-select__wrapper item__option">
+                      <template v-if="cartPage.currentDistrict[0]">
+                        <select v-model="cartPage.currentRestaurantName" @change="findCurrentRestaurants" class="custom-select">
+                          <option v-for="restaurant in cartPage.currentDistrict[0].restaurants" v-bind:value="restaurant.placeName">{{ restaurant.placeName }}</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </template>
                     </div>
-                    <div class="delivery__small-col">
-                      <input type="text" placeholder="200" class="delivery__input"/>
-                    </div>
+                  </div>
+                  <div class="delivery__row delivery__row-flex-start delivery__row--last-row">
+                    <template v-if="cartPage.currentRestaurant[0]"><span class="delivery__row-note">{{ cartPage.currentRestaurant[0].address }}, {{ cartPage.currentRestaurant[0].hours }} ч.</span></template>
                   </div>
                 </div>
                 <div class="delivery__col delivery__comment">
@@ -243,8 +282,19 @@
                     <textarea placeholder="Комментарий" class="delivery__input"></textarea>
                   </div>
                 </div>
-                <div class="delivery__col">
+                <div class="delivery__col delivery__pay">
                   <p class="delivery__col-heading">Оплата</p>
+                  <div class="delivery__pay-inputs">
+                    <input type="radio" id="cash-pay" name="pay-method" checked="checked"/>
+                    <label for="cash-pay" class="custom-radio">наличными</label>
+                    <input type="radio" id="noncash-pay" name="pay-method"/>
+                    <label for="noncash-pay" class="custom-radio">безналичный расчёт</label>
+                  </div>
+                  <div v-bind:class="{ 'disabled': !cartPage.loggedIn }" class="delivery__pizzents">Использовать пицценты:
+                    <div class="delivery__pizzents-input--wrapper">
+                      <input type="number" min="1" pattern="[0-9]*" v-if="cartPage.loggedIn" class="delivery__pizzents-input remove-spinners"/>
+                    </div><span>pz</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -281,5 +331,107 @@
     <script src="https://unpkg.com/vue@2.4.2"></script>
     <script src="js/lib/lib.min.js"></script>
     <script src="js/main.min.js"></script>
+    <script>
+      vm.cartPage.loggedIn = true;
+      vm.cartPage.restaurants = [
+      	{
+      		city: "Нижний Новгород",
+      		districts: [
+      			{
+      				districtName: "Нижегородский",
+      				restaurants: [
+      					{
+      						placeName: "ТРЦ Фантастика",
+      						name: 'Миры Пиццы в ТРЦ Фантастика',
+      						address : 'ул. Нижегородский, 187; 2 эт., левое крыло',
+      						hours: '10:00–22:00',
+      						tel: '(831) 2-550-550',
+      						coords: [56.316540, 44.019612],
+      					},
+      					{
+      						placeName: "ТРЦ Шоколад",
+      						name: 'Миры Пиццы в ТРЦ Шоколад',
+      						address : 'ул. Шоколад, 187; 2 эт., левое крыло',
+      						hours: '10:00–20:00',
+      						tel: '(831) 2-440-440',
+      						coords: [56.307677, 44.074207],
+      					}
+      				]
+      			},
+      
+      			{
+      				districtName: "Советский",
+      				restaurants: [
+      					{
+      						placeName: "ТРЦ на Советской",
+      						name: 'Миры Пиццы в ТРЦ Жар птица',
+      						address : 'пл. Советская, 187; 2 эт., левое крыло',
+      						hours: '12:00–22:00',
+      						tel: '(831) 2-220-220',
+      						coords: [56.296617, 44.041434],
+      					},
+      					{
+      						placeName: "ТРЦ на Бекетова",
+      						name: 'Миры Пиццы в ТРЦ Бекетов',
+      						address : 'ул. Бекетова, 187; 2 эт., левое крыло',
+      						hours: '12:00–22:00',
+      						tel: '(831) 2-220-220',
+      						coords: [56.292918, 44.012810],
+      					}
+      				]
+      			}
+      		],
+      	},
+      
+      	{
+      		city: "Москва",
+      		districts: [
+      			{
+      				districtName: "Арбат",
+      				restaurants: [
+      					{
+      						placeName: "ТРЦ Арбат",
+      						name: 'Миры Пиццы в ТРЦ Фантастика',
+      						address : 'ул. Арбат, 187; 2 эт., левое крыло',
+      						hours: '10:00–22:00',
+      						tel: '(831) 2-550-550',
+      						coords: [56.316540, 44.019612],
+      					},
+      					{
+      						placeName: "ТРЦ Арбат 222",
+      						name: 'Миры Пиццы в ТРЦ Арбат 222',
+      						address : 'ул.  Арбат 222, 187; 2 эт., левое крыло',
+      						hours: '10:00–20:00',
+      						tel: '(831) 2-440-440',
+      						coords: [56.307677, 44.074207],
+      					}
+      				]
+      			},
+      
+      			{
+      				districtName: "Алтуфьевский",
+      				restaurants: [
+      					{
+      						placeName: "ТРЦ на Алтуфьевский",
+      						name: 'Миры Пиццы в ТРЦ Жар птица',
+      						address : 'пл. Алтуфьевский, 187; 2 эт., левое крыло',
+      						hours: '12:00–22:00',
+      						tel: '(831) 2-220-220',
+      						coords: [56.296617, 44.041434],
+      					},
+      					{
+      						placeName: "ТРЦ на Алтуфьевский 222",
+      						name: 'Миры Пиццы в ТРЦ Бекетов',
+      						address : 'ул. Алтуфьевский 222, 187; 2 эт., левое крыло',
+      						hours: '12:00–22:00',
+      						tel: '(831) 2-220-220',
+      						coords: [56.292918, 44.012810],
+      					}
+      				]
+      			}
+      		],
+      	},
+      ]
+    </script>
   </body>
 </html>

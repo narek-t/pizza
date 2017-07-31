@@ -1,4 +1,12 @@
+
+
 var PizzaThemeGlobalVariables = {};
+function setSelectWidth() {
+	$('.custom-select__wrapper').each(function(index, el) {
+		$(this).find(".custom-select--compute-value").html($(this).find('.custom-select option:selected').text());
+		$(this).find("select.custom-select").width($(this).find(".custom-select--compute").width());
+	});
+}
 $(document).ready(function() {
 	$('.open-menu').click(function(event) {
 		event.preventDefault();
@@ -17,7 +25,7 @@ $(document).ready(function() {
 		$(container).find("select.custom-select").width(width);
 	};
 	
-	$('.custom-select').change(function(event) {
+	$('#app').on('change', '.custom-select', function(event) {
 		PizzaThemeGlobalVariables.changeSelectWidthOnChange($(this));
 	});
 	$('.district-change__select').on('change', function() {
@@ -103,23 +111,92 @@ $(document).ready(function() {
 			}, 500);
 		}, 1500);
 	}
+
+	$('.delivery__address-city').change(function(event) {
+		var city = $(this).val();
+
+	});
 	
 });
 $(window).load(function() {
-	function setSelectWidth() {
-		$('.custom-select__wrapper').each(function(index, el) {
-			$(this).find(".custom-select--compute-value").html($(this).find('.custom-select option:selected').text());
-			$(this).find("select.custom-select").width($(this).find(".custom-select--compute").width());
-		});
-	}
-	setSelectWidth()
+	setSelectWidth();
 });
+
 
 //Vue.JS
 
-new Vue({
+var vm = new Vue({
 	el: '#app',
 	data: {
-		pickup: false,
+		cartPage: {
+			userName: 'testname',
+			userPhoneNumber: 'testnumber',
+			loggedIn: false,
+			pickup: false,
+			restaurants: {},
+			city: 'Нижний Новгород',
+			district: '',
+			districts: [],
+			currentDistrict: [],
+			currentRestaurantName: '',
+			currentRestaurant: [],
+		},
+	},
+	methods: {
+		findDistricts: function() {
+			var cities = this.cartPage.restaurants;
+			this.cartPage.districts = [];
+			for (i=cities.length-1; i>=0; i--) {
+				if (cities[i].city === this.cartPage.city) {
+					this.cartPage.districts.push(cities[i].districts)
+					this.cartPage.district = cities[i].districts[0].districtName;
+					this.cartPage.currentDistrict = cities[i].districts[0];
+				}
+			}
+			setTimeout(function() {
+				setSelectWidth();
+			}, 10);
+		},
+
+		findRestaurants: function() {
+			var allFindedDistricts = this.cartPage.districts[0];
+			var val = this.cartPage.district;
+			this.cartPage.currentDistrict = [];
+			this.cartPage.currentRestaurant = [];
+			for (i=allFindedDistricts.length-1; i>=0; i--) {
+				if (allFindedDistricts[i].districtName === val) {
+					this.cartPage.currentDistrict.push(allFindedDistricts[i]);
+					this.cartPage.currentRestaurantName = allFindedDistricts[i].restaurants[0].placeName;
+					this.cartPage.currentRestaurant.push(allFindedDistricts[i].restaurants[0])
+				}
+			}
+			setTimeout(function() {
+				setSelectWidth();
+			}, 10);
+		},
+		findCurrentRestaurants: function() {
+			var val = this.cartPage.currentRestaurantName;
+			this.cartPage.currentRestaurant = [];
+			var restaurantsInCurrentDistrict = this.cartPage.currentDistrict[0].restaurants;
+			for (i=restaurantsInCurrentDistrict.length-1; i>=0; i--) {
+				if (restaurantsInCurrentDistrict[i].placeName === val) {
+					this.cartPage.currentRestaurant.push(restaurantsInCurrentDistrict[i]);
+				}
+			}
+		}
+
+	},
+	computed: {
+
+	},
+	watch: {
+		'cartPage.pickup': function() {
+			this.findDistricts();
+			this.findRestaurants()
+			setTimeout(function() {
+				setSelectWidth();
+			}, 10);
+		}
 	}
 })
+
