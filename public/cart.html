@@ -205,21 +205,35 @@
                 <div v-if="!cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option">
-                      <select class="custom-select">
-                        <optgroup label="Сохраненные адреса" v-if="cartPage.loggedIn">
-                          <option value="4">Ванеева</option>
-                          <option value="5">Республиканская</option>
-                          <option value="6">Белинского</option>
-                        </optgroup>
-                        <optgroup label="Выберите город">
-                          <option value="1">Москва</option>
-                          <option value="2">Владивосток</option>
-                          <option value="3">Комсомольск на Амуре</option>
-                        </optgroup>
-                      </select>
-                      <select class="custom-select--compute">
-                        <option value="" class="custom-select--compute-value"></option>
-                      </select>
+                      <template v-if="cartPage.loggedIn">
+                        <select class="custom-select">
+                          <optgroup label="Сохраненные адреса">
+                            <option value="4">Ванеева</option>
+                            <option value="5">Республиканская</option>
+                            <option value="6">Белинского</option>
+                          </optgroup>
+                          <optgroup label="Выберите город">
+                            <option value="1">Москва</option>
+                            <option value="2">Владивосток</option>
+                            <option value="3">Комсомольск на Амуре</option>
+                          </optgroup>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </template>
+                      <template v-else="v-else">
+                        <select class="custom-select">
+                          <optgroup label="Выберите город">
+                            <option value="1">Москва</option>
+                            <option value="2">Владивосток</option>
+                            <option value="3">Комсомольск на Амуре</option>
+                          </optgroup>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </template>
                     </div>
                   </div>
                   <template v-if="!cartPage.loggedIn">
@@ -239,11 +253,11 @@
                     </div>
                   </template>
                 </div>
-                <div v-else="v-else" class="delivery__col delivery__address">
+                <div v-if="cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option delivery__address-city">
-                      <select v-model="cartPage.city" @change="findDistricts" class="custom-select">
-                        <option v-for="city in cartPage.restaurants" v-bind:value="city.city">{{ city.city }}</option>
+                      <select v-model="cartPage.currentCity" @change="setDefaultDistrict" class="custom-select">
+                        <option v-for="singleCity in cartPage.restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false">{{ singleCity.city }}</option>
                       </select>
                       <select class="custom-select--compute">
                         <option value="" class="custom-select--compute-value"></option>
@@ -252,8 +266,8 @@
                   </div>
                   <div class="delivery__row delivery__row-flex-start">Район
                     <div class="custom-select__wrapper item__option">
-                      <select @change="findRestaurants" v-model="cartPage.district" class="custom-select">
-                        <option v-for="singleDistrict in cartPage.districts[0]" v-bind:value="singleDistrict.districtName">{{ singleDistrict.districtName }}</option>
+                      <select v-model="cartPage.currentDistrict" @change="setDefaultRestaurant" class="custom-select">
+                        <option v-for="singleDistrict in cartPage.currentCity.districts" v-bind:value="singleDistrict">{{ singleDistrict.districtName }}</option>
                       </select>
                       <select class="custom-select--compute">
                         <option value="" class="custom-select--compute-value"></option>
@@ -262,19 +276,15 @@
                   </div>
                   <div class="delivery__row delivery__row-flex-start">Ресторан:
                     <div class="custom-select__wrapper item__option">
-                      <template v-if="cartPage.currentDistrict[0]">
-                        <select v-model="cartPage.currentRestaurantName" @change="findCurrentRestaurants" class="custom-select">
-                          <option v-for="restaurant in cartPage.currentDistrict[0].restaurants" v-bind:value="restaurant.placeName">{{ restaurant.placeName }}</option>
-                        </select>
-                        <select class="custom-select--compute">
-                          <option value="" class="custom-select--compute-value"></option>
-                        </select>
-                      </template>
+                      <select v-model="cartPage.currentRestaurant" class="custom-select">
+                        <option v-for="singleRestaurant in cartPage.currentDistrict.restaurants" v-bind:value="singleRestaurant">{{ singleRestaurant.placeName }}</option>
+                      </select>
+                      <select class="custom-select--compute">
+                        <option value="" class="custom-select--compute-value"></option>
+                      </select>
                     </div>
                   </div>
-                  <div class="delivery__row delivery__row-flex-start delivery__row--last-row">
-                    <template v-if="cartPage.currentRestaurant[0]"><span class="delivery__row-note">{{ cartPage.currentRestaurant[0].address }}, {{ cartPage.currentRestaurant[0].hours }} ч.</span></template>
-                  </div>
+                  <div class="delivery__row delivery__row-flex-start delivery__row--last-row"><span v-if="cartPage.currentRestaurant" class="delivery__row-note">{{ cartPage.currentRestaurant.address }}, {{ cartPage.currentRestaurant.hours }} ч.</span></div>
                 </div>
                 <div class="delivery__col delivery__comment">
                   <p class="delivery__col-heading">Комментарий к заказу:</p>
@@ -332,7 +342,7 @@
     <script src="js/lib/lib.min.js"></script>
     <script src="js/main.min.js"></script>
     <script>
-      vm.cartPage.loggedIn = true;
+      // vm.cartPage.loggedIn = true;
       vm.cartPage.restaurants = [
       	{
       		city: "Нижний Новгород",
@@ -431,7 +441,28 @@
       			}
       		],
       	},
+      	{
+      		city: "Краснодар",
+      		districts: [
+      			{
+      				districtName: "Краснодарский",
+      				restaurants: [
+      					{
+      						placeName: "ТРЦ Краснодар",
+      						name: 'Миры Пиццы в ТРЦ Краснодар',
+      						address : 'ул. Краснодар, 187; 2 эт., левое крыло',
+      						hours: '10:00–22:00',
+      						tel: '(831) 2-550-550',
+      						coords: [56.316540, 44.019612],
+      					},
+      				]
+      			},
+      		],
+      	},
       ]
+      vm.cartPage.currentCity = vm.cartPage.restaurants[0];
+      vm.cartPage.currentDistrict = vm.cartPage.currentCity.districts[0];
+      vm.cartPage.currentRestaurant = vm.cartPage.currentDistrict.restaurants[0];
     </script>
   </body>
 </html>

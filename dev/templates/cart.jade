@@ -156,17 +156,26 @@ block content
 						.delivery__col.delivery__address(v-if="!cartPage.pickup")
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option
-									select.custom-select
-										optgroup(label="Сохраненные адреса" v-if="cartPage.loggedIn")
-											option(value="4") Ванеева
-											option(value="5") Республиканская
-											option(value="6") Белинского
-										optgroup(label="Выберите город")
-											option(value="1") Москва
-											option(value="2") Владивосток
-											option(value="3") Комсомольск на Амуре
-									select.custom-select--compute
-										option.custom-select--compute-value(value="")
+									template(v-if="cartPage.loggedIn")
+										select.custom-select
+											optgroup(label="Сохраненные адреса")
+												option(value="4") Ванеева
+												option(value="5") Республиканская
+												option(value="6") Белинского
+											optgroup(label="Выберите город")
+												option(value="1") Москва
+												option(value="2") Владивосток
+												option(value="3") Комсомольск на Амуре
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									template(v-else)
+										select.custom-select
+											optgroup(label="Выберите город")
+												option(value="1") Москва
+												option(value="2") Владивосток
+												option(value="3") Комсомольск на Амуре
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
 							template(v-if="!cartPage.loggedIn")
 								.delivery__row
 									input.delivery__input(type="text" placeholder="Улица")
@@ -185,41 +194,34 @@ block content
 
 
 
-						.delivery__col.delivery__address(v-else)
+
+
+
+
+
+						.delivery__col.delivery__address(v-if="cartPage.pickup")
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option.delivery__address-city
-									select.custom-select(v-model="cartPage.city" @change="findDistricts")
-										option(v-for="city in cartPage.restaurants" v-bind:value="city.city") {{ city.city }}
+									select.custom-select(v-model="cartPage.currentCity" @change="setDefaultDistrict")
+										option(v-for="singleCity in cartPage.restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false") {{ singleCity.city }}
 									select.custom-select--compute
 										option.custom-select--compute-value(value="")
 							.delivery__row.delivery__row-flex-start Район
 								.custom-select__wrapper.item__option
-									select.custom-select(@change="findRestaurants" v-model="cartPage.district")
-										option(v-for="singleDistrict in cartPage.districts[0]" v-bind:value="singleDistrict.districtName") {{ singleDistrict.districtName }}
+									select.custom-select(v-model="cartPage.currentDistrict" @change="setDefaultRestaurant")
+										option(v-for="singleDistrict in cartPage.currentCity.districts" v-bind:value="singleDistrict") {{ singleDistrict.districtName }}
 									select.custom-select--compute
 										option.custom-select--compute-value(value="")
 							.delivery__row.delivery__row-flex-start Ресторан:
 								.custom-select__wrapper.item__option
-									template(v-if="cartPage.currentDistrict[0]")
-										select.custom-select(v-model="cartPage.currentRestaurantName" @change="findCurrentRestaurants")
-											option(v-for="restaurant in cartPage.currentDistrict[0].restaurants" v-bind:value="restaurant.placeName") {{ restaurant.placeName }}
-										select.custom-select--compute
-											option.custom-select--compute-value(value="")
+									select.custom-select(v-model="cartPage.currentRestaurant")
+										option(v-for="singleRestaurant in cartPage.currentDistrict.restaurants" v-bind:value="singleRestaurant") {{ singleRestaurant.placeName }}
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")
 							.delivery__row.delivery__row-flex-start.delivery__row--last-row
-								template(v-if="cartPage.currentRestaurant[0]")
-									span.delivery__row-note {{ cartPage.currentRestaurant[0].address }}, {{ cartPage.currentRestaurant[0].hours }} ч.
+								span.delivery__row-note(v-if="cartPage.currentRestaurant") {{ cartPage.currentRestaurant.address }}, {{ cartPage.currentRestaurant.hours }} ч.
 
 
-
-
-
-
-
-
-
-
-
-									
 						.delivery__col.delivery__comment
 							p.delivery__col-heading Комментарий к заказу:
 							.delivery__row
@@ -240,7 +242,7 @@ block content
 
 block inlineScripts
 	script.
-		vm.cartPage.loggedIn = true;
+		// vm.cartPage.loggedIn = true;
 		vm.cartPage.restaurants = [
 			{
 				city: "Нижний Новгород",
@@ -339,4 +341,25 @@ block inlineScripts
 					}
 				],
 			},
+			{
+				city: "Краснодар",
+				districts: [
+					{
+						districtName: "Краснодарский",
+						restaurants: [
+							{
+								placeName: "ТРЦ Краснодар",
+								name: 'Миры Пиццы в ТРЦ Краснодар',
+								address : 'ул. Краснодар, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+						]
+					},
+				],
+			},
 		]
+		vm.cartPage.currentCity = vm.cartPage.restaurants[0];
+		vm.cartPage.currentDistrict = vm.cartPage.currentCity.districts[0];
+		vm.cartPage.currentRestaurant = vm.cartPage.currentDistrict.restaurants[0];

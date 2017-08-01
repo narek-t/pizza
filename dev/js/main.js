@@ -1,5 +1,3 @@
-
-
 var PizzaThemeGlobalVariables = {};
 function setSelectWidth() {
 	$('.custom-select__wrapper').each(function(index, el) {
@@ -134,69 +132,30 @@ var vm = new Vue({
 			loggedIn: false,
 			pickup: false,
 			restaurants: {},
-			city: 'Нижний Новгород',
-			district: '',
-			districts: [],
-			currentDistrict: [],
-			currentRestaurantName: '',
-			currentRestaurant: [],
+			currentCity: '',
+			currentDistrict: '',
+			currentRestaurant: '',
 		},
 	},
 	methods: {
-		findDistricts: function() {
-			var cities = this.cartPage.restaurants;
-			this.cartPage.districts = [];
-			for (i=cities.length-1; i>=0; i--) {
-				if (cities[i].city === this.cartPage.city) {
-					this.cartPage.districts.push(cities[i].districts)
-					this.cartPage.district = cities[i].districts[0].districtName;
-					this.cartPage.currentDistrict = cities[i].districts[0];
-				}
-			}
-			setTimeout(function() {
-				setSelectWidth();
-			}, 10);
+		setDefaultDistrict: function() {
+			this.cartPage.currentDistrict = this.cartPage.currentCity.districts[0];
+			this.setDefaultRestaurant();
 		},
-
-		findRestaurants: function() {
-			var allFindedDistricts = this.cartPage.districts[0];
-			var val = this.cartPage.district;
-			this.cartPage.currentDistrict = [];
-			this.cartPage.currentRestaurant = [];
-			for (i=allFindedDistricts.length-1; i>=0; i--) {
-				if (allFindedDistricts[i].districtName === val) {
-					this.cartPage.currentDistrict.push(allFindedDistricts[i]);
-					this.cartPage.currentRestaurantName = allFindedDistricts[i].restaurants[0].placeName;
-					this.cartPage.currentRestaurant.push(allFindedDistricts[i].restaurants[0])
-				}
-			}
-			setTimeout(function() {
-				setSelectWidth();
-			}, 10);
+		setDefaultRestaurant: function() {
+			this.cartPage.currentRestaurant = this.cartPage.currentDistrict.restaurants[0];
 		},
-		findCurrentRestaurants: function() {
-			var val = this.cartPage.currentRestaurantName;
-			this.cartPage.currentRestaurant = [];
-			var restaurantsInCurrentDistrict = this.cartPage.currentDistrict[0].restaurants;
-			for (i=restaurantsInCurrentDistrict.length-1; i>=0; i--) {
-				if (restaurantsInCurrentDistrict[i].placeName === val) {
-					this.cartPage.currentRestaurant.push(restaurantsInCurrentDistrict[i]);
-				}
-			}
-		}
-
 	},
 	computed: {
-
+		
 	},
 	watch: {
 		'cartPage.pickup': function() {
-			this.findDistricts();
-			this.findRestaurants()
+
 			setTimeout(function() {
 				setSelectWidth();
 			}, 10);
 		}
-	}
+	},
 })
 
