@@ -126,10 +126,29 @@ $(window).load(function() {
 var vm = new Vue({
 	el: '#app',
 	data: {
-		cartPage: {
+		userInfo: {
+			loggedIn: true,
 			userName: 'testname',
 			userPhoneNumber: 'testnumber',
-			loggedIn: false,
+			pizzents: '110',
+			savedAddresses: [
+				{
+					city: 'Нижний Новгород',
+					street: 'Ванеева',
+					house: '25/88',
+					building: '',
+					apartment: '200',
+				},
+				{
+					city: 'Бор',
+					street: 'Белинского',
+					house: '83',
+					building: '2',
+					apartment: '',
+				}
+			],
+		},
+		cartPage: {
 			pickup: false,
 			restaurants: {},
 			currentCity: '',
@@ -145,6 +164,9 @@ var vm = new Vue({
 		setDefaultRestaurant: function() {
 			this.cartPage.currentRestaurant = this.cartPage.currentDistrict.restaurants[0];
 		},
+		asd: function(e) {
+			console.log(e)
+		}
 	},
 	computed: {
 		

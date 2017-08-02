@@ -2,6 +2,10 @@ body {
 	background: $body-bg;
 }
 
+.uppercase {
+	text-transform: uppercase;
+}
+
 .main-content {
 	&__top-padding {
 		padding-top: 114px;
@@ -37,7 +41,7 @@ body {
 	outline: 0;
 	border: none;
 	background: url(../img/custom-select-arr.png) right center no-repeat;
-	padding-right: 10px;
+	padding-right: 7px;
 	text-decoration: none;
 	&__title {
 		font: 400 13px $os;

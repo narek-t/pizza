@@ -134,69 +134,42 @@ block content
 						.delivery__variants
 							span.courier.custom-radio(@click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }") курьером
 							span.pickup.custom-radio(@click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }") самовывоз
-						a.delivery__register.default-link(href="#" v-if="!cartPage.loggedIn") Регистрация
+						a.delivery__register.default-link(href="#" v-if="!userInfo.loggedIn") Регистрация
 					.delivery__cols
 						.delivery__col.delivery__info
 							p.delivery__col-heading Основная информация:
 							.delivery__row
 								span.delivery__label Ваше имя:
-								input.delivery__input(type="text" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userName")
+								input.delivery__input(type="text" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userName")
 							.delivery__row
 								span.delivery__label Телефон:
 								span.delivery__input-tel--wrapper
 									span.delivery__input-tel--code +7 
-									input(type="tel" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userPhoneNumber").delivery__input.delivery__input-tel
-
-
-
-
-
+									input(type="tel" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userPhoneNumber").delivery__input.delivery__input-tel
 
 
 						.delivery__col.delivery__address(v-if="!cartPage.pickup")
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option
-									template(v-if="cartPage.loggedIn")
-										select.custom-select
-											optgroup(label="Сохраненные адреса")
-												option(value="4") Ванеева
-												option(value="5") Республиканская
-												option(value="6") Белинского
-											optgroup(label="Выберите город")
-												option(value="1") Москва
-												option(value="2") Владивосток
-												option(value="3") Комсомольск на Амуре
-										select.custom-select--compute
-											option.custom-select--compute-value(value="")
-									template(v-else)
-										select.custom-select
-											optgroup(label="Выберите город")
-												option(value="1") Москва
-												option(value="2") Владивосток
-												option(value="3") Комсомольск на Амуре
-										select.custom-select--compute
-											option.custom-select--compute-value(value="")
-							template(v-if="!cartPage.loggedIn")
-								.delivery__row
-									input.delivery__input(type="text" placeholder="Улица")
-								.delivery__row
-									.delivery__small-col
-										input.delivery__input(type="text" placeholder="Дом")
-									.delivery__small-col
-										input.delivery__input(type="text" placeholder="Корп.")
-									.delivery__small-col
-										input.delivery__input(type="text" placeholder="Кв.")
+									//- problem
+									select.custom-select
+										optgroup(label="Сохраненные адреса" v-if="userInfo.loggedIn")
+											option(v-bind:value="address" v-for="address in userInfo.savedAddresses") {{ address.street }}
+										optgroup(label="Выберите город")
+											option(v-bind:value="singleCity" v-for="singleCity in cartPage.restaurants") {{ singleCity.city }}
+									select.custom-select--compute
+										option.custom-select--compute-value(value="")
 
 
-
-
-
-
-
-
-
-
-
+							.delivery__row
+								input.delivery__input(type="text" placeholder="Улица")
+							.delivery__row
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="Дом")
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="Корп.")
+								.delivery__small-col
+									input.delivery__input(type="text" placeholder="Кв.")
 
 
 						.delivery__col.delivery__address(v-if="cartPage.pickup")
@@ -220,8 +193,6 @@ block content
 										option.custom-select--compute-value(value="")
 							.delivery__row.delivery__row-flex-start.delivery__row--last-row
 								span.delivery__row-note(v-if="cartPage.currentRestaurant") {{ cartPage.currentRestaurant.address }}, {{ cartPage.currentRestaurant.hours }} ч.
-
-
 						.delivery__col.delivery__comment
 							p.delivery__col-heading Комментарий к заказу:
 							.delivery__row
@@ -233,16 +204,180 @@ block content
 								label.custom-radio(for="cash-pay") наличными
 								input(type="radio" id="noncash-pay" name="pay-method")
 								label.custom-radio(for="noncash-pay") безналичный расчёт
-							.delivery__pizzents(v-bind:class="{ 'disabled': !cartPage.loggedIn }") Использовать пицценты:
+							.delivery__pizzents(v-bind:class="{ 'disabled': !userInfo.loggedIn }") Использовать пицценты:
 								.delivery__pizzents-input--wrapper
-									input.delivery__pizzents-input.remove-spinners(type="number"  min="1" pattern="[0-9]*" v-if="cartPage.loggedIn")
+									input.delivery__pizzents-input.remove-spinners(type="number"  min="1" pattern="[0-9]*" v-if="userInfo.loggedIn" v-bind:value="userInfo.pizzents")
 								span pz
+					.cart__total
+						p.cart__total-price 4585 
+							span.rouble З
+						input.btn.cart__total-btn(type="submit" value="Подтвердить")
+			.cart__add-new-items
+				h2.cart__add-new-items--title Добавьте к заказу:
+				.items__container
+					.items-wrapper
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
+						.item
+							.item__img-wrapper
+								.item__img(style="background-image: url(img/burger1.jpg)")
+								.item__img-links
+									a.item__img-zoom.zoom-img(href="img/burger1.jpg")
+										img.item__img-zoom--helper(src="img/burger1.jpg", alt="")
+							.item__content
+								p.item__content-title Coca-cola
+							.item__bottom
+								.item__options.cf
+									.custom-select__wrapper.item__option
+										select.custom-select
+											option(value="Банка 0.25 л") Банка 0.25 л
+											option(value="Банка 0.5 л") Банка 0.5 л
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+									.item__count
+										span.item__count-title Кол-во:
+										.item__count-wrapper
+											.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+											input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+											.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								.item__price.cf
+									p.item__price-number 3200 
+										span.rouble З
+									a.btn.item__add-to-cart(href="#") В корзину
 
 
 
 block inlineScripts
 	script.
-		// vm.cartPage.loggedIn = true;
+		// vm.userInfo.loggedIn = true;
 		vm.cartPage.restaurants = [
 			{
 				city: "Нижний Новгород",

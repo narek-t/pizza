@@ -191,67 +191,47 @@
             <h2 class="cart__delivery-and-pay--title">Доставка и оплата</h2>
             <div class="delivery__block">
               <div class="delivery__block-header cf">
-                <div class="delivery__variants"><span @click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }" class="courier custom-radio">курьером</span><span @click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }" class="pickup custom-radio">самовывоз</span></div><a href="#" v-if="!cartPage.loggedIn" class="delivery__register default-link">Регистрация</a>
+                <div class="delivery__variants"><span @click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }" class="courier custom-radio">курьером</span><span @click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }" class="pickup custom-radio">самовывоз</span></div><a href="#" v-if="!userInfo.loggedIn" class="delivery__register default-link">Регистрация</a>
               </div>
               <div class="delivery__cols">
                 <div class="delivery__col delivery__info">
                   <p class="delivery__col-heading">Основная информация:</p>
                   <div class="delivery__row"><span class="delivery__label">Ваше имя:</span>
-                    <input type="text" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userName" class="delivery__input"/>
+                    <input type="text" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userName" class="delivery__input"/>
                   </div>
                   <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
-                      <input type="tel" v-bind:placeholder="!cartPage.loggedIn ? '' : cartPage.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
+                      <input type="tel" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
                 </div>
                 <div v-if="!cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option">
-                      <template v-if="cartPage.loggedIn">
-                        <select class="custom-select">
-                          <optgroup label="Сохраненные адреса">
-                            <option value="4">Ванеева</option>
-                            <option value="5">Республиканская</option>
-                            <option value="6">Белинского</option>
-                          </optgroup>
-                          <optgroup label="Выберите город">
-                            <option value="1">Москва</option>
-                            <option value="2">Владивосток</option>
-                            <option value="3">Комсомольск на Амуре</option>
-                          </optgroup>
-                        </select>
-                        <select class="custom-select--compute">
-                          <option value="" class="custom-select--compute-value"></option>
-                        </select>
-                      </template>
-                      <template v-else="v-else">
-                        <select class="custom-select">
-                          <optgroup label="Выберите город">
-                            <option value="1">Москва</option>
-                            <option value="2">Владивосток</option>
-                            <option value="3">Комсомольск на Амуре</option>
-                          </optgroup>
-                        </select>
-                        <select class="custom-select--compute">
-                          <option value="" class="custom-select--compute-value"></option>
-                        </select>
-                      </template>
+                      <select class="custom-select">
+                        <optgroup label="Сохраненные адреса" v-if="userInfo.loggedIn">
+                          <option v-bind:value="address" v-for="address in userInfo.savedAddresses">{{ address.street }}</option>
+                        </optgroup>
+                        <optgroup label="Выберите город">
+                          <option v-bind:value="singleCity" v-for="singleCity in cartPage.restaurants">{{ singleCity.city }}</option>
+                        </optgroup>
+                      </select>
+                      <select class="custom-select--compute">
+                        <option value="" class="custom-select--compute-value"></option>
+                      </select>
                     </div>
                   </div>
-                  <template v-if="!cartPage.loggedIn">
-                    <div class="delivery__row">
-                      <input type="text" placeholder="Улица" class="delivery__input"/>
+                  <div class="delivery__row">
+                    <input type="text" placeholder="Улица" class="delivery__input"/>
+                  </div>
+                  <div class="delivery__row">
+                    <div class="delivery__small-col">
+                      <input type="text" placeholder="Дом" class="delivery__input"/>
                     </div>
-                    <div class="delivery__row">
-                      <div class="delivery__small-col">
-                        <input type="text" placeholder="Дом" class="delivery__input"/>
-                      </div>
-                      <div class="delivery__small-col">
-                        <input type="text" placeholder="Корп." class="delivery__input"/>
-                      </div>
-                      <div class="delivery__small-col">
-                        <input type="text" placeholder="Кв." class="delivery__input"/>
-                      </div>
+                    <div class="delivery__small-col">
+                      <input type="text" placeholder="Корп." class="delivery__input"/>
                     </div>
-                  </template>
+                    <div class="delivery__small-col">
+                      <input type="text" placeholder="Кв." class="delivery__input"/>
+                    </div>
+                  </div>
                 </div>
                 <div v-if="cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
@@ -300,10 +280,213 @@
                     <input type="radio" id="noncash-pay" name="pay-method"/>
                     <label for="noncash-pay" class="custom-radio">безналичный расчёт</label>
                   </div>
-                  <div v-bind:class="{ 'disabled': !cartPage.loggedIn }" class="delivery__pizzents">Использовать пицценты:
+                  <div v-bind:class="{ 'disabled': !userInfo.loggedIn }" class="delivery__pizzents">Использовать пицценты:
                     <div class="delivery__pizzents-input--wrapper">
-                      <input type="number" min="1" pattern="[0-9]*" v-if="cartPage.loggedIn" class="delivery__pizzents-input remove-spinners"/>
+                      <input type="number" min="1" pattern="[0-9]*" v-if="userInfo.loggedIn" v-bind:value="userInfo.pizzents" class="delivery__pizzents-input remove-spinners"/>
                     </div><span>pz</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cart__total">
+                <p class="cart__total-price">4585 <span class="rouble">З</span></p>
+                <input type="submit" value="Подтвердить" class="btn cart__total-btn"/>
+              </div>
+            </div>
+          </div>
+          <div class="cart__add-new-items">
+            <h2 class="cart__add-new-items--title">Добавьте к заказу:</h2>
+            <div class="items__container">
+              <div class="items-wrapper">
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__img-wrapper">
+                    <div style="background-image: url(img/burger1.jpg)" class="item__img"></div>
+                    <div class="item__img-links"><a href="img/burger1.jpg" class="item__img-zoom zoom-img"><img src="img/burger1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                  </div>
+                  <div class="item__content">
+                    <p class="item__content-title">Coca-cola</p>
+                  </div>
+                  <div class="item__bottom">
+                    <div class="item__options cf">
+                      <div class="custom-select__wrapper item__option">
+                        <select class="custom-select">
+                          <option value="Банка 0.25 л">Банка 0.25 л</option>
+                          <option value="Банка 0.5 л">Банка 0.5 л</option>
+                        </select>
+                        <select class="custom-select--compute">
+                          <option value="" class="custom-select--compute-value"></option>
+                        </select>
+                      </div>
+                      <div class="item__count"><span class="item__count-title">Кол-во:</span>
+                        <div class="item__count-wrapper">
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_minus spin"></div>
+                          <input type="number" min="1" pattern="[0-9]*" value="1" class="qty remove-spinners need-validate"/>
+                          <div onclick="PizzaThemeGlobalVariables.updateSpinner(this);" class="item__count_plus spin"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item__price cf">
+                      <p class="item__price-number">3200 <span class="rouble">З</span></p><a href="#" class="btn item__add-to-cart">В корзину</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -342,7 +525,7 @@
     <script src="js/lib/lib.min.js"></script>
     <script src="js/main.min.js"></script>
     <script>
-      // vm.cartPage.loggedIn = true;
+      // vm.userInfo.loggedIn = true;
       vm.cartPage.restaurants = [
       	{
       		city: "Нижний Новгород",
