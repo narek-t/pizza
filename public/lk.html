@@ -69,83 +69,23 @@
         </div>
       </header>
       <main class="main-content cart main-content__top-padding">
-        <div v-if="!userInfo.loggedIn &amp;&amp; showRegisterLink" class="ordered__register">
-          <div class="small-container">
-            <div class="ordered__register-inner cf">
-              <p>Пока ваш заказ готовится, рекомендуем пройти короткую процедуру регистрации на нашем сайте. Зарегистрированные пользователи могут совершать заказы, без повторного ввода контактных данный, а так же совершать быстрые заказы из истории заказов.</p>
-              <div class="ordered__register-links"><a href="#" class="btn">Регистрация</a><a href="#" @click.prevent="showRegisterLink = false" class="close"> </a></div>
+        <div class="container">
+          <h1 class="cart__title uppercase">Личный кабинет</h1>
+          <div class="cabinet">
+            <div class="cabinet__col cabinet__col--info"><a href="#" class="cabinet__col-title cabinet__col-title--editable">Основная информация:</a>
+              <div class="delivery__row"><span class="delivery__label">Имя:</span>
+                <input type="text" class="delivery__input"/>
+              </div>
+              <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
+                  <input type="tel" class="delivery__input delivery__input-tel"/></span></div>
+              <div class="delivery__row"><span class="delivery__label">Email:</span>
+                <input type="email" class="delivery__input"/>
+              </div>
             </div>
+            <div class="cabinet__col"><span class="cabinet__col-title cabinet__col-title--info">Пицценты:</span></div>
+            <div class="cabinet__col cabinet__col-large"><a href="#" class="cabinet__col-title cabinet__col-title--editable">Адрес доставки:</a></div>
+            <div class="cabinet__col cabinet__col-large"><a href="#" class="cabinet__col-title cabinet__col-title--editable">Смена пароля:</a></div>
           </div>
-        </div>
-        <div class="small-container">
-          <h1 class="cart__title uppercase ordered__title">Ваш заказ принят</h1>
-          <p class="ordered__subtitle">Наш оператор свяжется с вами в ближайшее время по указанному телефону для уточнения деталей заказа. Спасибо, за заказ!</p>
-          <ul class="cart__list cart__list-ordered">
-            <li class="cart__item">
-              <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
-              <div class="cart__item-content cart__item-content--ordered">
-                <p class="cart__item-title">Мексиканаская</p>
-                <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
-                <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
-              </div>
-              <div class="cart__item-options"><span class="item__fixed-value">Средняя / 33 см</span></div>
-              <div class="cart__item-count item__count--ordered"><span class="item__count-title">Кол-во:</span>
-                <div class="item__count-wrapper">10</div>
-              </div>
-              <div class="cart__item-price">
-                <p class="item__price-number">3750 <span class="rouble">З</span></p>
-              </div>
-            </li>
-            <li class="cart__item">
-              <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
-              <div class="cart__item-content cart__item-content--ordered">
-                <p class="cart__item-title">Мексиканаская</p>
-                <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
-                <div class="cart__item-supplements cart__item-supplements--ordered"></div>
-              </div>
-              <div class="cart__item-options"><span class="item__fixed-value">8 штук</span></div>
-              <div class="cart__item-count item__count--ordered"><span class="item__count-title">Кол-во:</span>
-                <div class="item__count-wrapper">10</div>
-              </div>
-              <div class="cart__item-price">
-                <p class="item__price-number">750 <span class="rouble">З</span></p>
-              </div>
-            </li>
-            <li class="cart__item">
-              <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
-              <div class="cart__item-content cart__item-content--ordered">
-                <p class="cart__item-title">Мексиканаская</p>
-                <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
-                <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
-              </div>
-              <div class="cart__item-options"><span class="item__fixed-value">500 гр</span></div>
-              <div class="cart__item-count item__count--ordered"><span class="item__count-title">Кол-во:</span>
-                <div class="item__count-wrapper">10</div>
-              </div>
-              <div class="cart__item-price">
-                <p class="item__price-number">13750 <span class="rouble">З</span></p>
-              </div>
-            </li>
-            <li class="cart__item ordered__total">
-              <div class="ordered__total-col">
-                <p class="ordered__total-title">Основная информация:</p>
-                <p>Ваше имя: <span class="offset">Иван</span></p>
-                <p>Телефон: <span class="offset">+79876543210</span></p>
-              </div>
-              <div class="ordered__total-col">
-                <p class="ordered__total-title">Адрес доставки</p>
-                <p><span>г. Нижний Новгород, ул. Ванеева 25/88, кв. 200</span></p>
-              </div>
-              <div class="ordered__total-col">
-                <p class="ordered__total-title">Детали:</p>
-                <p>Время доставки: <span class="offset">5 июля, 14:15</span></p>
-                <p>Оплата: <span class="offset">наличными</span></p>
-              </div>
-              <div class="ordered__total-col">
-                <p class="ordered__total-col--price">Итог: 4585<span class="rouble">З</span></p>
-              </div>
-            </li>
-          </ul>
         </div>
       </main>
     </div>
@@ -178,5 +118,6 @@
     <script src="https://unpkg.com/vue@2.4.2"></script>
     <script src="js/lib/lib.min.js"></script>
     <script src="js/main.min.js"></script>
+    <script>// vm.userInfo.loggedIn = true;</script>
   </body>
 </html>

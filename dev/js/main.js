@@ -126,11 +126,13 @@ $(window).load(function() {
 var vm = new Vue({
 	el: '#app',
 	data: {
+		showRegisterLink: true,
 		userInfo: {
-			loggedIn: true,
+			loggedIn: false,
 			userName: 'testname',
 			userPhoneNumber: 'testnumber',
 			pizzents: '110',
+			email: 'test@test.com',
 			savedAddresses: [
 				{
 					city: 'Нижний Новгород',

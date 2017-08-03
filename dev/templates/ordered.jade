@@ -2,131 +2,94 @@ extends _layout
 block vars
 block content
 	main.main-content.cart.main-content__top-padding
+		.ordered__register(v-if="!userInfo.loggedIn && showRegisterLink")
+			.small-container
+				.ordered__register-inner.cf
+					p Пока ваш заказ готовится, рекомендуем пройти короткую процедуру регистрации на нашем сайте. Зарегистрированные пользователи могут совершать заказы, без повторного ввода контактных данный, а так же совершать быстрые заказы из истории заказов.
+					.ordered__register-links
+						a.btn(href="#") Регистрация
+						a.close(href="#" @click.prevent="showRegisterLink = false") 
 		.small-container
-			h1.cart__title.uppercase Ваш заказ принят
+			h1.cart__title.uppercase.ordered__title Ваш заказ принят
+			p.ordered__subtitle Наш оператор свяжется с вами в ближайшее время по указанному телефону для уточнения деталей заказа. Спасибо, за заказ!
 			ul.cart__list.cart__list-ordered
 				li.cart__item
 					.cart__item-img
 						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
 							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
+					.cart__item-content.cart__item-content--ordered
 						p.cart__item-title Мексиканаская
 						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
+						.cart__item-supplements.cart__item-supplements--ordered
+							span Сыр 70 
+								span.rouble З
+							span Ветчина 70 
+								span.rouble З
 					.cart__item-options
-						.custom-select__wrapper.item__option
-							select.custom-select
-								option(value="средняя / 33 см") Средняя / 33 см
-								option(value="половина средней") Половина средней
-								option(value="большая / 40 см") Большая / 40 см
-								option(value="половина большой") Половина большой
-							select.custom-select--compute
-								option.custom-select--compute-value(value="")
-					.cart__item-count.item__count
+						span.item__fixed-value Средняя / 33 см
+					.cart__item-count.item__count--ordered
 						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.item__count-wrapper 10
 					.cart__item-price
 						p.item__price-number 3750 
 							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
 				li.cart__item
 					.cart__item-img
 						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
 							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
+					.cart__item-content.cart__item-content--ordered
 						p.cart__item-title Мексиканаская
 						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
+						.cart__item-supplements.cart__item-supplements--ordered
+							
 					.cart__item-options
 						span.item__fixed-value 8 штук
-					.cart__item-count.item__count
+					.cart__item-count.item__count--ordered
 						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.item__count-wrapper 10
 					.cart__item-price
 						p.item__price-number 750 
 							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
 				li.cart__item
 					.cart__item-img
 						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
 							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
+					.cart__item-content.cart__item-content--ordered
 						p.cart__item-title Мексиканаская
 						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
+						.cart__item-supplements.cart__item-supplements--ordered
+							span Сыр 70 
+								span.rouble З
+							span Ветчина 70 
+								span.rouble З
 					.cart__item-options
 						span.item__fixed-value 500 гр
-					.cart__item-count.item__count
+					.cart__item-count.item__count--ordered
 						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.item__count-wrapper 10
 					.cart__item-price
 						p.item__price-number 13750 
 							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
+				li.cart__item.ordered__total
+					.ordered__total-col
+						p.ordered__total-title Основная информация:
+						p Ваше имя: 
+							span.offset Иван
+						p Телефон: 
+							span.offset +79876543210
+					.ordered__total-col
+						p.ordered__total-title Адрес доставки
+						p
+							span г. Нижний Новгород, ул. Ванеева 25/88, кв. 200
+					.ordered__total-col
+						p.ordered__total-title Детали:
+						p Время доставки: 
+							span.offset 5 июля, 14:15
+						p Оплата: 
+							span.offset наличными
+					.ordered__total-col
+						p.ordered__total-col--price Итог: 4585
+							span.rouble З
 
 
 block inlineScripts

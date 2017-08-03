@@ -1,0 +1,33 @@
+extends _layout
+block vars
+block content
+	main.main-content.cart.main-content__top-padding
+		.container
+			h1.cart__title.uppercase Личный кабинет
+			.cabinet
+				.cabinet__col.cabinet__col--info
+					a.cabinet__col-title.cabinet__col-title--editable(href="#") Основная информация:
+					.delivery__row
+						span.delivery__label Имя:
+						input.delivery__input(type="text")
+					.delivery__row
+						span.delivery__label Телефон:
+						span.delivery__input-tel--wrapper
+							span.delivery__input-tel--code +7 
+							input.delivery__input.delivery__input-tel(type="tel" )
+					.delivery__row
+						span.delivery__label Email:
+						input.delivery__input(type="email")
+				.cabinet__col
+					span.cabinet__col-title.cabinet__col-title--info Пицценты:
+				.cabinet__col.cabinet__col-large
+					a.cabinet__col-title.cabinet__col-title--editable(href="#") Адрес доставки:
+				.cabinet__col.cabinet__col-large
+					a.cabinet__col-title.cabinet__col-title--editable(href="#") Смена пароля:
+
+
+
+block inlineScripts
+	script.
+		// vm.userInfo.loggedIn = true;
+		

@@ -4,6 +4,9 @@
 		color: #fff;
 		margin: 40px 0;
 		letter-spacing: 0.025em;
+		&.ordered__title {
+			margin-bottom: 0;
+		}
 	}
 	&__list {
 		margin: 0;
@@ -24,7 +27,6 @@
 			}
 		}
 	}
-
 	&__delivery-and-pay {
 		border-top: 1px solid #2a2a2a;
 		color: #fff;

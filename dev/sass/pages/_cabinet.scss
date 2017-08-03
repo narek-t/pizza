@@ -1,0 +1,46 @@
+.cabinet {
+	display: flex;
+	justify-content: space-between;
+	&__col {
+		padding: 35px 35px 40px;
+		position: relative;
+		background: #333333;
+		font: 300 14px $os;
+		color: #fff;
+		max-width: 380px;
+		width: 100%;
+		.delivery__row {
+			margin-top: 8px;
+		}
+		&-large {
+			max-width: 450px;
+		}
+		&-title {
+			font: 400 16px $os;
+			color: #fff;
+			text-decoration: none;
+			display: inline-block;
+			padding-right: 25px;
+			margin-bottom: 15px;
+			&--editable {
+				background: url(../img/edit-ico.png) right top 6px no-repeat;
+			}
+			&--info {
+				background: url(../img/help-ico.png) right 2px top 6px no-repeat;
+			}
+			&:hover {
+				opacity: .8;
+			}
+		}
+		&--info {
+			.delivery__input {
+				width: 200px;
+				&-tel {
+					position: relative;
+					right: -1px;
+				}
+			}
+		}
+	}
+}
+

@@ -143,6 +143,10 @@
 			display: inline-block;
 			vertical-align: middle;
 		}
+		&--ordered {
+			font: 300 15px $os;
+			color: #999;
+		}
 	}
 	&__count-wrapper {
 		display: inline-block;
@@ -180,6 +184,7 @@
 				background-image: url(../img/spin-r.png);
 			}
 		}
+
 	}
 	&__bottom {
 		position: absolute;
