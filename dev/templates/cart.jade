@@ -152,7 +152,7 @@ block content
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option
 									//- problem
-									select.custom-select
+									select.custom-select(key="saved-addresses")
 										optgroup(label="Сохраненные адреса" v-if="userInfo.loggedIn")
 											option(v-bind:value="address" v-for="address in userInfo.savedAddresses") {{ address.street }}
 										optgroup(label="Выберите город")

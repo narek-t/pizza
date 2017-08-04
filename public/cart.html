@@ -205,7 +205,7 @@
                 <div v-if="!cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option">
-                      <select class="custom-select">
+                      <select key="saved-addresses" class="custom-select">
                         <optgroup label="Сохраненные адреса" v-if="userInfo.loggedIn">
                           <option v-bind:value="address" v-for="address in userInfo.savedAddresses">{{ address.street }}</option>
                         </optgroup>

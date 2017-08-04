@@ -1,9 +1,11 @@
-$arr-down: 30px 0px -30px 0px 5px 3px 35px 25px '../img/sprite.png';
-$arr-up: 30px 7px -30px -7px 5px 3px 35px 25px '../img/sprite.png';
-$check: 0px 0px 0px 0px 12px 11px 35px 25px '../img/sprite.png';
-$radio-check: 16px 0px -16px 0px 10px 10px 35px 25px '../img/sprite.png';
-$radio-uncheck: 0px 15px 0px -15px 10px 10px 35px 25px '../img/sprite.png';
-$uncheck: 14px 15px -14px -15px 10px 10px 35px 25px '../img/sprite.png';
+$arr-down: 0px 31px 0px -31px 5px 3px 42px 34px '../img/sprite.png';
+$arr-up: 9px 31px -9px -31px 5px 3px 42px 34px '../img/sprite.png';
+$check: 0px 16px 0px -16px 12px 11px 42px 34px '../img/sprite.png';
+$edit-ico-gray: 0px 0px 0px 0px 12px 12px 42px 34px '../img/sprite.png';
+$edit-ico: 16px 0px -16px 0px 12px 12px 42px 34px '../img/sprite.png';
+$radio-check: 16px 16px -16px -16px 10px 10px 42px 34px '../img/sprite.png';
+$radio-uncheck: 32px 0px -32px 0px 10px 10px 42px 34px '../img/sprite.png';
+$uncheck: 32px 14px -32px -14px 10px 10px 42px 34px '../img/sprite.png';
 
 /*
 The provided mixins are intended to be used with the array-like variables

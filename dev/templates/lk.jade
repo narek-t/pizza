@@ -18,12 +18,33 @@ block content
 					.delivery__row
 						span.delivery__label Email:
 						input.delivery__input(type="email")
-				.cabinet__col
+				.cabinet__col.cabinet__col--pizzennts
 					span.cabinet__col-title.cabinet__col-title--info Пицценты:
-				.cabinet__col.cabinet__col-large
+					p.cabinet__col--pizzennts-count 300 PZ.
+					p.cabinet__col--pizzennts-note Необходимо использовать до: 1.09. 2017
+					a.cabinet__col--pizzennts-link.default-link(href="#") 
+						span Бесплатные пицценты
+				.cabinet__col.cabinet__col-large.cabinet__col__addresses
 					a.cabinet__col-title.cabinet__col-title--editable(href="#") Адрес доставки:
-				.cabinet__col.cabinet__col-large
+					.cabinet__col__addresses-list
+						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200 ва, 25/88, кв. 200
+							a(href="#")
+						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200
+							a(href="#")
+						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200
+							a(href="#")
+				.cabinet__col.cabinet__col-large.cabinet__col--info
 					a.cabinet__col-title.cabinet__col-title--editable(href="#") Смена пароля:
+					.delivery__row
+						span.delivery__label Текущий пароль:
+						input.delivery__input(type="password")
+					.delivery__row
+						span.delivery__label Новый пароль:
+						span.delivery__input-tel--wrapper
+							input.delivery__input.delivery__input-tel(type="password")
+					.delivery__row
+						span.delivery__label Повторить пароль:
+						input.delivery__input(type="password")
 
 
 

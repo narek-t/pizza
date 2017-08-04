@@ -166,9 +166,6 @@ var vm = new Vue({
 		setDefaultRestaurant: function() {
 			this.cartPage.currentRestaurant = this.cartPage.currentDistrict.restaurants[0];
 		},
-		asd: function(e) {
-			console.log(e)
-		}
 	},
 	computed: {
 		

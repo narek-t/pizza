@@ -2,13 +2,14 @@
 	display: flex;
 	justify-content: space-between;
 	&__col {
-		padding: 35px 35px 40px;
+		padding: 35px 35px 30px;
 		position: relative;
 		background: #333333;
 		font: 300 14px $os;
 		color: #fff;
 		max-width: 380px;
 		width: 100%;
+		margin: 0 5px;
 		.delivery__row {
 			margin-top: 8px;
 		}
@@ -22,8 +23,21 @@
 			display: inline-block;
 			padding-right: 25px;
 			margin-bottom: 15px;
+			position: relative;
 			&--editable {
-				background: url(../img/edit-ico.png) right top 6px no-repeat;
+				&::after {
+					content: '';
+					position: absolute;
+					right: 0;
+					top: 50%;
+					transform: translateY(-50%);
+					@include sprite($edit-ico);
+				}
+				&.active {
+					&::after {
+						@include sprite($edit-ico-gray);
+					}
+				}
 			}
 			&--info {
 				background: url(../img/help-ico.png) right 2px top 6px no-repeat;
@@ -35,9 +49,57 @@
 		&--info {
 			.delivery__input {
 				width: 200px;
-				&-tel {
-					position: relative;
-					right: -1px;
+			}
+		}
+		&--pizzennts {
+			&-count {
+				font: 300 36px $gt;
+				color: #fff;
+				margin: 3px 0 0;
+			}
+			&-note {
+				margin: 0;
+				padding: 10px 0 20px;
+				border-bottom: 1px solid #262626;
+			}
+			&-link {
+				font: 300 24px $gt;
+				color: #fec458;
+				text-decoration: none;
+				border-top: 1px solid #434343;
+				display: block;
+				text-align: center;
+				span {
+					padding: 25px 30px 0 0;
+					display: inline-block;
+					background: url(../img/big-arr.png) right 3px bottom 5px no-repeat;
+				}
+			}
+		}
+		&__addresses {
+			&-item {
+				padding: 17px 0;
+				border-bottom: 1px solid #262626;
+				border-top: 1px solid #434343;
+				padding-right: 25px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				position: relative;
+				&:first-child {
+					border-top: none;
+				}
+				&:last-child {
+					border-bottom: none;
+					padding-bottom: 0;
+				}
+				a {
+					background: url(../img/delete-ico.png) no-repeat;
+					width: 12px;
+					height: 12px;
+					position: absolute;
+					right: 0;
+					top: 20px;
 				}
 			}
 		}
