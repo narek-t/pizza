@@ -5,50 +5,212 @@ block content
 		.container
 			h1.cart__title.uppercase Личный кабинет
 			.cabinet
-				.cabinet__col.cabinet__col--info
-					a.cabinet__col-title.cabinet__col-title--editable(href="#") Основная информация:
+
+
+
+				form.cabinet__col.cabinet__col--info(@submit.prevent="saveNewInfo")
+					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="setDefaultInfo") Основная информация:
 					.delivery__row
 						span.delivery__label Имя:
-						input.delivery__input(type="text")
+						input.delivery__input(type="text" v-bind:value="userInfo.userName" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userName")
 					.delivery__row
 						span.delivery__label Телефон:
 						span.delivery__input-tel--wrapper
 							span.delivery__input-tel--code +7 
-							input.delivery__input.delivery__input-tel(type="tel" )
+							input.delivery__input.delivery__input-tel(type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model.number="userInfo.editedInfo.userPhoneNumber")
 					.delivery__row
 						span.delivery__label Email:
-						input.delivery__input(type="email")
+						input.delivery__input(type="email" v-bind:value="userInfo.email" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.email")
+					.delivery__row.cabinet__edit-submit(v-if="cabinet.editInfo")
+						input.btn.cabinet__edit-submit(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
+
+
+
+
+
 				.cabinet__col.cabinet__col--pizzennts
 					span.cabinet__col-title.cabinet__col-title--info Пицценты:
-					p.cabinet__col--pizzennts-count 300 PZ.
-					p.cabinet__col--pizzennts-note Необходимо использовать до: 1.09. 2017
-					a.cabinet__col--pizzennts-link.default-link(href="#") 
+					p.cabinet__col--pizzents-count 300 PZ.
+					p.cabinet__col--pizzents-note Необходимо использовать до: 1.09. 2017
+					a.cabinet__col--pizzents-link.default-link(href="#") 
 						span Бесплатные пицценты
-				.cabinet__col.cabinet__col-large.cabinet__col__addresses
-					a.cabinet__col-title.cabinet__col-title--editable(href="#") Адрес доставки:
-					.cabinet__col__addresses-list
-						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200 ва, 25/88, кв. 200
-							a(href="#")
-						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200
-							a(href="#")
-						.cabinet__col__addresses-item г. Нижний Новгород, ул. Ванеева, 25/88, кв. 200
-							a(href="#")
-				.cabinet__col.cabinet__col-large.cabinet__col--info
-					a.cabinet__col-title.cabinet__col-title--editable(href="#") Смена пароля:
+
+
+
+
+				form.cabinet__col.cabinet__col-large.cabinet__col__addresses(@submit.prevent="saveAddress")
+					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="cabinet.editAddress = !cabinet.editAddress" key="cabinet.editAddress") Адрес доставки:
+					template(v-if="userInfo.savedAddresses && userInfo.savedAddresses.length")
+						.cabinet__col__addresses-list
+							.cabinet__col__addresses-item(v-for="(address, index) in userInfo.savedAddresses" key="index") г. {{address.city}}, ул. {{address.street}} {{address.house}} 
+								template(v-if="address.building"),  корп. {{address.building}}
+								template(v-if="address.apartment"),  кв. {{address.apartment}}
+								a(href="#" @click.prevent="removeAddress(index)")
+					template(v-else)
+						.cabinet__col__addresses-list.cabinet__col__addresses-list--empty
+							span Нет сохраненных адресов, но Вы можете 
+								a(href="#" @click.prevent="cabinet.editAddress = !cabinet.editAddress") добавить адрес
+					.cabinet__col--form(v-if="cabinet.editAddress")
+						.cabinet__col--form__heading Добавить адрес: 
+							.custom-select__wrapper.item__option
+								select.custom-select(v-model="userInfo.newAddress.city" v-bind:disabled="cabinet.isLoading")
+									option(v-for="singleCity in restaurants") {{ singleCity.city }}
+								select.custom-select--compute
+									option.custom-select--compute-value(value="")
+						.cabinet__col--add-address
+							.cabinet__col--add-address-item
+								span Улица
+								input.delivery__input.delivery__input--street(type="text" v-model="userInfo.newAddress.street" v-bind:disabled="cabinet.isLoading")
+							.cabinet__col--add-address-item
+								span Дом
+								input.delivery__input(type="text" v-model="userInfo.newAddress.house" v-bind:disabled="cabinet.isLoading")
+							.cabinet__col--add-address-item
+								span Корп
+								input.delivery__input(type="text" v-model="userInfo.newAddress.building" v-bind:disabled="cabinet.isLoading")
+							.cabinet__col--add-address-item
+								span Кв
+								input.delivery__input(type="text" v-model="userInfo.newAddress.apartment" v-bind:disabled="cabinet.isLoading")
+						input.btn(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
+
+
+
+
+
+				form.cabinet__col.cabinet__col-large.cabinet__col--info(@submit.prevent="saveNewPassword")
+					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="cabinet.editPass = !cabinet.editPass") Смена пароля:
 					.delivery__row
 						span.delivery__label Текущий пароль:
-						input.delivery__input(type="password")
+						input.delivery__input(type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.oldPassword")
 					.delivery__row
 						span.delivery__label Новый пароль:
 						span.delivery__input-tel--wrapper
-							input.delivery__input.delivery__input-tel(type="password")
+							input.delivery__input.delivery__input-tel(type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.newPassword")
 					.delivery__row
 						span.delivery__label Повторить пароль:
-						input.delivery__input(type="password")
+						input.delivery__input(type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.repeatNewPassword")
+					.delivery__row.cabinet__edit-submit(v-if="cabinet.editPass")
+						input.btn.cabinet__edit-submit(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
 
 
 
 block inlineScripts
 	script.
-		// vm.userInfo.loggedIn = true;
+		vm.restaurants = [
+			{
+				city: "Нижний Новгород",
+				districts: [
+					{
+						districtName: "Нижегородский",
+						restaurants: [
+							{
+								placeName: "ТРЦ Фантастика",
+								name: 'Миры Пиццы в ТРЦ Фантастика',
+								address : 'ул. Нижегородский, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+							{
+								placeName: "ТРЦ Шоколад",
+								name: 'Миры Пиццы в ТРЦ Шоколад',
+								address : 'ул. Шоколад, 187; 2 эт., левое крыло',
+								hours: '10:00–20:00',
+								tel: '(831) 2-440-440',
+								coords: [56.307677, 44.074207],
+							}
+						]
+					},
+
+					{
+						districtName: "Советский",
+						restaurants: [
+							{
+								placeName: "ТРЦ на Советской",
+								name: 'Миры Пиццы в ТРЦ Жар птица',
+								address : 'пл. Советская, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.296617, 44.041434],
+							},
+							{
+								placeName: "ТРЦ на Бекетова",
+								name: 'Миры Пиццы в ТРЦ Бекетов',
+								address : 'ул. Бекетова, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.292918, 44.012810],
+							}
+						]
+					}
+				],
+			},
+
+			{
+				city: "Москва",
+				districts: [
+					{
+						districtName: "Арбат",
+						restaurants: [
+							{
+								placeName: "ТРЦ Арбат",
+								name: 'Миры Пиццы в ТРЦ Фантастика',
+								address : 'ул. Арбат, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+							{
+								placeName: "ТРЦ Арбат 222",
+								name: 'Миры Пиццы в ТРЦ Арбат 222',
+								address : 'ул.  Арбат 222, 187; 2 эт., левое крыло',
+								hours: '10:00–20:00',
+								tel: '(831) 2-440-440',
+								coords: [56.307677, 44.074207],
+							}
+						]
+					},
+
+					{
+						districtName: "Алтуфьевский",
+						restaurants: [
+							{
+								placeName: "ТРЦ на Алтуфьевский",
+								name: 'Миры Пиццы в ТРЦ Жар птица',
+								address : 'пл. Алтуфьевский, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.296617, 44.041434],
+							},
+							{
+								placeName: "ТРЦ на Алтуфьевский 222",
+								name: 'Миры Пиццы в ТРЦ Бекетов',
+								address : 'ул. Алтуфьевский 222, 187; 2 эт., левое крыло',
+								hours: '12:00–22:00',
+								tel: '(831) 2-220-220',
+								coords: [56.292918, 44.012810],
+							}
+						]
+					}
+				],
+			},
+			{
+				city: "Краснодар",
+				districts: [
+					{
+						districtName: "Краснодарский",
+						restaurants: [
+							{
+								placeName: "ТРЦ Краснодар",
+								name: 'Миры Пиццы в ТРЦ Краснодар',
+								address : 'ул. Краснодар, 187; 2 эт., левое крыло',
+								hours: '10:00–22:00',
+								tel: '(831) 2-550-550',
+								coords: [56.316540, 44.019612],
+							},
+						]
+					},
+				],
+			},
+		]
+		vm.userInfo.newAddress.city = 'Нижний Новгород'
 		

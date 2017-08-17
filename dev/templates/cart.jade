@@ -152,31 +152,35 @@ block content
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option
 									//- problem
-									select.custom-select(key="saved-addresses")
+									select.custom-select(key="saved-addresses" v-model="cartPage.currentSavedAddress")
 										optgroup(label="Сохраненные адреса" v-if="userInfo.loggedIn")
 											option(v-bind:value="address" v-for="address in userInfo.savedAddresses") {{ address.street }}
 										optgroup(label="Выберите город")
-											option(v-bind:value="singleCity" v-for="singleCity in cartPage.restaurants") {{ singleCity.city }}
+											option(v-for="singleCity in restaurants") {{ singleCity.city }}
 									select.custom-select--compute
 										option.custom-select--compute-value(value="")
 
 
 							.delivery__row
-								input.delivery__input(type="text" placeholder="Улица")
+								input.delivery__input(type="text" placeholder="Улица" 
+								v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.street : ''")
 							.delivery__row
 								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Дом")
+									input.delivery__input(type="text" placeholder="Дом"
+									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.house : ''")
 								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Корп.")
+									input.delivery__input(type="text" placeholder="Корп."
+									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.building : ''")
 								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Кв.")
+									input.delivery__input(type="text" placeholder="Кв."
+									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.apartment : ''")
 
 
 						.delivery__col.delivery__address(v-if="cartPage.pickup")
 							.delivery__col-heading Адрес: 
 								.custom-select__wrapper.item__option.delivery__address-city
 									select.custom-select(v-model="cartPage.currentCity" @change="setDefaultDistrict")
-										option(v-for="singleCity in cartPage.restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false") {{ singleCity.city }}
+										option(v-for="singleCity in restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false") {{ singleCity.city }}
 									select.custom-select--compute
 										option.custom-select--compute-value(value="")
 							.delivery__row.delivery__row-flex-start Район
@@ -378,7 +382,7 @@ block content
 block inlineScripts
 	script.
 		// vm.userInfo.loggedIn = true;
-		vm.cartPage.restaurants = [
+		vm.restaurants = [
 			{
 				city: "Нижний Новгород",
 				districts: [
@@ -495,6 +499,8 @@ block inlineScripts
 				],
 			},
 		]
-		vm.cartPage.currentCity = vm.cartPage.restaurants[0];
+		vm.cartPage.currentCity = vm.restaurants[0];
 		vm.cartPage.currentDistrict = vm.cartPage.currentCity.districts[0];
 		vm.cartPage.currentRestaurant = vm.cartPage.currentDistrict.restaurants[0];
+
+		vm.cartPage.currentSavedAddress = vm.userInfo.savedAddresses && vm.userInfo.savedAddresses.length ? vm.userInfo.savedAddresses[0] : vm.restaurants[0].city;

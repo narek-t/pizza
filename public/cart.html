@@ -205,12 +205,12 @@
                 <div v-if="!cartPage.pickup" class="delivery__col delivery__address">
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option">
-                      <select key="saved-addresses" class="custom-select">
+                      <select key="saved-addresses" v-model="cartPage.currentSavedAddress" class="custom-select">
                         <optgroup label="Сохраненные адреса" v-if="userInfo.loggedIn">
                           <option v-bind:value="address" v-for="address in userInfo.savedAddresses">{{ address.street }}</option>
                         </optgroup>
                         <optgroup label="Выберите город">
-                          <option v-bind:value="singleCity" v-for="singleCity in cartPage.restaurants">{{ singleCity.city }}</option>
+                          <option v-for="singleCity in restaurants">{{ singleCity.city }}</option>
                         </optgroup>
                       </select>
                       <select class="custom-select--compute">
@@ -219,17 +219,17 @@
                     </div>
                   </div>
                   <div class="delivery__row">
-                    <input type="text" placeholder="Улица" class="delivery__input"/>
+                    <input type="text" placeholder="Улица" v-bind:value="userInfo.savedAddresses &amp;&amp; userInfo.savedAddresses.length ? cartPage.currentSavedAddress.street : ''" class="delivery__input"/>
                   </div>
                   <div class="delivery__row">
                     <div class="delivery__small-col">
-                      <input type="text" placeholder="Дом" class="delivery__input"/>
+                      <input type="text" placeholder="Дом" v-bind:value="userInfo.savedAddresses &amp;&amp; userInfo.savedAddresses.length ? cartPage.currentSavedAddress.house : ''" class="delivery__input"/>
                     </div>
                     <div class="delivery__small-col">
-                      <input type="text" placeholder="Корп." class="delivery__input"/>
+                      <input type="text" placeholder="Корп." v-bind:value="userInfo.savedAddresses &amp;&amp; userInfo.savedAddresses.length ? cartPage.currentSavedAddress.building : ''" class="delivery__input"/>
                     </div>
                     <div class="delivery__small-col">
-                      <input type="text" placeholder="Кв." class="delivery__input"/>
+                      <input type="text" placeholder="Кв." v-bind:value="userInfo.savedAddresses &amp;&amp; userInfo.savedAddresses.length ? cartPage.currentSavedAddress.apartment : ''" class="delivery__input"/>
                     </div>
                   </div>
                 </div>
@@ -237,7 +237,7 @@
                   <div class="delivery__col-heading">Адрес: 
                     <div class="custom-select__wrapper item__option delivery__address-city">
                       <select v-model="cartPage.currentCity" @change="setDefaultDistrict" class="custom-select">
-                        <option v-for="singleCity in cartPage.restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false">{{ singleCity.city }}</option>
+                        <option v-for="singleCity in restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false">{{ singleCity.city }}</option>
                       </select>
                       <select class="custom-select--compute">
                         <option value="" class="custom-select--compute-value"></option>
@@ -526,7 +526,7 @@
     <script src="js/main.min.js"></script>
     <script>
       // vm.userInfo.loggedIn = true;
-      vm.cartPage.restaurants = [
+      vm.restaurants = [
       	{
       		city: "Нижний Новгород",
       		districts: [
@@ -643,9 +643,11 @@
       		],
       	},
       ]
-      vm.cartPage.currentCity = vm.cartPage.restaurants[0];
+      vm.cartPage.currentCity = vm.restaurants[0];
       vm.cartPage.currentDistrict = vm.cartPage.currentCity.districts[0];
       vm.cartPage.currentRestaurant = vm.cartPage.currentDistrict.restaurants[0];
+      
+      vm.cartPage.currentSavedAddress = vm.userInfo.savedAddresses && vm.userInfo.savedAddresses.length ? vm.userInfo.savedAddresses[0] : vm.restaurants[0].city;
     </script>
   </body>
 </html>

@@ -127,10 +127,11 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		showRegisterLink: true,
+		restaurants: {},
 		userInfo: {
-			loggedIn: false,
+			loggedIn: true,
 			userName: 'testname',
-			userPhoneNumber: 'testnumber',
+			userPhoneNumber: '1234568899',
 			pizzents: '110',
 			email: 'test@test.com',
 			savedAddresses: [
@@ -149,13 +150,36 @@ var vm = new Vue({
 					apartment: '',
 				}
 			],
+			newAddress: {
+				city: '',
+				street: '',
+				house: '',
+				building: '',
+				apartment: '',
+			},
+			editedInfo: {
+				userName: 'testname',
+				userPhoneNumber: '1234568899',
+				email: 'test@test.com',
+			},
+			editedPassword: {
+				oldPassword: '',
+				newPassword: '',
+				repeatNewPassword: '',
+			}
 		},
 		cartPage: {
 			pickup: false,
-			restaurants: {},
 			currentCity: '',
 			currentDistrict: '',
 			currentRestaurant: '',
+			currentSavedAddress: '',
+		},
+		cabinet: {
+			editInfo: false,
+			editAddress: false,
+			editPass: false,
+			isLoading: false,
 		},
 	},
 	methods: {
@@ -166,13 +190,96 @@ var vm = new Vue({
 		setDefaultRestaurant: function() {
 			this.cartPage.currentRestaurant = this.cartPage.currentDistrict.restaurants[0];
 		},
+		saveAddress: function() {
+			if(this.userInfo.savedAddresses.length < 4) {
+				var newAddress = this.userInfo.newAddress;
+				if(newAddress.street && newAddress.house) {
+					this.cabinet.isLoading = true;
+					var _self = this;
+					setTimeout(function() {
+						alert('done');
+						_self.userInfo.savedAddresses.push({
+							city: _self.userInfo.newAddress.city,
+							street: _self.userInfo.newAddress.street,
+							house: _self.userInfo.newAddress.house,
+							building: _self.userInfo.newAddress.building,
+							apartment: _self.userInfo.newAddress.apartment,
+						});
+						newAddress.street = '';
+						newAddress.house = '';
+						newAddress.building = '';
+						newAddress.apartment = '';
+						_self.cabinet.isLoading = false;
+					}, 3000);
+					
+				} else {
+					alert('Заполните улицу и дом')
+				}
+			} else {
+				alert('Больше нельзя!')
+			}
+		},
+		removeAddress: function(index) {
+			this.cabinet.isLoading = true;
+			var _self = this;
+			if(confirm('Удалить?')) {
+				setTimeout(function() {
+					_self.userInfo.savedAddresses.splice(index, 1);
+					_self.cabinet.isLoading = false;
+				}, 2000);
+			}
+		},
+		setDefaultInfo: function() {
+			this.cabinet.editInfo = !this.cabinet.editInfo;
+			this.userInfo.editedInfo.userName = this.userInfo.userName;
+			this.userInfo.editedInfo.userPhoneNumber = this.userInfo.userPhoneNumber;
+			this.userInfo.editedInfo.email = this.userInfo.email;
+		},
+		saveNewInfo: function() {
+			if(this.userInfo.userName !== this.userInfo.editedInfo.userName ||
+			this.userInfo.userPhoneNumber !== this.userInfo.editedInfo.userPhoneNumber || 
+			this.userInfo.email !== this.userInfo.editedInfo.email) {
+				var _self = this;
+				this.cabinet.isLoading = true;
+				setTimeout(function() {
+					alert('done');
+					_self.cabinet.isLoading = false;
+				}, 3000);
+			}
+			
+		},
+		isValidPass: function() {
+			var passLength = 6;
+			if (this.userInfo.editedPassword.newPassword.length > passLength && 
+				this.userInfo.editedPassword.repeatNewPassword.length > passLength && 
+				this.userInfo.editedPassword.newPassword === this.userInfo.editedPassword.repeatNewPassword) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		},
+		saveNewPassword: function() {
+			if(this.isValidPass()) {
+				this.cabinet.isLoading = true;
+				var _self = this;
+				setTimeout(function() {
+					_self.userInfo.editedPassword.newPassword = '';
+					_self.userInfo.editedPassword.repeatNewPassword = '';
+					_self.userInfo.editedPassword.oldPassword = '';
+					_self.cabinet.isLoading = false;
+					alert('done')
+				}, 2000);
+			} else {
+				alert('Пароли не совпадают')
+			}
+		}
 	},
 	computed: {
 		
 	},
 	watch: {
 		'cartPage.pickup': function() {
-
 			setTimeout(function() {
 				setSelectWidth();
 			}, 10);
