@@ -7,6 +7,7 @@
 @import "vendors/_slick.scss";
 @import "vendors/_magnific-popup.scss";
 @import "vendors/_select2.min.scss";
+@import "vendors/_bootstrap-datepicker.standalone.min.scss";
 
 /* helpers */
 @import "helpers/_fonts.scss";
@@ -26,6 +27,7 @@
 @import "components/_contacts-section.scss";
 @import "components/_item.scss";
 @import "components/_cart-item.scss";
+@import "components/_popup.scss";
 
 /* pages */
 @import "pages/_home.scss";

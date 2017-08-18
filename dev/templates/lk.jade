@@ -4,10 +4,8 @@ block content
 	main.main-content.cart.main-content__top-padding
 		.container
 			h1.cart__title.uppercase Личный кабинет
+			a.open-popup(href="#register") Register popup
 			.cabinet
-
-
-
 				form.cabinet__col.cabinet__col--info(@submit.prevent="saveNewInfo")
 					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="setDefaultInfo") Основная информация:
 					.delivery__row
@@ -17,27 +15,18 @@ block content
 						span.delivery__label Телефон:
 						span.delivery__input-tel--wrapper
 							span.delivery__input-tel--code +7 
-							input.delivery__input.delivery__input-tel(type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model.number="userInfo.editedInfo.userPhoneNumber")
+							input.delivery__input.delivery__input-tel(type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userPhoneNumber")
 					.delivery__row
 						span.delivery__label Email:
 						input.delivery__input(type="email" v-bind:value="userInfo.email" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.email")
 					.delivery__row.cabinet__edit-submit(v-if="cabinet.editInfo")
 						input.btn.cabinet__edit-submit(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
-
-
-
-
-
 				.cabinet__col.cabinet__col--pizzennts
 					span.cabinet__col-title.cabinet__col-title--info Пицценты:
 					p.cabinet__col--pizzents-count 300 PZ.
 					p.cabinet__col--pizzents-note Необходимо использовать до: 1.09. 2017
 					a.cabinet__col--pizzents-link.default-link(href="#") 
 						span Бесплатные пицценты
-
-
-
-
 				form.cabinet__col.cabinet__col-large.cabinet__col__addresses(@submit.prevent="saveAddress")
 					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="cabinet.editAddress = !cabinet.editAddress" key="cabinet.editAddress") Адрес доставки:
 					template(v-if="userInfo.savedAddresses && userInfo.savedAddresses.length")
@@ -71,11 +60,6 @@ block content
 								span Кв
 								input.delivery__input(type="text" v-model="userInfo.newAddress.apartment" v-bind:disabled="cabinet.isLoading")
 						input.btn(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
-
-
-
-
-
 				form.cabinet__col.cabinet__col-large.cabinet__col--info(@submit.prevent="saveNewPassword")
 					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="cabinet.editPass = !cabinet.editPass") Смена пароля:
 					.delivery__row
@@ -90,6 +74,165 @@ block content
 						input.delivery__input(type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.repeatNewPassword")
 					.delivery__row.cabinet__edit-submit(v-if="cabinet.editPass")
 						input.btn.cabinet__edit-submit(type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading")
+			.lk__history
+				h3.lk__history-title История покупок
+				.lk__history-container
+					.lk__history-col
+						.lk__history-item
+							.lk__history-item-title 
+								span.date 30 декабря 2016 г. 
+								span.separator | 
+								span.address г. Нижний Новгород, просп. Ленина, 100, кв. 100
+							ul.cart__list.cart__list-ordered.lk__history-list
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item 
+									a.btn.lk__history-reorder(href="#") Повторить
+									p.lk__history-total 570 
+										span.rouble З
+						.lk__history-item
+							.lk__history-item-title 
+								span.date 30 декабря 2016 г. 
+								span.separator | 
+								span.address г. Нижний Новгород, просп. Ленина, 100, кв. 100
+							ul.cart__list.cart__list-ordered.lk__history-list
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item 
+									a.btn.lk__history-reorder(href="#") Повторить
+									p.lk__history-total 570 
+										span.rouble З
+					.lk__history-col
+						.lk__history-item
+							.lk__history-item-title 
+								span.date 30 декабря 2016 г. 
+								span.separator | 
+								span.address г. Нижний Новгород, просп. Ленина, 100, кв. 100
+							ul.cart__list.cart__list-ordered.lk__history-list
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item 
+									a.btn.lk__history-reorder(href="#") Повторить
+									p.lk__history-total 570 
+										span.rouble З
+						.lk__history-item
+							.lk__history-item-title 
+								span.date 30 декабря 2016 г. 
+								span.separator | 
+								span.address г. Нижний Новгород, просп. Ленина, 100, кв. 100
+							ul.cart__list.cart__list-ordered.lk__history-list
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item
+									.cart__item-img
+										a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+											img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+									.cart__item-content.cart__item-content--ordered
+										p.cart__item-title Мексиканаская
+										p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+										.cart__item-supplements.cart__item-supplements--ordered
+											span Сыр 70 
+												span.rouble З
+											span Ветчина 70 
+												span.rouble З
+									.cart__item-price
+										p.item__price-number 13750 
+											span.rouble З
+								li.cart__item 
+									a.btn.lk__history-reorder(href="#") Повторить
+									p.lk__history-total 570 
+										span.rouble З
+		#register.zoom-anim-dialog.mfp-hide.popup
+			p.popup__heading Регистрация
+			.popup__block
+				p.popup__block-title Обязательные поля:
+				.popup__layout
+					label.popup__label Имя
+						input.popup__input(type="text")
+					label.popup__label Телефон (10 цифр слитно)
+						input.popup__input(type="tel" placeholder="+7")
+					label.popup__label Email
+						input.popup__input(type="email")
+					label.popup__label Город
+						select.popup__input
+							option(value="1") Нижний Новгород
+							option(value="2") Москва
+							option(value="3") Краснодар
+					label.popup__label Пароль
+						input.popup__input(type="password")
+					label.popup__label Подтвердите пароль
+						input.popup__input(type="password")
+					label.popup__label Дата рождения
+						input.popup__input.datepicker(type="text")
+			.popup__block
+			.popup__block
 
 
 

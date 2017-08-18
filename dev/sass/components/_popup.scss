@@ -1,0 +1,53 @@
+.popup {
+	max-width: 570px;
+	padding: 50px;
+	background: #ffe28c;
+	margin: auto;
+	color: #4c4c4c;
+	&__heading {
+		font: 300 30px $gt;
+		color: #ff1a1a;
+		letter-spacing: 0.025em;
+		text-transform: uppercase;
+		text-align: center;
+		margin: 0 0 10px;
+	}
+	&__block {
+		border-bottom: 1px solid #e6cc7e;
+		border-top: 1px solid #ffe69d;
+		padding: 30px 0;
+		&:first-of-type {
+			padding-top: 0;
+		}
+	}
+	&-title  {
+		margin: 0 0 15px;
+		font: 400 16px $os;
+	}
+	&__input {
+		display: block;
+		background: #e6cc7e;
+		outline: 0;
+		border: none;
+		padding: 0 10px;
+		height: 40px;
+		width: 100%;
+		margin-top: 5px;
+		color: #4c4c4c;
+		font: 300 14px $os;
+		@include placeholder {
+			color: #4c4c4c !important;
+		}
+	}
+	&__layout {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	&__label {
+		width: 49%;
+		font: 300 14px $os;
+		color: #4c4c4c;
+		margin-bottom: 15px;
+	}
+}

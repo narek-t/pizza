@@ -70,14 +70,14 @@
       </header>
       <main class="main-content cart main-content__top-padding">
         <div class="container">
-          <h1 class="cart__title uppercase">Личный кабинет</h1>
+          <h1 class="cart__title uppercase">Личный кабинет</h1><a href="#register" class="open-popup">Register popup</a>
           <div class="cabinet">
             <form @submit.prevent="saveNewInfo" class="cabinet__col cabinet__col--info"><a href="#" @click.prevent="setDefaultInfo" class="cabinet__col-title cabinet__col-title--editable">Основная информация:</a>
               <div class="delivery__row"><span class="delivery__label">Имя:</span>
                 <input type="text" v-bind:value="userInfo.userName" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userName" class="delivery__input"/>
               </div>
               <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
-                  <input type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model.number="userInfo.editedInfo.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
+                  <input type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
               <div class="delivery__row"><span class="delivery__label">Email:</span>
                 <input type="email" v-bind:value="userInfo.email" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.email" class="delivery__input"/>
               </div>
@@ -143,6 +143,148 @@
               </div>
             </form>
           </div>
+          <div class="lk__history">
+            <h3 class="lk__history-title">История покупок</h3>
+            <div class="lk__history-container">
+              <div class="lk__history-col">
+                <div class="lk__history-item">
+                  <div class="lk__history-item-title"> <span class="date">30 декабря 2016 г. </span><span class="separator">| </span><span class="address">г. Нижний Новгород, просп. Ленина, 100, кв. 100</span></div>
+                  <ul class="cart__list cart__list-ordered lk__history-list">
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item"> <a href="#" class="btn lk__history-reorder">Повторить</a>
+                      <p class="lk__history-total">570 <span class="rouble">З</span></p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="lk__history-item">
+                  <div class="lk__history-item-title"> <span class="date">30 декабря 2016 г. </span><span class="separator">| </span><span class="address">г. Нижний Новгород, просп. Ленина, 100, кв. 100</span></div>
+                  <ul class="cart__list cart__list-ordered lk__history-list">
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item"> <a href="#" class="btn lk__history-reorder">Повторить</a>
+                      <p class="lk__history-total">570 <span class="rouble">З</span></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="lk__history-col">
+                <div class="lk__history-item">
+                  <div class="lk__history-item-title"> <span class="date">30 декабря 2016 г. </span><span class="separator">| </span><span class="address">г. Нижний Новгород, просп. Ленина, 100, кв. 100</span></div>
+                  <ul class="cart__list cart__list-ordered lk__history-list">
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item"> <a href="#" class="btn lk__history-reorder">Повторить</a>
+                      <p class="lk__history-total">570 <span class="rouble">З</span></p>
+                    </li>
+                  </ul>
+                </div>
+                <div class="lk__history-item">
+                  <div class="lk__history-item-title"> <span class="date">30 декабря 2016 г. </span><span class="separator">| </span><span class="address">г. Нижний Новгород, просп. Ленина, 100, кв. 100</span></div>
+                  <ul class="cart__list cart__list-ordered lk__history-list">
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item">
+                      <div class="cart__item-img"><a href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)" class="zoom-img"><img src="img/roll1.jpg" alt="" class="item__img-zoom--helper"/></a></div>
+                      <div class="cart__item-content cart__item-content--ordered">
+                        <p class="cart__item-title">Мексиканаская</p>
+                        <p class="cart__item-description">Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.</p>
+                        <div class="cart__item-supplements cart__item-supplements--ordered"><span>Сыр 70 <span class="rouble">З</span></span><span>Ветчина 70 <span class="rouble">З</span></span></div>
+                      </div>
+                      <div class="cart__item-price">
+                        <p class="item__price-number">13750 <span class="rouble">З</span></p>
+                      </div>
+                    </li>
+                    <li class="cart__item"> <a href="#" class="btn lk__history-reorder">Повторить</a>
+                      <p class="lk__history-total">570 <span class="rouble">З</span></p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="register" class="zoom-anim-dialog mfp-hide popup">
+          <p class="popup__heading">Регистрация</p>
+          <div class="popup__block">
+            <p class="popup__block-title">Обязательные поля:</p>
+            <div class="popup__layout">
+              <label class="popup__label">Имя
+                <input type="text" class="popup__input"/>
+              </label>
+              <label class="popup__label">Телефон (10 цифр слитно)
+                <input type="tel" placeholder="+7" class="popup__input"/>
+              </label>
+              <label class="popup__label">Email
+                <input type="email" class="popup__input"/>
+              </label>
+              <label class="popup__label">Город
+                <select class="popup__input">
+                  <option value="1">Нижний Новгород</option>
+                  <option value="2">Москва</option>
+                  <option value="3">Краснодар</option>
+                </select>
+              </label>
+              <label class="popup__label">Пароль
+                <input type="password" class="popup__input"/>
+              </label>
+              <label class="popup__label">Подтвердите пароль
+                <input type="password" class="popup__input"/>
+              </label>
+              <label class="popup__label">Дата рождения
+                <input type="text" class="popup__input datepicker"/>
+              </label>
+            </div>
+          </div>
+          <div class="popup__block"></div>
+          <div class="popup__block"></div>
         </div>
       </main>
     </div>

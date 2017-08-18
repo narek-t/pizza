@@ -36,14 +36,12 @@ $(document).ready(function() {
 		}
 	});
 
-	var headingHeight = $('.site-header__top').height();
-	$(window).scroll(function(event) {
-		if ( $(document).scrollTop() > headingHeight ) {
- 			$('.site-header').addClass('fixed');
-		} else {
-			$('.site-header').removeClass('fixed');
-		}
+	$('.datepicker').datepicker({
+		format: 'dd.mm.yyyy',
+		language: 'ru',
+		autoclose: true,
 	});
+
 	$('.catalog__slider').slick({
 		arrows: false,
 		dots: true,
@@ -67,6 +65,18 @@ $(document).ready(function() {
 			enabled: true,
 			duration: 300
 		}
+	});
+
+	$('.open-popup').magnificPopup({
+		type: 'inline',
+		fixedContentPos: true,
+		fixedBgPos: true,
+		overflowY: 'auto',
+		closeBtnInside: true,
+		preloader: false,
+		midClick: true,
+		removalDelay: 300,
+		mainClass: 'my-mfp-slide-bottom'
 	});
 
 	PizzaThemeGlobalVariables.updateSpinner = function (obj) {
@@ -110,10 +120,9 @@ $(document).ready(function() {
 		}, 1500);
 	}
 
-	$('.delivery__address-city').change(function(event) {
-		var city = $(this).val();
-
-	});
+	// $('.delivery__address-city').change(function(event) {
+	// 	var city = $(this).val();
+	// });
 	
 });
 $(window).load(function() {
@@ -246,7 +255,6 @@ var vm = new Vue({
 					_self.cabinet.isLoading = false;
 				}, 3000);
 			}
-			
 		},
 		isValidPass: function() {
 			var passLength = 6;
@@ -257,7 +265,6 @@ var vm = new Vue({
 			} else {
 				return false;
 			}
-			
 		},
 		saveNewPassword: function() {
 			if(this.isValidPass()) {
