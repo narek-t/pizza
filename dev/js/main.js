@@ -119,10 +119,6 @@ $(document).ready(function() {
 			}, 500);
 		}, 1500);
 	}
-
-	// $('.delivery__address-city').change(function(event) {
-	// 	var city = $(this).val();
-	// });
 	
 });
 $(window).load(function() {
@@ -136,6 +132,14 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		showRegisterLink: true,
+		showChilds: true,
+		childsArr: [
+			{
+				day: '',
+				month: '',
+				year: '',
+			}
+		],
 		restaurants: {},
 		userInfo: {
 			loggedIn: true,
@@ -280,6 +284,16 @@ var vm = new Vue({
 			} else {
 				alert('Пароли не совпадают')
 			}
+		},
+		addChild: function() {
+			this.childsArr.push({
+				day: '',
+				month: '',
+				year: '',
+			});
+		},
+		removeChild: function(i) {
+			this.childsArr.splice(i, 1);
 		}
 	},
 	computed: {
@@ -294,3 +308,6 @@ var vm = new Vue({
 	},
 })
 
+Vue.prototype.$first = function (item, list) {
+	return item === list[0]
+}

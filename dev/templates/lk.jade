@@ -4,7 +4,10 @@ block content
 	main.main-content.cart.main-content__top-padding
 		.container
 			h1.cart__title.uppercase Личный кабинет
-			a.open-popup(href="#register") Register popup
+			a.open-popup(href="#comics" style="color:#fff; margin-right: 15px;") Заказать комикс
+			a.open-popup(href="#master-class" style="color:#fff; margin-right: 15px;") Мастер класс
+			a.open-popup(href="#birthday" style="color:#fff; margin-right: 15px;") День рождения
+			a.open-popup(href="#success" style="color:#fff; margin-right: 15px;") Сообщение отправлено
 			.cabinet
 				form.cabinet__col.cabinet__col--info(@submit.prevent="saveNewInfo")
 					a.cabinet__col-title.cabinet__col-title--editable(href="#" @click.prevent="setDefaultInfo") Основная информация:
@@ -209,7 +212,7 @@ block content
 									a.btn.lk__history-reorder(href="#") Повторить
 									p.lk__history-total 570 
 										span.rouble З
-		#register.zoom-anim-dialog.mfp-hide.popup
+		form#register.zoom-anim-dialog.mfp-hide.popup
 			p.popup__heading Регистрация
 			.popup__block
 				p.popup__block-title Обязательные поля:
@@ -231,8 +234,246 @@ block content
 						input.popup__input(type="password")
 					label.popup__label Дата рождения
 						input.popup__input.datepicker(type="text")
+					.popup__label.popup__checkbox--wrapper
+						input.popup__agree.popup__checkbox.popup__hidden-inputs(type="checkbox" id="agree" name="agree")
+						label.popup__agreement.popup__checkbox-label(for="agree") Принимаю условия 
+						a.view-agreement(href="#" target="_blank") пользовательского  соглашения.
 			.popup__block
+				p.popup__block-title Не обязательные поля:
+				p.popup__block-subtitle Адрес проживания:
+				.popup__layout
+					label.popup__label Улица
+						input.popup__input(type="text")
+					.popup__label.small-labels
+						label.popup__label Дом
+							input.popup__input(type="text")
+						label.popup__label Корп.
+							input.popup__input(type="text")
+						label.popup__label Кв.
+							input.popup__input(type="text")
 			.popup__block
+				p.popup__block-subtitle Дети:
+				div
+					.popup__row
+						p.popup__row-item Есть ли у вас дети?
+						.popup__row-item
+							input.popup__hidden-inputs(type="radio" name="childs" id="have-child" v-bind:value="true" v-bind:checked="showChilds" v-model="showChilds")
+							label.popup__input-label.popup__input-label--radio(for="have-child") Да
+						.popup__row-item
+							input.popup__hidden-inputs(type="radio" name="childs" id="no-child" v-bind:value="false" v-model="showChilds")
+							label.popup__input-label.popup__input-label--radio(for="no-child") Нет
+						.popup__row-item(v-if="showChilds")
+							input.popup__hidden-inputs(type="checkbox" name="gender-male" id="gender-male")
+							label.popup__input-label(for="gender-male") Мальчик
+						.popup__row-item(v-if="showChilds")
+							input.popup__hidden-inputs(type="checkbox" name="gender-female" id="gender-female")
+							label.popup__input-label(for="gender-female") Девочка
+				.popup__row.popup__row-flex(v-if="showChilds")
+					p.popup__row-item.popup__row-item__title Дата рождения ребённка:
+					.popup__row-item.popup__row-item--half
+						.popup__row-item--half-inner
+							.popup__row-item
+								label.popup__label День
+									input.popup__input(type="text" v-model.number="childsArr[0].day")
+							.popup__row-item
+								label.popup__label Месяц
+									input.popup__input(type="text" v-model.number="childsArr[0].month")
+							.popup__row-item
+								label.popup__label Год
+									input.popup__input(type="text" v-model.number="childsArr[0].year")
+							.popup__row-item
+								a.add-child.child-control(href="#" @click.prevent="addChild")
+						div(v-if="childsArr.length > 1")
+							.popup__row-item--half-inner(v-for="(child, i) in childsArr" v-bind:key="i" v-if="!$first(child, childsArr)")
+								.popup__row-item
+									label.popup__label День
+										input.popup__input(type="text" v-model.number="child.day")
+								.popup__row-item
+									label.popup__label Месяц
+										input.popup__input(type="text" v-model.number="child.month")
+								.popup__row-item
+									label.popup__label Год
+										input.popup__input(type="text" v-model.number="child.year")
+								.popup__row-item
+									a.remove-child.child-control(href="#" @click.prevent="removeChild(i)")
+			.popup__block.popup__submit
+				.popup__submit-row
+					.popup__submit-col
+						p Мы гарантируем конфиденциальность ваших персональных данных.
+					.popup__submit-col.popup__submit-col--btn
+						input.btn.btn--red(type="submit" value="Отправить")
+		form#comics.zoom-anim-dialog.mfp-hide.popup
+			p.popup__heading Заказать комикс
+			p.popup__subheading Заполнив данную форму, вы соглашаетесь на получение (в ваш почтовый ящик) свежих выпусков комиксов про приключения наших детских героев.
+			.popup__block
+				.popup__layout
+					label.popup__label Имя
+						input.popup__input(type="text")
+					label.popup__label Фамилия
+						input.popup__input(type="text")
+					label.popup__label Телефон
+						input.popup__input(type="tel" placeholder="+7")
+					label.popup__label Город
+						select.popup__input
+							option(value="1") Нижний Новгород
+							option(value="2") Москва
+							option(value="3") Краснодар
+			.popup__block
+				.popup__flex
+					label.popup__label Индекс
+						input.popup__input(type="text")
+					label.popup__label.popup__label-street Улица
+						input.popup__input(type="text")
+					label.popup__label Дом
+						input.popup__input(type="text")
+					label.popup__label Кв.
+						input.popup__input(type="text")
+			.popup__block.popup__submit
+				.popup__submit-row
+					.popup__submit-col
+						p Мы гарантируем конфиденциальность ваших персональных данных.
+					.popup__submit-col.popup__submit-col--btn
+						input.btn.btn--red(type="submit" value="Отправить")
+		form#master-class.zoom-anim-dialog.mfp-hide.popup
+			p.popup__heading Оставить заявку
+			.popup__block
+				.popup__layout
+					label.popup__label Имя
+						input.popup__input(type="text")
+					label.popup__label Телефон
+						input.popup__input(type="tel" placeholder="+7")
+					label.popup__label Ресторан
+						select.popup__input
+							option(value="1") Нижний Новгород
+							option(value="2") Москва
+							option(value="3") Краснодар
+					.popup__label
+						.popup__flex.popup__flex--date
+							label.popup__label Дата
+								input.popup__input.datepicker(type="text")
+							.popup__label.popup__flex-date Время (с/до)
+								.popup__flex-date-row
+									select.popup__input
+										option(value="1") 10:00
+										option(value="2") 11:00
+										option(value="3") 12:00
+									select.popup__input
+										option(value="1") 10:00
+										option(value="2") 11:00
+										option(value="3") 12:00
+			.popup__block
+				.popup__layout
+					.popup__label.popup__guests Приблизительное количество гостей на празднике:
+					.popup__label.small-labels.popup__guests-input
+						label.popup__label взрослых
+							input.popup__input(type="text")
+						label.popup__label мальчиков
+							input.popup__input(type="text")
+						label.popup__label девочек
+							input.popup__input(type="text")
+			.popup__block
+				.popup__row
+					.popup__row-item Наполнение праздника:
+					input.popup__hidden-inputs(type="checkbox" name="toy" id="toy")
+					label.popup__input-label.popup__row-item(for="toy") Ростовая кукла
+			.popup__block.popup__submit
+				.popup__submit-row
+					.popup__submit-col
+						p После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.
+					.popup__submit-col.popup__submit-col--btn
+						input.btn.btn--red(type="submit" value="Отправить")
+
+
+		form#birthday.zoom-anim-dialog.mfp-hide.popup
+			p.popup__heading Оставить заявку
+			.popup__block
+				.popup__layout
+					label.popup__label Имя
+						input.popup__input(type="text")
+					label.popup__label Телефон
+						input.popup__input(type="tel" placeholder="+7")
+					label.popup__label Ресторан
+						select.popup__input
+							option(value="1") Нижний Новгород
+							option(value="2") Москва
+							option(value="3") Краснодар
+					.popup__label
+						.popup__flex.popup__flex--date
+							label.popup__label Дата
+								input.popup__input.datepicker(type="text")
+							.popup__label.popup__flex-date Время (с/до)
+								.popup__flex-date-row
+									select.popup__input
+										option(value="1") 10:00
+										option(value="2") 11:00
+										option(value="3") 12:00
+									select.popup__input
+										option(value="1") 10:00
+										option(value="2") 11:00
+										option(value="3") 12:00
+			.popup__block.popup__birthday__row
+				.popup__layout
+					.popup__label
+						p Имя ребёнка / исполняется лет
+						.popup__birthday__col
+							input.popup__input(type="text")
+							span / 
+							input.popup__input.popup__birthday__age(type="text")
+					.popup__label.popup__birthday__gender
+						p.popup__row-item Пол ребенка
+						.popup__row-item
+							input.popup__hidden-inputs(type="radio" name="birthday-gender" id="birthday-gender-male")
+							label.popup__input-label.popup__input-label--radio(for="birthday-gender-male") М
+						.popup__row-item
+							input.popup__hidden-inputs(type="radio" name="birthday-gender" id="birthday-gender-female")
+							label.popup__input-label.popup__input-label--radio(for="birthday-gender-female") Д
+
+			.popup__block
+				.popup__layout
+					.popup__label.popup__guests Приблизительное количество гостей на празднике:
+					.popup__label.small-labels.popup__guests-input
+						label.popup__label взрослых
+							input.popup__input(type="text")
+						label.popup__label мальчиков
+							input.popup__input(type="text")
+						label.popup__label девочек
+							input.popup__input(type="text")
+			.popup__block
+				p.popup__block-subtitle Наполнение праздника:
+				.popup__row.popup__row-animators
+					input.popup__hidden-inputs(type="radio" name="animators" id="animators-one" checked)
+					label.popup__input-label.popup__row-item.popup__input-label--radio.popup__row-item--small-margin(for="animators-one") 1
+					input.popup__hidden-inputs(type="radio" name="animators" id="animators-two")
+					label.popup__input-label.popup__row-item.popup__input-label--radio.popup__row-item--small-margin(for="animators-two") 2
+					.popup__label.animators__label аниматор(а)
+					input.popup__hidden-inputs(type="checkbox" name="toy" id="toy")
+					label.popup__input-label.popup__row-item(for="toy") Ростовая кукла
+					input.popup__hidden-inputs(type="checkbox" name="master-class" id="master-class")
+					label.popup__input-label.popup__row-item(for="master-class") Мастер-класс
+			.popup__block.popup__submit
+				.popup__submit-row
+					.popup__submit-col
+						p После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.
+					.popup__submit-col.popup__submit-col--btn
+						input.btn.btn--red(type="submit" value="Отправить")
+		form#login.zoom-anim-dialog.mfp-hide.popup
+			p.popup__heading АВТОРИЗАЦИЯ
+				.popup__block
+					.popup__layout
+						label.popup__label Email
+							input.popup__input(type="email")
+						label.popup__label Пароль
+							input.popup__input(type="password")
+						.popup__label
+							input.popup__hidden-inputs(type="checkbox" name="remember" id="remember")
+							label.popup__input-label.popup__row-item.popup__row-item--small-margin(for="remember") Запомнить меня
+						.popup__label
+							a.lost-pass(href="#") Забыли пароль?
+					.center-align
+						input.btn.btn--red.login-submit(type="submit" value="Войти")
+		#success.zoom-anim-dialog.mfp-hide.popup__success.popup
+			p Сообщение успешно отправлено
+
 
 
 
