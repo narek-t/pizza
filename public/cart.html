@@ -199,7 +199,7 @@
                   <div class="delivery__row"><span class="delivery__label">Ваше имя:</span>
                     <input type="text" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userName" class="delivery__input"/>
                   </div>
-                  <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
+                  <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper">
                       <input type="tel" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
                 </div>
                 <div v-if="!cartPage.pickup" class="delivery__col delivery__address">

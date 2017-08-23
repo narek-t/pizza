@@ -1,6 +1,7 @@
 /* helpers - base */
 @import "helpers/_normalize.scss";
 @import "helpers/_sprite.scss";
+@import "helpers/_mixins.scss";
 
 /* vendors */
 @import "vendors/_simplebar.scss";
@@ -14,7 +15,7 @@
 @import "helpers/_variables.scss";
 @import "helpers/_defaults.scss";
 
-@import "helpers/_mixins.scss";
+
 
 /* layout */
 @import "layout/_header.scss";
@@ -28,6 +29,7 @@
 @import "components/_item.scss";
 @import "components/_cart-item.scss";
 @import "components/_popup.scss";
+@import "components/_validation.scss";
 
 /* pages */
 @import "pages/_home.scss";

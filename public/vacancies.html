@@ -263,10 +263,10 @@
           <div class="container">
             <h2 class="contact__section-title">Обратная Связь</h2>
             <div class="contact__section-inner center-align">
-              <form>
+              <form @submit.prevent="simpleFormSend">
                 <div class="contact__section-form--row"><span>
-                    <input type="text" placeholder="Имя" class="contact__section-form--input"/></span><span>
-                    <input type="tel" placeholder="Телефон" class="contact__section-form--input"/></span><span>
+                    <input type="text" placeholder="Имя" data-parsley-required="true" class="contact__section-form--input"/></span><span>
+                    <input type="tel" placeholder="Телефон" data-parsley-required="true" data-parsley-validatephone="data-parsley-validatephone" class="contact__section-form--input"/></span><span>
                     <input type="email" placeholder="Email" class="contact__section-form--input"/></span></div>
                 <textarea placeholder="Сообщение" class="contact__section-form--input"></textarea>
                 <input type="submit" value="Отправить" class="btn"/>

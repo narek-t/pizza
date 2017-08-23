@@ -119,14 +119,22 @@ $(document).ready(function() {
 			}, 500);
 		}, 1500);
 	}
-	
+	Inputmask({"mask": "+7 (999) 999-99-99"}).mask(document.querySelectorAll("input[type=tel]"));
 });
 $(window).load(function() {
 	setSelectWidth();
 });
 
 
+Parsley.addValidator('validatephone', {
+	validateString: function(value, requirement) {
+		return value.indexOf('_') !== -1 ? false : true;
+	}
+});
+
+
 //Vue.JS
+
 
 var vm = new Vue({
 	el: '#app',
@@ -144,7 +152,7 @@ var vm = new Vue({
 		userInfo: {
 			loggedIn: true,
 			userName: 'testname',
-			userPhoneNumber: '1234568899',
+			userPhoneNumber: '12345678988',
 			pizzents: '110',
 			email: 'test@test.com',
 			savedAddresses: [
@@ -172,7 +180,7 @@ var vm = new Vue({
 			},
 			editedInfo: {
 				userName: 'testname',
-				userPhoneNumber: '1234568899',
+				userPhoneNumber: '12345678988',
 				email: 'test@test.com',
 			},
 			editedPassword: {
@@ -229,7 +237,7 @@ var vm = new Vue({
 					alert('Заполните улицу и дом')
 				}
 			} else {
-				alert('Больше нельзя!')
+				alert('Извините, можно сохранить максимум 4 адреса.')
 			}
 		},
 		removeAddress: function(index) {
@@ -248,41 +256,86 @@ var vm = new Vue({
 			this.userInfo.editedInfo.userPhoneNumber = this.userInfo.userPhoneNumber;
 			this.userInfo.editedInfo.email = this.userInfo.email;
 		},
-		saveNewInfo: function() {
+		saveNewInfo: function(e) {
 			if(this.userInfo.userName !== this.userInfo.editedInfo.userName ||
 			this.userInfo.userPhoneNumber !== this.userInfo.editedInfo.userPhoneNumber || 
 			this.userInfo.email !== this.userInfo.editedInfo.email) {
 				var _self = this;
+				if($(e.target).parsley().validate()) {
+					this.cabinet.isLoading = true;
+					setTimeout(function() {
+							alert('done');
+						_self.cabinet.isLoading = false;
+					}, 3000);
+				}
+			}
+		},
+		saveNewPassword: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
 				this.cabinet.isLoading = true;
 				setTimeout(function() {
+					_self.userInfo.editedPassword.newPassword = '';
+					_self.userInfo.editedPassword.repeatNewPassword = '';
+					_self.userInfo.editedPassword.oldPassword = '';
 					alert('done');
 					_self.cabinet.isLoading = false;
 				}, 3000);
 			}
 		},
-		isValidPass: function() {
-			var passLength = 6;
-			if (this.userInfo.editedPassword.newPassword.length > passLength && 
-				this.userInfo.editedPassword.repeatNewPassword.length > passLength && 
-				this.userInfo.editedPassword.newPassword === this.userInfo.editedPassword.repeatNewPassword) {
-				return true;
-			} else {
-				return false;
+		register: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
+				this.cabinet.isLoading = true;
+				setTimeout(function() {
+					
+					alert('done');
+					_self.cabinet.isLoading = false;
+				}, 3000);
 			}
 		},
-		saveNewPassword: function() {
-			if(this.isValidPass()) {
+		login: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
 				this.cabinet.isLoading = true;
-				var _self = this;
 				setTimeout(function() {
-					_self.userInfo.editedPassword.newPassword = '';
-					_self.userInfo.editedPassword.repeatNewPassword = '';
-					_self.userInfo.editedPassword.oldPassword = '';
+					
+					alert('done');
 					_self.cabinet.isLoading = false;
-					alert('done')
-				}, 2000);
-			} else {
-				alert('Пароли не совпадают')
+				}, 3000);
+			}
+		},
+		comicsPopup: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
+				this.cabinet.isLoading = true;
+				setTimeout(function() {
+					
+					alert('done');
+					_self.cabinet.isLoading = false;
+				}, 3000);
+			}
+		},
+		masterClassPopup: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
+				this.cabinet.isLoading = true;
+				setTimeout(function() {
+					
+					alert('done');
+					_self.cabinet.isLoading = false;
+				}, 3000);
+			}
+		},
+		birthdayPopup: function(e) {
+			var _self = this;
+			if($(e.target).parsley().validate()) {
+				this.cabinet.isLoading = true;
+				setTimeout(function() {
+					
+					alert('done');
+					_self.cabinet.isLoading = false;
+				}, 3000);
 			}
 		},
 		addChild: function() {
@@ -294,6 +347,12 @@ var vm = new Vue({
 		},
 		removeChild: function(i) {
 			this.childsArr.splice(i, 1);
+		},
+		simpleFormSend: function(e) {
+			if($(e.target).parsley().validate()) {
+				alert('ok')
+				
+			}
 		}
 	},
 	computed: {
@@ -306,6 +365,13 @@ var vm = new Vue({
 			}, 10);
 		}
 	},
+	directives: {
+		'input-mask': {
+			bind: function(el, obj, vModel) {
+				Inputmask().mask(el);
+			}
+		}
+	}
 })
 
 Vue.prototype.$first = function (item, list) {

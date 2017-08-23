@@ -53,10 +53,10 @@ block content
 				img.big-menu__img(src="img/big-menu6.jpg", alt="")
 				.big-menu__form
 					p.big-menu__form-title Обратная Связь
-					form
+					form(@submit.prevent="simpleFormSend")
 						.big-menu__form-row
-							input.big-menu__form-input(type="text" placeholder="Имя")
-							input.big-menu__form-input(type="tel" placeholder="Телефон")
+							input.big-menu__form-input(type="text" placeholder="Имя" data-parsley-required="true")
+							input.big-menu__form-input(type="tel" placeholder="Телефон" data-parsley-required="true")
 							input.big-menu__form-input(type="email" placeholder="Email")
 						textarea.big-menu__form-input.big-menu__form-textarea(placeholder="Сообщение")
 						.big-menu__form-submit

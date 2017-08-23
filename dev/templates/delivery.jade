@@ -44,12 +44,12 @@ block content
 			.container
 				h2.contact__section-title Обратная Связь
 				.contact__section-inner.center-align
-					form
+					form(@submit.prevent="simpleFormSend")
 						.contact__section-form--row
 							span
-								input.contact__section-form--input(type="text" placeholder="Имя")
+								input.contact__section-form--input(type="text" placeholder="Имя" data-parsley-required="true")
 							span
-								input.contact__section-form--input(type="tel" placeholder="Телефон")
+								input.contact__section-form--input(type="tel" placeholder="Телефон" data-parsley-required="true" data-parsley-validatephone)
 							span
 								input.contact__section-form--input(type="email" placeholder="Email")
 						textarea.contact__section-form--input(placeholder="Сообщение")

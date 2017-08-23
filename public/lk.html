@@ -72,15 +72,14 @@
         <div class="container">
           <h1 class="cart__title uppercase">Личный кабинет</h1><a href="#comics" style="color:#fff; margin-right: 15px;" class="open-popup">Заказать комикс</a><a href="#master-class" style="color:#fff; margin-right: 15px;" class="open-popup">Мастер класс</a><a href="#birthday" style="color:#fff; margin-right: 15px;" class="open-popup">День рождения</a><a href="#success" style="color:#fff; margin-right: 15px;" class="open-popup">Сообщение отправлено</a>
           <div class="cabinet">
-            <form @submit.prevent="saveNewInfo" class="cabinet__col cabinet__col--info"><a href="#" @click.prevent="setDefaultInfo" class="cabinet__col-title cabinet__col-title--editable">Основная информация:</a>
+            <form @submit.prevent="saveNewInfo" class="cabinet__col cabinet__col--info js--form"><a href="#" @click.prevent="setDefaultInfo" class="cabinet__col-title cabinet__col-title--editable">Основная информация:</a>
               <div class="delivery__row"><span class="delivery__label">Имя:</span>
-                <input type="text" v-bind:value="userInfo.userName" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userName" class="delivery__input"/>
+                <input type="text" v-bind:value="userInfo.userName" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userName" data-parsley-required="true" class="delivery__input"/>
               </div>
-              <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper"><span class="delivery__input-tel--code">+7 </span>
-                  <input type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userPhoneNumber" class="delivery__input delivery__input-tel"/></span></div>
-              <div class="delivery__row"><span class="delivery__label">Email:</span>
-                <input type="email" v-bind:value="userInfo.email" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.email" class="delivery__input"/>
-              </div>
+              <div class="delivery__row"><span class="delivery__label">Телефон:</span><span class="delivery__input-tel--wrapper">
+                  <input type="tel" v-bind:value="userInfo.userPhoneNumber" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.userPhoneNumber" data-parsley-required="true" v-input-mask="true" data-inputmask="'mask': '+7 (999) 999-99-99'" data-parsley-validatephone="data-parsley-validatephone" class="delivery__input delivery__input-tel"/></span></div>
+              <div class="delivery__row"><span class="delivery__label">Email:</span><span class="delivery__input--wrapper">
+                  <input type="email" v-bind:value="userInfo.email" v-bind:disabled="!cabinet.editInfo || cabinet.isLoading" v-model="userInfo.editedInfo.email" data-parsley-required="true" class="delivery__input"/></span></div>
               <div v-if="cabinet.editInfo" class="delivery__row cabinet__edit-submit">
                 <input type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading" class="btn cabinet__edit-submit"/>
               </div>
@@ -89,7 +88,7 @@
               <p class="cabinet__col--pizzents-count">300 PZ.</p>
               <p class="cabinet__col--pizzents-note">Необходимо использовать до: 1.09. 2017</p><a href="#" class="cabinet__col--pizzents-link default-link"> <span>Бесплатные пицценты</span></a>
             </div>
-            <form @submit.prevent="saveAddress" class="cabinet__col cabinet__col-large cabinet__col__addresses"><a href="#" @click.prevent="cabinet.editAddress = !cabinet.editAddress" key="cabinet.editAddress" class="cabinet__col-title cabinet__col-title--editable">Адрес доставки:</a>
+            <form @submit.prevent="saveAddress" class="cabinet__col cabinet__col-large cabinet__col__addresses js--form"><a href="#" @click.prevent="cabinet.editAddress = !cabinet.editAddress" key="cabinet.editAddress" class="cabinet__col-title cabinet__col-title--editable">Адрес доставки:</a>
               <template v-if="userInfo.savedAddresses &amp;&amp; userInfo.savedAddresses.length">
                 <div class="cabinet__col__addresses-list">
                   <div v-for="(address, index) in userInfo.savedAddresses" key="index" class="cabinet__col__addresses-item">г. {{address.city}}, ул. {{address.street}} {{address.house}} 
@@ -114,10 +113,10 @@
                 </div>
                 <div class="cabinet__col--add-address">
                   <div class="cabinet__col--add-address-item"><span>Улица</span>
-                    <input type="text" v-model="userInfo.newAddress.street" v-bind:disabled="cabinet.isLoading" class="delivery__input delivery__input--street"/>
+                    <input type="text" v-model="userInfo.newAddress.street" v-bind:disabled="cabinet.isLoading" data-parsley-required="true" class="delivery__input delivery__input--street"/>
                   </div>
                   <div class="cabinet__col--add-address-item"><span>Дом</span>
-                    <input type="text" v-model="userInfo.newAddress.house" v-bind:disabled="cabinet.isLoading" class="delivery__input"/>
+                    <input type="text" v-model="userInfo.newAddress.house" v-bind:disabled="cabinet.isLoading" data-parsley-required="true" class="delivery__input"/>
                   </div>
                   <div class="cabinet__col--add-address-item"><span>Корп</span>
                     <input type="text" v-model="userInfo.newAddress.building" v-bind:disabled="cabinet.isLoading" class="delivery__input"/>
@@ -130,14 +129,12 @@
               </div>
             </form>
             <form @submit.prevent="saveNewPassword" class="cabinet__col cabinet__col-large cabinet__col--info"><a href="#" @click.prevent="cabinet.editPass = !cabinet.editPass" class="cabinet__col-title cabinet__col-title--editable">Смена пароля:</a>
-              <div class="delivery__row"><span class="delivery__label">Текущий пароль:</span>
-                <input type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.oldPassword" class="delivery__input"/>
-              </div>
+              <div class="delivery__row"><span class="delivery__label">Текущий пароль:</span><span class="delivery__input--wrapper">
+                  <input type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.oldPassword" data-parsley-required="true" class="delivery__input"/></span></div>
               <div class="delivery__row"><span class="delivery__label">Новый пароль:</span><span class="delivery__input-tel--wrapper">
-                  <input type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.newPassword" class="delivery__input delivery__input-tel"/></span></div>
-              <div class="delivery__row"><span class="delivery__label">Повторить пароль:</span>
-                <input type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.repeatNewPassword" class="delivery__input"/>
-              </div>
+                  <input id="password1" type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.newPassword" data-parsley-minlength="6" data-parsley-required="true" class="delivery__input delivery__input-tel"/></span></div>
+              <div class="delivery__row"><span class="delivery__label">Повторить пароль:</span><span class="delivery__input--wrapper">
+                  <input type="password" v-bind:disabled="!cabinet.editPass || cabinet.isLoading" v-model="userInfo.editedPassword.repeatNewPassword" data-parsley-minlength="6" data-parsley-equalto="#password1" data-parsley-required="true" class="delivery__input"/></span></div>
               <div v-if="cabinet.editPass" class="delivery__row cabinet__edit-submit">
                 <input type="submit" value="Сохранить" v-bind:disabled="cabinet.isLoading" class="btn cabinet__edit-submit"/>
               </div>
@@ -251,54 +248,175 @@
             </div>
           </div>
         </div>
-        <form id="register" class="zoom-anim-dialog mfp-hide popup">
-          <p class="popup__heading">Регистрация</p>
-          <div class="popup__block">
-            <p class="popup__block-title">Обязательные поля:</p>
-            <div class="popup__layout">
-              <label class="popup__label">Имя
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Телефон (10 цифр слитно)
-                <input type="tel" placeholder="+7" class="popup__input"/>
-              </label>
-              <label class="popup__label">Email
-                <input type="email" class="popup__input"/>
-              </label>
-              <label class="popup__label">Город
-                <select class="popup__input">
-                  <option value="1">Нижний Новгород</option>
-                  <option value="2">Москва</option>
-                  <option value="3">Краснодар</option>
-                </select>
-              </label>
-              <label class="popup__label">Пароль
-                <input type="password" class="popup__input"/>
-              </label>
-              <label class="popup__label">Подтвердите пароль
-                <input type="password" class="popup__input"/>
-              </label>
-              <label class="popup__label">Дата рождения
-                <input type="text" class="popup__input datepicker"/>
-              </label>
-              <div class="popup__label popup__checkbox--wrapper">
-                <input type="checkbox" id="agree" name="agree" class="popup__agree popup__checkbox popup__hidden-inputs"/>
-                <label for="agree" class="popup__agreement popup__checkbox-label">Принимаю условия </label><a href="#" target="_blank" class="view-agreement">пользовательского  соглашения.</a>
+        <form id="register" @submit.prevent="register" class="zoom-anim-dialog mfp-hide popup">
+          <div v-bind:class="{ loading: cabinet.isLoading }" class="popup__inner">
+            <p class="popup__heading">Регистрация</p>
+            <div class="popup__block">
+              <p class="popup__block-title">Обязательные поля:</p>
+              <div class="popup__layout">
+                <label class="popup__label">Имя
+                  <input type="text" data-parsley-required="true" class="popup__input"/>
+                </label>
+                <label class="popup__label">Телефон
+                  <input type="tel" placeholder="+7" data-parsley-required="true" data-parsley-validatephone="data-parsley-validatephone" class="popup__input"/>
+                </label>
+                <label class="popup__label">Email
+                  <input type="email" data-parsley-required="true" class="popup__input"/>
+                </label>
+                <label class="popup__label">Город
+                  <select class="popup__input">
+                    <option value="1">Нижний Новгород</option>
+                    <option value="2">Москва</option>
+                    <option value="3">Краснодар</option>
+                  </select>
+                </label>
+                <label class="popup__label">Пароль
+                  <input id="regpass1" type="password" data-parsley-required="true" data-parsley-minlength="6" class="popup__input"/>
+                </label>
+                <label class="popup__label">Подтвердите пароль
+                  <input type="password" data-parsley-required="true" data-parsley-minlength="6" data-parsley-equalto="#regpass1" class="popup__input"/>
+                </label>
+                <label class="popup__label">Дата рождения
+                  <input type="text" class="popup__input datepicker"/>
+                </label>
+                <div class="popup__label popup__checkbox--wrapper">
+                  <input type="checkbox" id="agree" name="agree" data-parsley-required="true" class="popup__agree popup__checkbox popup__hidden-inputs"/>
+                  <label for="agree" class="popup__agreement popup__checkbox-label">Принимаю условия </label><a href="#" target="_blank" class="view-agreement">пользовательского  соглашения.</a>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block">
+              <p class="popup__block-title">Не обязательные поля:</p>
+              <p class="popup__block-subtitle">Адрес проживания:</p>
+              <div class="popup__layout">
+                <label class="popup__label">Улица
+                  <input type="text" class="popup__input"/>
+                </label>
+                <div class="popup__label small-labels">
+                  <label class="popup__label">Дом
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">Корп.
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">Кв.
+                    <input type="text" class="popup__input"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block">
+              <p class="popup__block-subtitle">Дети:</p>
+              <div>
+                <div class="popup__row">
+                  <p class="popup__row-item">Есть ли у вас дети?</p>
+                  <div class="popup__row-item">
+                    <input type="radio" name="childs" id="have-child" v-bind:value="true" v-bind:checked="showChilds" v-model="showChilds" class="popup__hidden-inputs"/>
+                    <label for="have-child" class="popup__input-label popup__input-label--radio">Да</label>
+                  </div>
+                  <div class="popup__row-item">
+                    <input type="radio" name="childs" id="no-child" v-bind:value="false" v-model="showChilds" class="popup__hidden-inputs"/>
+                    <label for="no-child" class="popup__input-label popup__input-label--radio">Нет</label>
+                  </div>
+                  <div v-if="showChilds" class="popup__row-item">
+                    <input type="checkbox" name="gender-male" id="gender-male" class="popup__hidden-inputs"/>
+                    <label for="gender-male" class="popup__input-label">Мальчик</label>
+                  </div>
+                  <div v-if="showChilds" class="popup__row-item">
+                    <input type="checkbox" name="gender-female" id="gender-female" class="popup__hidden-inputs"/>
+                    <label for="gender-female" class="popup__input-label">Девочка</label>
+                  </div>
+                </div>
+              </div>
+              <div v-if="showChilds" class="popup__row popup__row-flex">
+                <p class="popup__row-item popup__row-item__title">Дата рождения ребённка:</p>
+                <div class="popup__row-item popup__row-item--half">
+                  <div class="popup__row-item--half-inner">
+                    <div class="popup__row-item">
+                      <label class="popup__label">День
+                        <input type="text" v-model.number="childsArr[0].day" class="popup__input"/>
+                      </label>
+                    </div>
+                    <div class="popup__row-item">
+                      <label class="popup__label">Месяц
+                        <input type="text" v-model.number="childsArr[0].month" class="popup__input"/>
+                      </label>
+                    </div>
+                    <div class="popup__row-item">
+                      <label class="popup__label">Год
+                        <input type="text" v-model.number="childsArr[0].year" class="popup__input"/>
+                      </label>
+                    </div>
+                    <div class="popup__row-item"><a href="#" @click.prevent="addChild" class="add-child child-control"></a></div>
+                  </div>
+                  <div v-if="childsArr.length &gt; 1">
+                    <div v-for="(child, i) in childsArr" v-bind:key="i" v-if="!$first(child, childsArr)" class="popup__row-item--half-inner">
+                      <div class="popup__row-item">
+                        <label class="popup__label">День
+                          <input type="text" v-model.number="child.day" class="popup__input"/>
+                        </label>
+                      </div>
+                      <div class="popup__row-item">
+                        <label class="popup__label">Месяц
+                          <input type="text" v-model.number="child.month" class="popup__input"/>
+                        </label>
+                      </div>
+                      <div class="popup__row-item">
+                        <label class="popup__label">Год
+                          <input type="text" v-model.number="child.year" class="popup__input"/>
+                        </label>
+                      </div>
+                      <div class="popup__row-item"><a href="#" @click.prevent="removeChild(i)" class="remove-child child-control"></a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block popup__submit">
+              <div class="popup__submit-row">
+                <div class="popup__submit-col">
+                  <p>Мы гарантируем конфиденциальность ваших персональных данных.</p>
+                </div>
+                <div class="popup__submit-col popup__submit-col--btn">
+                  <input type="submit" value="Отправить" class="btn btn--red"/>
+                </div>
               </div>
             </div>
           </div>
-          <div class="popup__block">
-            <p class="popup__block-title">Не обязательные поля:</p>
-            <p class="popup__block-subtitle">Адрес проживания:</p>
-            <div class="popup__layout">
-              <label class="popup__label">Улица
-                <input type="text" class="popup__input"/>
-              </label>
-              <div class="popup__label small-labels">
-                <label class="popup__label">Дом
+        </form>
+        <form id="comics" @submit.prevent="comicsPopup" class="zoom-anim-dialog mfp-hide popup">
+          <div v-bind:class="{ loading: cabinet.isLoading }" class="popup__inner">
+            <p class="popup__heading">Заказать комикс</p>
+            <p class="popup__subheading">Заполнив данную форму, вы соглашаетесь на получение (в ваш почтовый ящик) свежих выпусков комиксов про приключения наших детских героев.</p>
+            <div class="popup__block">
+              <div class="popup__layout">
+                <label class="popup__label">Имя
+                  <input type="text" data-parsley-required="true" class="popup__input"/>
+                </label>
+                <label class="popup__label">Фамилия
                   <input type="text" class="popup__input"/>
                 </label>
-                <label class="popup__label">Корп.
+                <label class="popup__label">Телефон
+                  <input type="tel" placeholder="+7" data-parsley-required="true" data-parsley-validatephone="data-parsley-validatephone" class="popup__input"/>
+                </label>
+                <label class="popup__label">Город
+                  <select class="popup__input">
+                    <option value="1">Нижний Новгород</option>
+                    <option value="2">Москва</option>
+                    <option value="3">Краснодар</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+            <div class="popup__block">
+              <div class="popup__flex">
+                <label class="popup__label">Индекс
+                  <input type="text" class="popup__input"/>
+                </label>
+                <label class="popup__label popup__label-street">Улица
+                  <input type="text" class="popup__input"/>
+                </label>
+                <label class="popup__label">Дом
                   <input type="text" class="popup__input"/>
                 </label>
                 <label class="popup__label">Кв.
@@ -306,333 +424,222 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="popup__block">
-            <p class="popup__block-subtitle">Дети:</p>
-            <div>
-              <div class="popup__row">
-                <p class="popup__row-item">Есть ли у вас дети?</p>
-                <div class="popup__row-item">
-                  <input type="radio" name="childs" id="have-child" v-bind:value="true" v-bind:checked="showChilds" v-model="showChilds" class="popup__hidden-inputs"/>
-                  <label for="have-child" class="popup__input-label popup__input-label--radio">Да</label>
+            <div class="popup__block popup__submit">
+              <div class="popup__submit-row">
+                <div class="popup__submit-col">
+                  <p>Мы гарантируем конфиденциальность ваших персональных данных.</p>
                 </div>
-                <div class="popup__row-item">
-                  <input type="radio" name="childs" id="no-child" v-bind:value="false" v-model="showChilds" class="popup__hidden-inputs"/>
-                  <label for="no-child" class="popup__input-label popup__input-label--radio">Нет</label>
+                <div class="popup__submit-col popup__submit-col--btn">
+                  <input type="submit" value="Отправить" class="btn btn--red"/>
                 </div>
-                <div v-if="showChilds" class="popup__row-item">
-                  <input type="checkbox" name="gender-male" id="gender-male" class="popup__hidden-inputs"/>
-                  <label for="gender-male" class="popup__input-label">Мальчик</label>
-                </div>
-                <div v-if="showChilds" class="popup__row-item">
-                  <input type="checkbox" name="gender-female" id="gender-female" class="popup__hidden-inputs"/>
-                  <label for="gender-female" class="popup__input-label">Девочка</label>
-                </div>
-              </div>
-            </div>
-            <div v-if="showChilds" class="popup__row popup__row-flex">
-              <p class="popup__row-item popup__row-item__title">Дата рождения ребённка:</p>
-              <div class="popup__row-item popup__row-item--half">
-                <div class="popup__row-item--half-inner">
-                  <div class="popup__row-item">
-                    <label class="popup__label">День
-                      <input type="text" v-model.number="childsArr[0].day" class="popup__input"/>
-                    </label>
-                  </div>
-                  <div class="popup__row-item">
-                    <label class="popup__label">Месяц
-                      <input type="text" v-model.number="childsArr[0].month" class="popup__input"/>
-                    </label>
-                  </div>
-                  <div class="popup__row-item">
-                    <label class="popup__label">Год
-                      <input type="text" v-model.number="childsArr[0].year" class="popup__input"/>
-                    </label>
-                  </div>
-                  <div class="popup__row-item"><a href="#" @click.prevent="addChild" class="add-child child-control"></a></div>
-                </div>
-                <div v-if="childsArr.length &gt; 1">
-                  <div v-for="(child, i) in childsArr" v-bind:key="i" v-if="!$first(child, childsArr)" class="popup__row-item--half-inner">
-                    <div class="popup__row-item">
-                      <label class="popup__label">День
-                        <input type="text" v-model.number="child.day" class="popup__input"/>
-                      </label>
-                    </div>
-                    <div class="popup__row-item">
-                      <label class="popup__label">Месяц
-                        <input type="text" v-model.number="child.month" class="popup__input"/>
-                      </label>
-                    </div>
-                    <div class="popup__row-item">
-                      <label class="popup__label">Год
-                        <input type="text" v-model.number="child.year" class="popup__input"/>
-                      </label>
-                    </div>
-                    <div class="popup__row-item"><a href="#" @click.prevent="removeChild(i)" class="remove-child child-control"></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block popup__submit">
-            <div class="popup__submit-row">
-              <div class="popup__submit-col">
-                <p>Мы гарантируем конфиденциальность ваших персональных данных.</p>
-              </div>
-              <div class="popup__submit-col popup__submit-col--btn">
-                <input type="submit" value="Отправить" class="btn btn--red"/>
               </div>
             </div>
           </div>
         </form>
-        <form id="comics" class="zoom-anim-dialog mfp-hide popup">
-          <p class="popup__heading">Заказать комикс</p>
-          <p class="popup__subheading">Заполнив данную форму, вы соглашаетесь на получение (в ваш почтовый ящик) свежих выпусков комиксов про приключения наших детских героев.</p>
-          <div class="popup__block">
-            <div class="popup__layout">
-              <label class="popup__label">Имя
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Фамилия
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Телефон
-                <input type="tel" placeholder="+7" class="popup__input"/>
-              </label>
-              <label class="popup__label">Город
-                <select class="popup__input">
-                  <option value="1">Нижний Новгород</option>
-                  <option value="2">Москва</option>
-                  <option value="3">Краснодар</option>
-                </select>
-              </label>
-            </div>
-          </div>
-          <div class="popup__block">
-            <div class="popup__flex">
-              <label class="popup__label">Индекс
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label popup__label-street">Улица
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Дом
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Кв.
-                <input type="text" class="popup__input"/>
-              </label>
-            </div>
-          </div>
-          <div class="popup__block popup__submit">
-            <div class="popup__submit-row">
-              <div class="popup__submit-col">
-                <p>Мы гарантируем конфиденциальность ваших персональных данных.</p>
-              </div>
-              <div class="popup__submit-col popup__submit-col--btn">
-                <input type="submit" value="Отправить" class="btn btn--red"/>
-              </div>
-            </div>
-          </div>
-        </form>
-        <form id="master-class" class="zoom-anim-dialog mfp-hide popup">
-          <p class="popup__heading">Оставить заявку</p>
-          <div class="popup__block">
-            <div class="popup__layout">
-              <label class="popup__label">Имя
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Телефон
-                <input type="tel" placeholder="+7" class="popup__input"/>
-              </label>
-              <label class="popup__label">Ресторан
-                <select class="popup__input">
-                  <option value="1">Нижний Новгород</option>
-                  <option value="2">Москва</option>
-                  <option value="3">Краснодар</option>
-                </select>
-              </label>
-              <div class="popup__label">
-                <div class="popup__flex popup__flex--date">
-                  <label class="popup__label">Дата
-                    <input type="text" class="popup__input datepicker"/>
-                  </label>
-                  <div class="popup__label popup__flex-date">Время (с/до)
-                    <div class="popup__flex-date-row">
-                      <select class="popup__input">
-                        <option value="1">10:00</option>
-                        <option value="2">11:00</option>
-                        <option value="3">12:00</option>
-                      </select>
-                      <select class="popup__input">
-                        <option value="1">10:00</option>
-                        <option value="2">11:00</option>
-                        <option value="3">12:00</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block">
-            <div class="popup__layout">
-              <div class="popup__label popup__guests">Приблизительное количество гостей на празднике:</div>
-              <div class="popup__label small-labels popup__guests-input">
-                <label class="popup__label">взрослых
-                  <input type="text" class="popup__input"/>
-                </label>
-                <label class="popup__label">мальчиков
-                  <input type="text" class="popup__input"/>
-                </label>
-                <label class="popup__label">девочек
-                  <input type="text" class="popup__input"/>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block">
-            <div class="popup__row">
-              <div class="popup__row-item">Наполнение праздника:</div>
-              <input type="checkbox" name="toy" id="toy" class="popup__hidden-inputs"/>
-              <label for="toy" class="popup__input-label popup__row-item">Ростовая кукла</label>
-            </div>
-          </div>
-          <div class="popup__block popup__submit">
-            <div class="popup__submit-row">
-              <div class="popup__submit-col">
-                <p>После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.</p>
-              </div>
-              <div class="popup__submit-col popup__submit-col--btn">
-                <input type="submit" value="Отправить" class="btn btn--red"/>
-              </div>
-            </div>
-          </div>
-        </form>
-        <form id="birthday" class="zoom-anim-dialog mfp-hide popup">
-          <p class="popup__heading">Оставить заявку</p>
-          <div class="popup__block">
-            <div class="popup__layout">
-              <label class="popup__label">Имя
-                <input type="text" class="popup__input"/>
-              </label>
-              <label class="popup__label">Телефон
-                <input type="tel" placeholder="+7" class="popup__input"/>
-              </label>
-              <label class="popup__label">Ресторан
-                <select class="popup__input">
-                  <option value="1">Нижний Новгород</option>
-                  <option value="2">Москва</option>
-                  <option value="3">Краснодар</option>
-                </select>
-              </label>
-              <div class="popup__label">
-                <div class="popup__flex popup__flex--date">
-                  <label class="popup__label">Дата
-                    <input type="text" class="popup__input datepicker"/>
-                  </label>
-                  <div class="popup__label popup__flex-date">Время (с/до)
-                    <div class="popup__flex-date-row">
-                      <select class="popup__input">
-                        <option value="1">10:00</option>
-                        <option value="2">11:00</option>
-                        <option value="3">12:00</option>
-                      </select>
-                      <select class="popup__input">
-                        <option value="1">10:00</option>
-                        <option value="2">11:00</option>
-                        <option value="3">12:00</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block popup__birthday__row">
-            <div class="popup__layout">
-              <div class="popup__label">
-                <p>Имя ребёнка / исполняется лет</p>
-                <div class="popup__birthday__col">
-                  <input type="text" class="popup__input"/><span>/ </span>
-                  <input type="text" class="popup__input popup__birthday__age"/>
-                </div>
-              </div>
-              <div class="popup__label popup__birthday__gender">
-                <p class="popup__row-item">Пол ребенка</p>
-                <div class="popup__row-item">
-                  <input type="radio" name="birthday-gender" id="birthday-gender-male" class="popup__hidden-inputs"/>
-                  <label for="birthday-gender-male" class="popup__input-label popup__input-label--radio">М</label>
-                </div>
-                <div class="popup__row-item">
-                  <input type="radio" name="birthday-gender" id="birthday-gender-female" class="popup__hidden-inputs"/>
-                  <label for="birthday-gender-female" class="popup__input-label popup__input-label--radio">Д</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block">
-            <div class="popup__layout">
-              <div class="popup__label popup__guests">Приблизительное количество гостей на празднике:</div>
-              <div class="popup__label small-labels popup__guests-input">
-                <label class="popup__label">взрослых
-                  <input type="text" class="popup__input"/>
-                </label>
-                <label class="popup__label">мальчиков
-                  <input type="text" class="popup__input"/>
-                </label>
-                <label class="popup__label">девочек
-                  <input type="text" class="popup__input"/>
-                </label>
-              </div>
-            </div>
-          </div>
-          <div class="popup__block">
-            <p class="popup__block-subtitle">Наполнение праздника:</p>
-            <div class="popup__row popup__row-animators">
-              <input type="radio" name="animators" id="animators-one" checked="checked" class="popup__hidden-inputs"/>
-              <label for="animators-one" class="popup__input-label popup__row-item popup__input-label--radio popup__row-item--small-margin">1</label>
-              <input type="radio" name="animators" id="animators-two" class="popup__hidden-inputs"/>
-              <label for="animators-two" class="popup__input-label popup__row-item popup__input-label--radio popup__row-item--small-margin">2</label>
-              <div class="popup__label animators__label">аниматор(а)</div>
-              <input type="checkbox" name="toy" id="toy" class="popup__hidden-inputs"/>
-              <label for="toy" class="popup__input-label popup__row-item">Ростовая кукла</label>
-              <input type="checkbox" name="master-class" id="master-class" class="popup__hidden-inputs"/>
-              <label for="master-class" class="popup__input-label popup__row-item">Мастер-класс</label>
-            </div>
-          </div>
-          <div class="popup__block popup__submit">
-            <div class="popup__submit-row">
-              <div class="popup__submit-col">
-                <p>После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.</p>
-              </div>
-              <div class="popup__submit-col popup__submit-col--btn">
-                <input type="submit" value="Отправить" class="btn btn--red"/>
-              </div>
-            </div>
-          </div>
-        </form>
-        <form id="login" class="zoom-anim-dialog mfp-hide popup">
-          <p class="popup__heading">АВТОРИЗАЦИЯ
+        <form id="master-class" @submit.prevent="masterClassPopup" class="zoom-anim-dialog mfp-hide popup">
+          <div v-bind:class="{ loading: cabinet.isLoading }" class="popup__inner">
+            <p class="popup__heading">Оставить заявку</p>
             <div class="popup__block">
               <div class="popup__layout">
-                <label class="popup__label">Email
-                  <input type="email" class="popup__input"/>
+                <label class="popup__label">Имя
+                  <input type="text" data-parsley-required="true" class="popup__input"/>
                 </label>
-                <label class="popup__label">Пароль
-                  <input type="password" class="popup__input"/>
+                <label class="popup__label">Телефон
+                  <input type="tel" placeholder="+7" data-parsley-required="true" data-parsley-validatephone="data-parsley-validatephone" class="popup__input"/>
+                </label>
+                <label class="popup__label">Ресторан
+                  <select class="popup__input">
+                    <option value="1">Нижний Новгород</option>
+                    <option value="2">Москва</option>
+                    <option value="3">Краснодар</option>
+                  </select>
                 </label>
                 <div class="popup__label">
-                  <input type="checkbox" name="remember" id="remember" class="popup__hidden-inputs"/>
-                  <label for="remember" class="popup__input-label popup__row-item popup__row-item--small-margin">Запомнить меня</label>
+                  <div class="popup__flex popup__flex--date">
+                    <label class="popup__label">Дата
+                      <input type="text" class="popup__input datepicker"/>
+                    </label>
+                    <div class="popup__label popup__flex-date">Время (с/до)
+                      <div class="popup__flex-date-row">
+                        <select class="popup__input">
+                          <option value="1">10:00</option>
+                          <option value="2">11:00</option>
+                          <option value="3">12:00</option>
+                        </select>
+                        <select class="popup__input">
+                          <option value="1">10:00</option>
+                          <option value="2">11:00</option>
+                          <option value="3">12:00</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="popup__label"><a href="#" class="lost-pass">Забыли пароль?</a></div>
-              </div>
-              <div class="center-align">
-                <input type="submit" value="Войти" class="btn btn--red login-submit"/>
               </div>
             </div>
-          </p>
+            <div class="popup__block">
+              <div class="popup__layout">
+                <div class="popup__label popup__guests">Приблизительное количество гостей на празднике:</div>
+                <div class="popup__label small-labels popup__guests-input">
+                  <label class="popup__label">взрослых
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">мальчиков
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">девочек
+                    <input type="text" class="popup__input"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block">
+              <div class="popup__row">
+                <div class="popup__row-item">Наполнение праздника:</div>
+                <input type="checkbox" name="toy" id="toy" class="popup__hidden-inputs"/>
+                <label for="toy" class="popup__input-label popup__row-item">Ростовая кукла</label>
+              </div>
+            </div>
+            <div class="popup__block popup__submit">
+              <div class="popup__submit-row">
+                <div class="popup__submit-col">
+                  <p>После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.</p>
+                </div>
+                <div class="popup__submit-col popup__submit-col--btn">
+                  <input type="submit" value="Отправить" class="btn btn--red"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form id="birthday" @submit.prevent="birthdayPopup" class="zoom-anim-dialog mfp-hide popup">
+          <div v-bind:class="{ loading: cabinet.isLoading }" class="popup__inner">
+            <p class="popup__heading">Оставить заявку</p>
+            <div class="popup__block">
+              <div class="popup__layout">
+                <label class="popup__label">Имя
+                  <input type="text" data-parsley-required="true" class="popup__input"/>
+                </label>
+                <label class="popup__label">Телефон
+                  <input type="tel" placeholder="+7" data-parsley-required="true" data-parsley-validatephone="data-parsley-validatephone" class="popup__input"/>
+                </label>
+                <label class="popup__label">Ресторан
+                  <select class="popup__input">
+                    <option value="1">Нижний Новгород</option>
+                    <option value="2">Москва</option>
+                    <option value="3">Краснодар</option>
+                  </select>
+                </label>
+                <div class="popup__label">
+                  <div class="popup__flex popup__flex--date">
+                    <label class="popup__label">Дата
+                      <input type="text" class="popup__input datepicker"/>
+                    </label>
+                    <div class="popup__label popup__flex-date">Время (с/до)
+                      <div class="popup__flex-date-row">
+                        <select class="popup__input">
+                          <option value="1">10:00</option>
+                          <option value="2">11:00</option>
+                          <option value="3">12:00</option>
+                        </select>
+                        <select class="popup__input">
+                          <option value="1">10:00</option>
+                          <option value="2">11:00</option>
+                          <option value="3">12:00</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block popup__birthday__row">
+              <div class="popup__layout">
+                <div class="popup__label">
+                  <p>Имя ребёнка / исполняется лет</p>
+                  <div class="popup__birthday__col">
+                    <input type="text" class="popup__input"/><span>/ </span>
+                    <input type="text" class="popup__input popup__birthday__age"/>
+                  </div>
+                </div>
+                <div class="popup__label popup__birthday__gender">
+                  <p class="popup__row-item">Пол ребенка</p>
+                  <div class="popup__row-item">
+                    <input type="radio" name="birthday-gender" id="birthday-gender-male" class="popup__hidden-inputs"/>
+                    <label for="birthday-gender-male" class="popup__input-label popup__input-label--radio">М</label>
+                  </div>
+                  <div class="popup__row-item">
+                    <input type="radio" name="birthday-gender" id="birthday-gender-female" class="popup__hidden-inputs"/>
+                    <label for="birthday-gender-female" class="popup__input-label popup__input-label--radio">Д</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block">
+              <div class="popup__layout">
+                <div class="popup__label popup__guests">Приблизительное количество гостей на празднике:</div>
+                <div class="popup__label small-labels popup__guests-input">
+                  <label class="popup__label">взрослых
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">мальчиков
+                    <input type="text" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">девочек
+                    <input type="text" class="popup__input"/>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="popup__block">
+              <p class="popup__block-subtitle">Наполнение праздника:</p>
+              <div class="popup__row popup__row-animators">
+                <input type="radio" name="animators" id="animators-one" checked="checked" class="popup__hidden-inputs"/>
+                <label for="animators-one" class="popup__input-label popup__row-item popup__input-label--radio popup__row-item--small-margin">1</label>
+                <input type="radio" name="animators" id="animators-two" class="popup__hidden-inputs"/>
+                <label for="animators-two" class="popup__input-label popup__row-item popup__input-label--radio popup__row-item--small-margin">2</label>
+                <div class="popup__label animators__label">аниматор(а)</div>
+                <input type="checkbox" name="toy" id="toy" class="popup__hidden-inputs"/>
+                <label for="toy" class="popup__input-label popup__row-item">Ростовая кукла</label>
+                <input type="checkbox" name="master-class" id="master-class" class="popup__hidden-inputs"/>
+                <label for="master-class" class="popup__input-label popup__row-item">Мастер-класс</label>
+              </div>
+            </div>
+            <div class="popup__block popup__submit">
+              <div class="popup__submit-row">
+                <div class="popup__submit-col">
+                  <p>После отправки формы, наши менеджеры свяжутся с вами в ближайшее время для согласования заказа.</p>
+                </div>
+                <div class="popup__submit-col popup__submit-col--btn">
+                  <input type="submit" value="Отправить" class="btn btn--red"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <form id="login" @submit.prevent="login" class="zoom-anim-dialog mfp-hide popup">
+          <div v-bind:class="{ loading: cabinet.isLoading }" class="popup__inner">
+            <p class="popup__heading">АВТОРИЗАЦИЯ
+              <div class="popup__block">
+                <div class="popup__layout">
+                  <label class="popup__label">Email
+                    <input type="email" data-parsley-required="true" class="popup__input"/>
+                  </label>
+                  <label class="popup__label">Пароль
+                    <input type="password" data-parsley-required="true" class="popup__input"/>
+                  </label>
+                  <div class="popup__label">
+                    <input type="checkbox" name="remember" id="remember" class="popup__hidden-inputs"/>
+                    <label for="remember" class="popup__input-label popup__row-item popup__row-item--small-margin">Запомнить меня</label>
+                  </div>
+                  <div class="popup__label"><a href="#" class="lost-pass">Забыли пароль?</a></div>
+                </div>
+                <div class="center-align">
+                  <input type="submit" value="Войти" class="btn btn--red login-submit"/>
+                </div>
+              </div>
+            </p>
+          </div>
         </form>
         <div id="success" class="zoom-anim-dialog mfp-hide popup__success popup">
           <p>Сообщение успешно отправлено</p>

@@ -84,7 +84,7 @@ select.custom-select {
 	border: 1px solid #d9a036;
 	border-radius: 18px;
 	padding: 0 22px;
-	font: 400 13px/35px $os;
+	font: 400 13px/33px $os;
 	color: #fec24a;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -181,6 +181,16 @@ body {
 	&.active::before {
 		@include sprite($radio-check);
 	}
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /* =Sticky Footer

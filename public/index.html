@@ -101,10 +101,10 @@
           <div class="big-menu__item"><img src="img/big-menu6.jpg" alt="" class="big-menu__img"/>
             <div class="big-menu__form">
               <p class="big-menu__form-title">Обратная Связь</p>
-              <form>
+              <form @submit.prevent="simpleFormSend">
                 <div class="big-menu__form-row">
-                  <input type="text" placeholder="Имя" class="big-menu__form-input"/>
-                  <input type="tel" placeholder="Телефон" class="big-menu__form-input"/>
+                  <input type="text" placeholder="Имя" data-parsley-required="true" class="big-menu__form-input"/>
+                  <input type="tel" placeholder="Телефон" data-parsley-required="true" class="big-menu__form-input"/>
                   <input type="email" placeholder="Email" class="big-menu__form-input"/>
                 </div>
                 <textarea placeholder="Сообщение" class="big-menu__form-input big-menu__form-textarea"></textarea>
