@@ -3,218 +3,219 @@ block vars
 block content
 	main.main-content.cart.main-content__top-padding
 		.small-container
-			h1.cart__title КОРЗИНА
-			ul.cart__list
-				li.cart__item
-					.cart__item-img
-						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
-							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
-						p.cart__item-title Мексиканаская
-						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-					.cart__item-options
-						.custom-select__wrapper.item__option
-							select.custom-select
-								option(value="средняя / 33 см") Средняя / 33 см
-								option(value="половина средней") Половина средней
-								option(value="большая / 40 см") Большая / 40 см
-								option(value="половина большой") Половина большой
-							select.custom-select--compute
-								option.custom-select--compute-value(value="")
-					.cart__item-count.item__count
-						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-					.cart__item-price
-						p.item__price-number 3750 
-							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
-				li.cart__item
-					.cart__item-img
-						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
-							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
-						p.cart__item-title Мексиканаская
-						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-					.cart__item-options
-						span.item__fixed-value 8 штук
-					.cart__item-count.item__count
-						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-					.cart__item-price
-						p.item__price-number 750 
-							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
-				li.cart__item
-					.cart__item-img
-						a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
-							img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
-					.cart__item-content
-						p.cart__item-title Мексиканаская
-						p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
-						.cart__item-supplements
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Сыр 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ананасы 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-							label
-								input(type="checkbox")
-								span.cart__item-supplements--text Ветчина 70
-									span.rouble З
-					.cart__item-options
-						span.item__fixed-value 500 гр
-					.cart__item-count.item__count
-						span.item__count-title Кол-во:
-						.item__count-wrapper
-							.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-							input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
-							.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
-					.cart__item-price
-						p.item__price-number 13750 
-							span.rouble З
-					.cart__item-delete
-						a.cart__item-delete--link(href="#")
-			.cart__delivery-and-pay
-				h2.cart__delivery-and-pay--title Доставка и оплата
-				.delivery__block
-					.delivery__block-header.cf
-						.delivery__variants
-							span.courier.custom-radio(@click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }") курьером
-							span.pickup.custom-radio(@click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }") самовывоз
-						a.delivery__register.default-link(href="#" v-if="!userInfo.loggedIn") Регистрация
-					.delivery__cols
-						.delivery__col.delivery__info
-							p.delivery__col-heading Основная информация:
-							.delivery__row
-								span.delivery__label Ваше имя:
-								input.delivery__input(type="text" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userName")
-							.delivery__row
-								span.delivery__label Телефон:
-								span.delivery__input-tel--wrapper
-									input(type="tel" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userPhoneNumber").delivery__input.delivery__input-tel
+			form(@submit.prevent="cartFormSubmit")
+				h1.cart__title КОРЗИНА
+				ul.cart__list
+					li.cart__item
+						.cart__item-img
+							a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+								img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+						.cart__item-content
+							p.cart__item-title Мексиканаская
+							p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+							.cart__item-supplements
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Сыр 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ананасы 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+						.cart__item-options
+							.custom-select__wrapper.item__option
+								select.custom-select
+									option(value="средняя / 33 см") Средняя / 33 см
+									option(value="половина средней") Половина средней
+									option(value="большая / 40 см") Большая / 40 см
+									option(value="половина большой") Половина большой
+								select.custom-select--compute
+									option.custom-select--compute-value(value="")
+						.cart__item-count.item__count
+							span.item__count-title Кол-во:
+							.item__count-wrapper
+								.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+								.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.cart__item-price
+							p.item__price-number 3750 
+								span.rouble З
+						.cart__item-delete
+							a.cart__item-delete--link(href="#")
+					li.cart__item
+						.cart__item-img
+							a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+								img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+						.cart__item-content
+							p.cart__item-title Мексиканаская
+							p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+							.cart__item-supplements
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Сыр 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ананасы 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+						.cart__item-options
+							span.item__fixed-value 8 штук
+						.cart__item-count.item__count
+							span.item__count-title Кол-во:
+							.item__count-wrapper
+								.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+								.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.cart__item-price
+							p.item__price-number 750 
+								span.rouble З
+						.cart__item-delete
+							a.cart__item-delete--link(href="#")
+					li.cart__item
+						.cart__item-img
+							a.zoom-img(href="img/pizza1.jpg" style="background-image: url(img/pizza1.jpg)")
+								img.item__img-zoom--helper(src="img/roll1.jpg", alt="")
+						.cart__item-content
+							p.cart__item-title Мексиканаская
+							p.cart__item-description Острая пицца, с сыром Моцарелла, салями, беконом, болгарским перцем и чили, луком и маслинами.
+							.cart__item-supplements
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Сыр 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ананасы 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+								label
+									input(type="checkbox")
+									span.cart__item-supplements--text Ветчина 70
+										span.rouble З
+						.cart__item-options
+							span.item__fixed-value 500 гр
+						.cart__item-count.item__count
+							span.item__count-title Кол-во:
+							.item__count-wrapper
+								.item__count_minus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+								input.qty.remove-spinners.need-validate(type="number" min="1" pattern="[0-9]*" value="1")
+								.item__count_plus.spin(onclick="PizzaThemeGlobalVariables.updateSpinner(this);")
+						.cart__item-price
+							p.item__price-number 13750 
+								span.rouble З
+						.cart__item-delete
+							a.cart__item-delete--link(href="#")
+				.cart__delivery-and-pay
+					h2.cart__delivery-and-pay--title Доставка и оплата
+					.delivery__block
+						.delivery__block-header.cf
+							.delivery__variants
+								span.courier.custom-radio(@click="cartPage.pickup = false" v-bind:class="{ 'active': !cartPage.pickup }") курьером
+								span.pickup.custom-radio(@click="cartPage.pickup = true" v-bind:class="{ 'active': cartPage.pickup }") самовывоз
+							a.delivery__register.default-link(href="#" v-if="!userInfo.loggedIn") Регистрация
+						.delivery__cols
+							.delivery__col.delivery__info
+								p.delivery__col-heading Основная информация:
+								.delivery__row
+									span.delivery__label Ваше имя:
+									span.delivery__input--wrapper
+										input.delivery__input(type="text" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userName" data-parsley-required="true")
+								.delivery__row
+									span.delivery__label Телефон:
+									span.delivery__input-tel--wrapper
+										input(type="tel" v-bind:value="!userInfo.loggedIn ? '' : userInfo.userPhoneNumber" data-parsley-required="true" data-parsley-validatephone).delivery__input.delivery__input-tel
 
 
-						.delivery__col.delivery__address(v-if="!cartPage.pickup")
-							.delivery__col-heading Адрес: 
-								.custom-select__wrapper.item__option
-									//- problem
-									select.custom-select(key="saved-addresses" v-model="cartPage.currentSavedAddress")
-										optgroup(label="Сохраненные адреса" v-if="userInfo.loggedIn")
-											option(v-bind:value="address" v-for="address in userInfo.savedAddresses") {{ address.street }}
-										optgroup(label="Выберите город")
-											option(v-for="singleCity in restaurants") {{ singleCity.city }}
-									select.custom-select--compute
-										option.custom-select--compute-value(value="")
+							.delivery__col.delivery__address(v-if="!cartPage.pickup")
+								.delivery__col-heading Адрес: 
+									.custom-select__wrapper.item__option
+										//- problem
+										select.custom-select(key="saved-addresses" v-model="cartPage.currentSavedAddress")
+											optgroup(label="Сохраненные адреса" v-if="userInfo.loggedIn")
+												option(v-bind:value="address" v-for="address in userInfo.savedAddresses") {{ address.street }}
+											optgroup(label="Выберите город")
+												option(v-for="singleCity in restaurants") {{ singleCity.city }}
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+								.delivery__row
+									span.delivery__input--wrapper--street
+										input.delivery__input(type="text" placeholder="Улица" 
+									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.street : ''" data-parsley-required="true")
+								.delivery__row
+									.delivery__small-col.delivery__small-col--req
+										input.delivery__input(type="text" placeholder="Дом"
+										v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.house : ''" data-parsley-required="true")
+									.delivery__small-col
+										input.delivery__input(type="text" placeholder="Корп."
+										v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.building : ''")
+									.delivery__small-col
+										input.delivery__input(type="text" placeholder="Кв."
+										v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.apartment : ''")
 
 
-							.delivery__row
-								input.delivery__input(type="text" placeholder="Улица" 
-								v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.street : ''")
-							.delivery__row
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Дом"
-									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.house : ''")
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Корп."
-									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.building : ''")
-								.delivery__small-col
-									input.delivery__input(type="text" placeholder="Кв."
-									v-bind:value="userInfo.savedAddresses && userInfo.savedAddresses.length ? cartPage.currentSavedAddress.apartment : ''")
-
-
-						.delivery__col.delivery__address(v-if="cartPage.pickup")
-							.delivery__col-heading Адрес: 
-								.custom-select__wrapper.item__option.delivery__address-city
-									select.custom-select(v-model="cartPage.currentCity" @change="setDefaultDistrict")
-										option(v-for="singleCity in restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false") {{ singleCity.city }}
-									select.custom-select--compute
-										option.custom-select--compute-value(value="")
-							.delivery__row.delivery__row-flex-start Район
-								.custom-select__wrapper.item__option
-									select.custom-select(v-model="cartPage.currentDistrict" @change="setDefaultRestaurant")
-										option(v-for="singleDistrict in cartPage.currentCity.districts" v-bind:value="singleDistrict") {{ singleDistrict.districtName }}
-									select.custom-select--compute
-										option.custom-select--compute-value(value="")
-							.delivery__row.delivery__row-flex-start Ресторан:
-								.custom-select__wrapper.item__option
-									select.custom-select(v-model="cartPage.currentRestaurant")
-										option(v-for="singleRestaurant in cartPage.currentDistrict.restaurants" v-bind:value="singleRestaurant") {{ singleRestaurant.placeName }}
-									select.custom-select--compute
-										option.custom-select--compute-value(value="")
-							.delivery__row.delivery__row-flex-start.delivery__row--last-row
-								span.delivery__row-note(v-if="cartPage.currentRestaurant") {{ cartPage.currentRestaurant.address }}, {{ cartPage.currentRestaurant.hours }} ч.
-						.delivery__col.delivery__comment
-							p.delivery__col-heading Комментарий к заказу:
-							.delivery__row
-								textarea.delivery__input(placeholder="Комментарий")
-						.delivery__col.delivery__pay
-							p.delivery__col-heading Оплата
-							.delivery__pay-inputs
-								input(type="radio" id="cash-pay" name="pay-method" checked="checked")
-								label.custom-radio(for="cash-pay") наличными
-								input(type="radio" id="noncash-pay" name="pay-method")
-								label.custom-radio(for="noncash-pay") безналичный расчёт
-							.delivery__pizzents(v-bind:class="{ 'disabled': !userInfo.loggedIn }") Использовать пицценты:
-								.delivery__pizzents-input--wrapper
-									input.delivery__pizzents-input.remove-spinners(type="number"  min="1" pattern="[0-9]*" v-if="userInfo.loggedIn" v-bind:value="userInfo.pizzents")
-								span pz
-					.cart__total
-						p.cart__total-price 4585 
-							span.rouble З
-						input.btn.cart__total-btn(type="submit" value="Подтвердить")
+							.delivery__col.delivery__address(v-if="cartPage.pickup" key="pickupKey")
+								.delivery__col-heading Адрес: 
+									.custom-select__wrapper.item__option.delivery__address-city
+										select.custom-select(v-model="cartPage.currentCity" @change="setDefaultDistrict")
+											option(v-for="singleCity in restaurants" v-bind:value="singleCity" v-bind:selected="cartPage.currentCity.city == singleCity.city ? true : false") {{ singleCity.city }}
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+								.delivery__row.delivery__row-flex-start Район
+									.custom-select__wrapper.item__option
+										select.custom-select(v-model="cartPage.currentDistrict" @change="setDefaultRestaurant")
+											option(v-for="singleDistrict in cartPage.currentCity.districts" v-bind:value="singleDistrict") {{ singleDistrict.districtName }}
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+								.delivery__row.delivery__row-flex-start Ресторан:
+									.custom-select__wrapper.item__option
+										select.custom-select(v-model="cartPage.currentRestaurant")
+											option(v-for="singleRestaurant in cartPage.currentDistrict.restaurants" v-bind:value="singleRestaurant") {{ singleRestaurant.placeName }}
+										select.custom-select--compute
+											option.custom-select--compute-value(value="")
+								.delivery__row.delivery__row-flex-start.delivery__row--last-row
+									span.delivery__row-note(v-if="cartPage.currentRestaurant") {{ cartPage.currentRestaurant.address }}, {{ cartPage.currentRestaurant.hours }} ч.
+							.delivery__col.delivery__comment
+								p.delivery__col-heading Комментарий к заказу:
+								.delivery__row
+									textarea.delivery__input(placeholder="Комментарий")
+							.delivery__col.delivery__pay
+								p.delivery__col-heading Оплата
+								.delivery__pay-inputs
+									input(type="radio" id="cash-pay" name="pay-method" checked="checked")
+									label.custom-radio(for="cash-pay") наличными
+									input(type="radio" id="noncash-pay" name="pay-method")
+									label.custom-radio(for="noncash-pay") безналичный расчёт
+								.delivery__pizzents(v-bind:class="{ 'disabled': !userInfo.loggedIn }") Использовать пицценты:
+									.delivery__pizzents-input--wrapper
+										input.delivery__pizzents-input.remove-spinners(type="number"  min="1" pattern="[0-9]*" v-if="userInfo.loggedIn" v-bind:value="userInfo.pizzents")
+									span pz
+						.cart__total
+							p.cart__total-price 4585 
+								span.rouble З
+							input.btn.cart__total-btn(type="submit" value="Подтвердить")
 			.cart__add-new-items
 				h2.cart__add-new-items--title Добавьте к заказу:
 				.items__container

@@ -351,7 +351,11 @@ var vm = new Vue({
 		simpleFormSend: function(e) {
 			if($(e.target).parsley().validate()) {
 				alert('ok')
-				
+			}
+		},
+		cartFormSubmit: function(e) {
+			if($(e.target).parsley().validate()) {
+				alert('ok')
 			}
 		}
 	},

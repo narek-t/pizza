@@ -66,6 +66,9 @@
 }
 
 .delivery {
+	&__input--wrapper--street {
+		width: 100%;
+	}
 	&__block {
 		&-header {
 			padding: 25px 30px;
@@ -163,6 +166,12 @@
 	}
 	&__small-col {
 		width: 58px;
+		position: relative;
+		&--req {
+			.parsley-errors-list {
+				position: absolute;
+			}
+		}
 	}
 	&__comment {
 		flex: 0 0 370px;
